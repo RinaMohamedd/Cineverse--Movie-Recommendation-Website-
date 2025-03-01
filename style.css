@@ -209,6 +209,62 @@ a:hover {
     border-radius: 10px;
     border:1px solid purple;
 }
+.features {
+    background-image: url('images/background.jpeg'); 
+    background-size: cover;
+    
+    background-repeat: no-repeat;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+figure {
+    background: rgba(255, 255, 255, 0.7); 
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.link-section {
+    background-color: #111; 
+    padding: 15px 0;
+    text-align: center;
+    justify-content: center; 
+    align-items: center;
+}
+
+.link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.link-list li {
+    display: inline;
+}
+
+.link-list a {
+    text-decoration: none;
+    color: rgb(248, 246, 246);
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.link-list .highlight {
+    color: purple; /* Highlighted text color */
+    font-weight: bold;
+}
+
+.link-list a:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
 
 footer {
     background:black;
