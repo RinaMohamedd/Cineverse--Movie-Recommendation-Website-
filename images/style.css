@@ -33,6 +33,7 @@ p {
 }
 
 .navbar {
+  
     width: 100%;
     height: 50px;
     background-color: black;
@@ -41,34 +42,92 @@ p {
 .navbar-container {
     display: flex;
     align-items: center;
-    background-color: blanchedalmond;
+    
     padding: 0 50px;
     height: 100%;
+    color: white;
+    font-family: "Goudy Bookletter 1911", sans-serif;
 }
 
 .logo-container {
     flex: 1;
-    background-color: green;
+ 
 }
 
 .logo {
-    
+   
+    font-size: 30px;
+    color: #4dbf00;
 }
 
 .menu-container {
     flex: 6;
-    background-color: pink;
-}
 
+}
+.menu-list{
+    display: flex;
+    list-style: none;
+}
+.menu-list-item{
+    margin-right: 30px;
+}
+.menu-list-item.active{
+    font-weight: bold;
+}
 .profile-container {
     flex: 2;
-    background-color: red;
-}
+display: flex;
+align-items: center;
 
+justify-content: flex-end;
+}
+.profile-text-container{
+    margin:0 20px;
+}
+.toggle{
+    width: 40px;
+    height:20px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+}
+.toggle-icon{
+    color: goldenrod;
+}
+.toggle-ball{
+width: 18px;
+height: 18px;
+background-color: black;
+position: absolute;
+right: 1px;
+border-radius: 50%;
+cursor: pointer;
+}
 .sidebar {
     width: 50px;
     height: 100%;
     background-color: black;
     position: fixed;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ 
+    padding-top: 60px;
+}
+.left-menu-icon{
+    color: white;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+.container{
+    background-color: #151515;
+    height: calc(100vh - 50px);
+    color:white
+}
+.content-container{
+margin-left: 50px;
 }
