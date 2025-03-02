@@ -125,9 +125,49 @@ cursor: pointer;
 }
 .container{
     background-color: #151515;
-    height: calc(100vh - 50px);
+    min-height: calc(100vh - 50px);
     color:white
 }
 .content-container{
 margin-left: 50px;
+}
+.featured-content{
+    height:50vh;
+    padding:50px;
+
+}
+.featured-desc{
+    width:500px;
+    color:lightgray;
+    margin:50px 0;
+}
+.featured-button{
+    background-color: rgb(218, 135, 218);
+    color:white;
+    padding :10px 20px;
+    border-radius:20px;
+    border:none;
+    outline:none;
+    font-weight: bold;
+}
+.movie-list-container{
+    padding:20px;
+}
+.movie-list{
+    display:flex;
+    align-items: center;
+    height:300px;
+}
+.movie-list-item{
+    margin-right: 30px;
+    transition:all 1s ease-in-out;
+}
+.movie-list-item :hover.movie-list-item-img{
+    transform:scale(1.2);
+}
+.movie-list-item-img{
+    width:270px;
+    height:200px;
+    object-fit: cover;
+    
 }
