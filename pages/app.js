@@ -29,3 +29,17 @@ ball.addEventListener("click", () => {
   });
   ball.classList.toggle("active");
 });
+
+  gsap.fromTo(
+    ".logo-text",
+    { y: 0 }, 
+    {
+      y: -10,   
+      repeat: -1,
+      yoyo: true,
+      stagger: 0.1, 
+      ease: "power1.inOut",
+      duration: 0.5
+    }
+  );
+
