@@ -43,23 +43,24 @@ p {
 .navbar-container {
     display: flex;
     align-items: center;
-    
     padding: 0 50px;
     height: 100%;
     color: white;
     font-family: "Goudy Bookletter 1911", sans-serif;
 }
-
 .logo-container {
-    flex: 1;
- 
+    display: flex;
+    font-size: 30px;
+    font-weight: bold;
+    color: #52004b;
+    gap: 2px;
 }
 
-.logo {
-   
-    font-size: 30px;
-    color: #52004b;
+.logo-img {
+    height: 40px; 
+    width: 160px;
 }
+
 
 .menu-container {
     flex: 6;
@@ -112,6 +113,7 @@ position: absolute;
 right: 1px;
 border-radius: 50%;
 cursor: pointer;
+transition: 1s ease all;
 }
 .sidebar {
     width: 50px;
@@ -122,7 +124,6 @@ cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
- 
     padding-top: 60px;
 }
 .left-menu-icon{
@@ -162,6 +163,7 @@ margin-left: 50px;
 }
 .movie-list-container{
     padding:0 20px;
+    max-width: 1300px;
 }
 .movie-list-wrapper {
     position: relative;
@@ -235,16 +237,36 @@ margin-left: 50px;
     font-size: 120px;
     position: absolute;
     top: 90px;
+    right: 0;
     color: lightgray;
     opacity: 0.7;
     cursor: pointer;
-    z-index: 1;
 }
-
-.left-arrow {
-    left: 0; 
+.container.active {
+    background-color: white;
+}  
+  .movie-list-title.active {
+    color: black;
 }
-
-.right-arrow {
-    right: 0;
+  .navbar-container.active {
+    background-color: white;  
+    color: black;
+}  
+  .sidebar.active{
+      background-color: white;
+}  
+  .left-menu-icon.active{
+      color: black;
+}  
+  .toggle.active{
+      background-color: black;
+}  
+  .toggle-ball.active{
+      background-color: white;
+      transform: translateX(-20px);
+}  
+  @media only screen and (max-width: 940px){
+      .menu-container{
+          display: none;
+      }
 }

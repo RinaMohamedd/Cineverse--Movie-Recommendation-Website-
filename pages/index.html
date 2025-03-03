@@ -5,12 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <title>Cineverse</title>
 </head>
 <body>
     <div class="navbar">
         <div class="navbar-container">
-            <div class="logo-container"><h1 class = "logo">Cineverse</h1></div> 
+            <div class="logo-container">
+                <span class="logo-text">C</span>
+                <span class="logo-text">I</span>
+                <span class="logo-text">N</span>
+                <span class="logo-text">E</span>
+                <span class="logo-text">V</span>
+                <span class="logo-text">E</span>
+                <span class="logo-text">R</span>
+                <span class="logo-text">S</span>
+                <span class="logo-text">E</span>
+            </div>             
             <div class="menu-container">
                 <ul class="menu-list">
                     <li class="menu-list-item active">Home</li>
@@ -49,7 +62,7 @@
     <div class="content-container">
         <div class="featured-content"
         style="background : linear-gradient(to bottom,rgba(0,0,0,0),#151515), url(../images/featured-1.jpg);">
-        <img class="featured-title" src="C:\Users\ok\Desktop\Cineverse--Movie-Recommendation-Website--main (1)\images\featured-title-1.png" alt="">
+        <img class="featured-title" src="../images/featured-title-1.png" alt="">
         <p class="featured-desc">A freed slave turned bounty hunter embarks on a dangerous mission to
              rescue his wife from a brutal plantation owner, with the help of a cunning mentor. 
             Quentin Tarantino delivers a gripping, action-packed Western fueled by revenge and justice.</p>
@@ -58,7 +71,6 @@
         <div class="movie-list-container">
             <h1 class="movie-list-title">NEW RELEASES</h1>
             <div class="movie-list-wrapper">
-                 <i class="fas fa-chevron-left arrow left-arrow"></i> 
                 <div class="movie-list">
                     <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
@@ -73,51 +85,70 @@
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
-                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
-                        <span class="movie-list-item-title">purple</span>
-                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Tenetur dignissimos quas recusandae quaerat.</p>
-                        <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
-                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
-                        <span class="movie-list-item-title">purple</span>
-                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Tenetur dignissimos quas recusandae quaerat.</p>
-                        <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
-                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
-                        <span class="movie-list-item-title">purple</span>
-                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Tenetur dignissimos quas recusandae quaerat.</p>
-                        <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
-                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
-                        <span class="movie-list-item-title">purple</span>
-                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Tenetur dignissimos quas recusandae quaerat.</p>
-                        <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
-                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
-                        <span class="movie-list-item-title">purple</span>
-                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Tenetur dignissimos quas recusandae quaerat.</p>
-                        <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
                     </div>
+                    <div class="movie-list-item">
+                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
+                        <span class="movie-list-item-title">purple</span>
+                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Tenetur dignissimos quas recusandae quaerat.</p>
+                        <button class="movie-list-item-button">WATCH</button>
+                    </div>
+                    <div class="movie-list-item">
+                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
+                        <span class="movie-list-item-title">purple</span>
+                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Tenetur dignissimos quas recusandae quaerat.</p>
+                        <button class="movie-list-item-button">WATCH</button>
+                    </div>
+                    <div class="movie-list-item">
+                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
+                        <span class="movie-list-item-title">purple</span>
+                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Tenetur dignissimos quas recusandae quaerat.</p>
+                        <button class="movie-list-item-button">WATCH</button>
+                    </div>
+                    <div class="movie-list-item">
+                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
+                        <span class="movie-list-item-title">purple</span>
+                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Tenetur dignissimos quas recusandae quaerat.</p>
+                        <button class="movie-list-item-button">WATCH</button>
+                    </div>
+                    <div class="movie-list-item">
+                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
+                        <span class="movie-list-item-title">purple</span>
+                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Tenetur dignissimos quas recusandae quaerat.</p>
+                        <button class="movie-list-item-button">WATCH</button>
+                    </div>
+                    <div class="movie-list-item">
+                        <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
+                        <span class="movie-list-item-title">purple</span>
+                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Tenetur dignissimos quas recusandae quaerat.</p>
+                        <button class="movie-list-item-button">WATCH</button>
+                    </div>
+                    <div class="movie-list-item">
+                        <img class="movie-list-item-img" src="../images/purple.jpg"alt="">
+                        <span class="movie-list-item-title">purple</span>
+                        <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Tenetur dignissimos quas recusandae quaerat.</p>
+                        <button class="movie-list-item-button">WATCH</button>
+                    </div>
                 </div>
-                <i class="fas fa-chevron-right arrow right-arrow"></i>
+                <i class="fas fa-chevron-right arrow"></i>
             </div>
         </div>
         <div class="movie-list-container">
             <h1 class="movie-list-title">ACTION</h1>
             <div class="movie-list-wrapper">
-                 <i class="fas fa-chevron-left arrow left-arrow"></i> 
                 <div class="movie-list">
                     <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
@@ -132,37 +163,43 @@
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -170,12 +207,12 @@
                         <button class="movie-list-item-button">WATCH</button>
                     </div>
                 </div>
-                <i class="fas fa-chevron-right arrow right-arrow"></i>
+                <i class="fas fa-chevron-right arrow"></i>
             </div>
         </div>
         <div class="featured-content"
         style="background : linear-gradient(to bottom,rgba(0,0,0,0),#151515), url(../images/featured-1.jpg);">
-        <img class="featured-title" src="C:\Users\ok\Desktop\Cineverse--Movie-Recommendation-Website--main (1)\images\featured-title-1.png" alt="">
+        <img class="featured-title" src="../images/featured-title-1.png" alt="">
         <p class="featured-desc">A freed slave turned bounty hunter embarks on a dangerous mission to
              rescue his wife from a brutal plantation owner, with the help of a cunning mentor.
              Quentin Tarantino delivers a gripping, action-packed Western fueled by revenge and justice.</p>
@@ -184,7 +221,6 @@
         <div class="movie-list-container">
             <h1 class="movie-list-title">THRILLER</h1>
             <div class="movie-list-wrapper">
-                 <i class="fas fa-chevron-left arrow left-arrow"></i> 
                 <div class="movie-list">
                     <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
@@ -199,37 +235,43 @@
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -237,13 +279,12 @@
                         <button class="movie-list-item-button">WATCH</button>
                     </div>
                 </div>
-                <i class="fas fa-chevron-right arrow right-arrow"></i>
+                <i class="fas fa-chevron-right arrow"></i>
             </div>
         </div>
         <div class="movie-list-container">
             <h1 class="movie-list-title">FAMILY</h1>
             <div class="movie-list-wrapper">
-                 <i class="fas fa-chevron-left arrow left-arrow"></i> 
                 <div class="movie-list">
                     <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
@@ -258,37 +299,43 @@
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tenetur dignissimos quas recusandae quaerat.</p>
                         <button class="movie-list-item-button">WATCH</button>
-                    </div><div class="movie-list-item">
+                    </div>
+                    <div class="movie-list-item">
                         <img class="movie-list-item-img" src="../images/movie-poster-test.jpg"alt="">
                         <span class="movie-list-item-title">purple</span>
                         <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -296,8 +343,7 @@
                         <button class="movie-list-item-button">WATCH</button>
                     </div>
                 </div>
-                <i class="fas fa-chevron-right arrow right-arrow"></i>
-                
+                <i class="fas fa-chevron-right arrow"></i>
             </div>
         </div>
     </div>
