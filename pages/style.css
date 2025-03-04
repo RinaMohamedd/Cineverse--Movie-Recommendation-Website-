@@ -48,7 +48,6 @@ p {
     color: white;
     font-family: "Goudy Bookletter 1911", sans-serif;
 }
-
 .logo-container {
     flex: 1;
 }
@@ -303,6 +302,7 @@ p {
 
 .movie-list-container {
     padding:0 20px;
+    max-width: 1300px;
 }
 
 .movie-list-wrapper {
@@ -386,6 +386,7 @@ p {
     font-size: 120px;
     position: absolute;
     top: 90px;
+    right: 0;
     color: lightgray;
     opacity: 0.7;
     cursor: pointer;
