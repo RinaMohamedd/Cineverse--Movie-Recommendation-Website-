@@ -385,6 +385,32 @@ p {
     position: absolute;
     left: 200px;
 }
+.container.active{
+    background-color: white;
+}
+.movie-list-title.active{
+    color:black;
+}
+
+.navbar-container.active{
+    
+    background-color: white;
+    color:black;
+}
+
+.sidebar.active{
+    background-color: white;
+}
+.left-menu-icon.active{
+    color: black;
+}
+.toggle.active{
+    background-color: black;
+}
+.toggle-ball.active{
+    background-color: white;
+    transform: translate(-20px);
+}
 
 /*body {
     background:rgb(58,58,58);
