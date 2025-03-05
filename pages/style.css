@@ -455,7 +455,7 @@ p {
     padding-bottom: 10px;
 }
 
-.about-us-container {
+.about-us-container, .privacy-policy {
     color: white;
     padding: 0 50px;
     margin: 20px;
