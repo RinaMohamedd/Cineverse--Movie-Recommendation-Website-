@@ -455,7 +455,7 @@ p {
     padding-bottom: 10px;
 }
 
-.about-us-container, .privacy-policy {
+.about-us-container, .privacy-policy, .help-center {
     color: white;
     padding: 0 50px;
     margin: 20px;

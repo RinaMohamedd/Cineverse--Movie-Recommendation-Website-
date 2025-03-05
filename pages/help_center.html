@@ -3,9 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Cineverse</title>
 </head>
+
 <body>
-    
+    <!--navigation bar-->
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container"><h1 class = "logo">Cineverse</h1></div> 
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <a href="index.html"><li class="menu-list-item active">Home</li></a>
+                    <a href="movies.html"><li class="menu-list-item">Movies</li></a>
+                    <a href="series.html"><li class="menu-list-item">Series</li></a>
+                    <a href="popular.html"><li class="menu-list-item">Popular</li></a>
+                    <a href="trends.html"><li class="menu-list-item">Trends</li></a>
+                </ul>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="../images/profile1.jpg" alt="">
+                <div class="profile-text-container">
+                    <span class="profile-text"><a id=profile href="login.html" target="_self">Profile</a></span>                </div>
+                <div class="toggle">
+                    <i class="fa-solid fa-moon toggle-icon"></i>
+                    <i class="fa-solid fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--side bar-->
+    <div class="sidebar">
+        <i class="left-menu-icon fa-solid fa-magnifying-glass"></i> 
+        <a href="index.html">
+            <i class="left-menu-icon fa-solid fa-home"></i>
+        </a> 
+        <i class="left-menu-icon fa-solid fa-users"></i>
+        <a href="saved.html">
+            <i class="left-menu-icon fa-solid fa-bookmark"></i>
+        </a>
+        <i class="left-menu-icon fa-solid fa-tv"></i>
+        <i class="left-menu-icon fa-solid fa-hourglass-end"></i>
+        <i class="left-menu-icon fa-solid fa-cart-shopping"></i>
+    </div>
+
+    <!--help center-->
+    <div class="help-center">
+        <h1>Help Center</h1><br>
+        <h3>How can we help you?</h3><br>
+        <p>Find answers to common questions and get support for any issues you encounter while using Ciniverse.</p><br>
+        <hr><br>
+        <h2>1. Getting Started</h2><br>
+        <ul>
+            <li><strong>How does Cineverse work?</strong><br>Simply tell us your mood or preferences, and we'll
+            recommend movies that match your taste.</li><br>
+            <li><strong>Do I need an account to use Cineverse?</strong><br>No, you can browse recommendations 
+            without an account. However, creating an account lets you save favorites and get more personalized
+            suggestions.</li><br>
+        </ul>
+        <hr><br>
+        <h2>2. Movie Recommendations</h2><br>
+        <ul>
+            <li><strong>How are recommendations generated?</strong><br>Our system analyzes your preferences, 
+            watch history, and trending films to suggest the best options for you.</li><br>
+            <li><strong>Can I filter recommendations?</strong><br>Yes! You can filter by genre, release year,
+            rating, and more to find exactly what you're looking for.</li><br>
+        </ul>
+        <hr><br>
+        <h2>3. Troubleshooting & Support</h2><br>
+        <ul>
+            <li><strong>Why am I not getting any recommendations?</strong><br>Try refreshing the page or 
+            updating your preferences. If the issue continues, contact us for support.</li><br>
+            <li><strong>I found incorrect information about a movie. What should I do?</strong><br>Let us
+            know by clicking the "Report" button on the movie page.</li><br>
+            <li><strong>How do I contact support?</strong><br>You can reach through out 
+            <strong>Contact Us</strong> page.</li><br>
+        </ul>
+        <hr><br>
+        <h2>4. Privacy & Account Settings</h2><br>
+        <ul>
+            <li><strong>Is my data safe with Cineverse?</strong><br>Absolutely! We take privacy seriously
+            and don't share your data with third parties. See our 
+            <a href="privacy_policy.html" style="color:rgb(234, 141, 234);">Privacy Policy</a> for details.</li><br>
+            <li><strong>Can I delete my account?</strong><br>Yes, go to you <strong>Account Settings</strong>
+            and select <strong>Delete Account</strong>. This will remove all your data permanently.</li><br>
+        </ul>
+        <hr><br>
+        <h2>Still need help?</h2><br>
+        <p>If you coundn't find what you were looking for, feel free to 
+        <a href="contact_us.html" style="color: rgb(234, 141, 234);">Contact Us</a>. We're happy to assist you!</p>
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <ul>
+            <li><a href="help_center.html">Help Center</a></li>
+            <li><a href="about_us.html" >About Us</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+            <li><a href="privacy_policy.html">Privacy Policy</a></li>
+            <li><a href="terms_of_service.html">Terms of Service</a></li>
+        </ul>
+        <p>© 2025 Cinverse - All Rights Reserved.</p>
+    </div>
+
 </body>
 </html>
