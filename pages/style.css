@@ -1,4 +1,3 @@
-
 * {
     margin:0;
 }
@@ -400,7 +399,7 @@ p {
 }
 
 .navbar-container.active{
-    
+
     background-color: white;
     color:black;
 }
@@ -454,6 +453,7 @@ p {
     padding: 0 50px;
     padding-bottom: 10px;
 }
+
 
 .about-us-container, .privacy-policy, .help-center {
     color: white;
@@ -681,16 +681,27 @@ footer {
     background:black;
     padding:10px 20px;
 }*/
+
+
+
+
+
+
+
+
+
+
+
 .contact{
     min-height: 100vh;
     padding: 50px;
     text-align: center;
 }
-.container{
+.containerContact{
     max-width: 800px;
     margin:0 auto;
 }
-.container h2{
+.containerContact h2{
     font-size: 36px;
     margin-bottom: 40px;
     color: purple;
@@ -752,14 +763,4 @@ button:hover{
 .contact-info i{
     color:purple;
     margin-right: 10px;
-}
-@media screen and(max-width:768px){
-    .container{
-        padding:20px
-    }
-    .contact-wrapper{
-    
-        grid-template-columns: repeat 1fr;
-        
-    }
 }
