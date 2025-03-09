@@ -405,6 +405,7 @@ p {
     color:black;
 }
 
+
 .navbar-container.active{
     background-color: white;
     color:black;
@@ -544,3 +545,17 @@ button:hover{
     margin-right: 10px;
 }
 
+.label-watchlist{
+    color: grey;
+    display: flex;
+    padding: 10px;
+    font-size: 14px;
+    right: 200px;
+    width: 230px;
+    margin: 5px;
+}
+
+.movie-list-item-button-watchlist
+{
+    margin:20px 15px;
+}
