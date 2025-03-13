@@ -9,7 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <title>Cineverse</title>
 </head>
-<body class="login-body">
+<body class="search-body">
+    <!--navigation bar-->
     <div class="navbar">
         <div class="navbar-container">
             <div class="logo-container"><h1 class = "logo">Cineverse</h1></div> 
@@ -22,7 +23,7 @@
                 </ul>
             </div>
             <div class="profile-container">
-                <img class="profile-picture" src="../images/profile1.jpg" alt="">
+                <a href="login.html"><img class="profile-picture" src="../images/profile1.jpg" alt=""></a>
                 <div class="profile-text-container">
                     <span class="profile-text"><a id=profile href="login.html" target="_self">Profile</a></span>                </div>
                 <div class="toggle">
@@ -31,7 +32,6 @@
                     <div class="toggle-ball"></div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 
@@ -51,40 +51,33 @@
         </a>
         </div>
 
-    <div class="login-container">
-        <form id="form" action="#">
-            <h1>Login</h1>
-            <div class="input-control">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username">
-                <div class="error"></div>
-            </div>
-            <div class="input-control">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-                <div class="error"></div>
-            </div>
-            <button type="submit">Log in</button>
-        </form>
-    </div>
+    <!-- Search bar -->
+<div class="search-wrapper">
+    <label for="search">Search:</label>
+    <input type="search" id="search">
 
-    <!--footer-->
-    <div class="footer">
-        <ul>
-            <li><a href="help_center.html">Help Center</a></li>
-            <li><a href="about_us.html" >About Us</a></li>
-            <li><a href="contact_us.html">Contact Us</a></li>
-            <li><a href="privacy_policy.html">Privacy Policy</a></li>
-            <li><a href="terms_of_service.html">Terms of Service</a></li>
-        </ul>
-        <p>© 2025 Cinverse - All Rights Reserved.</p>
-    </div>
-
- 
+    <!-- Movie Cards Container -->
+<div class="movie-cards" data-user-cards-container>
+    <template data-user-template>
+        <div class="card">
+            <img src="" alt="Movie Poster" data-img>
+            <div class="card-content">
+                <h2 data-header></h2>
+                <p data-year></p>
+            </div>
+        </div>
+    </template>
     
+
 </div>
-<script src="app.js"></script>
+</div>
+
+
+
+    
+    
+    
+
+    <script src="app.js"></script>
 </body>
 </html>
-
-

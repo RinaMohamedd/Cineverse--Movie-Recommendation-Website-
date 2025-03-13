@@ -559,3 +559,81 @@ button:hover{
 {
     margin:20px 15px;
 }
+
+.search-body {
+    font-family: Arial, sans-serif;
+    color: white; /* Light text for contrast */
+    margin: 0;
+}
+
+.search-wrapper {
+    margin: 30px 50px;
+    color: white;
+    min-height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.search-wrapper .input{
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+#search {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.movie-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    background-color: #1f1f1f; /* Darker background for cards */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card img {
+    width: 60px; /* Adjust size */
+    height: 90px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.card-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #b3b3b3; /* Slightly lighter text */
+}
+
+
+
