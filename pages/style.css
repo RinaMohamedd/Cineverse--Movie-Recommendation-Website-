@@ -635,5 +635,56 @@ button:hover{
     color: #b3b3b3; /* Slightly lighter text */
 }
 
+.recommendations{
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 25px;
+    font-size: large;
+    gap: 20px; 
+    margin-bottom: 40px; 
 
-
+}
+.movierec{
+    margin-bottom: 20px;
+}
+.recommendBtn{
+    padding: 20px;
+    font-size: 16px;
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color:purple;
+    color: #fff;
+    cursor: pointer;
+}
+.recommendBtn:hover{
+    background-color:lightpink;
+}
+.recommendation {
+    background-color: #2e2e2e;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    text-align: center;
+    margin-top: 10px; 
+    font-size: 18px;
+    
+}
+.output-section {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px; 
+    padding: 20px; 
+    border: 1px solid #444; 
+    border-radius: 10px; 
+    background: #1e1e1e; 
+    max-width: 400px;
+}
