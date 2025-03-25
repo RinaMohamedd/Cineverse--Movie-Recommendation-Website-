@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <title>Cineverse</title>
 </head>
-<body class="search-body">
+
+<body>
     <!--navigation bar-->
     <div class="navbar">
         <div class="navbar-container">
@@ -23,7 +25,7 @@
                 </ul>
             </div>
             <div class="profile-container">
-                <a href="login.html"><img class="profile-picture" src="../images/profile1.jpg" alt=""></a>
+                <img class="profile-picture" src="../images/profile1.jpg" alt="">
                 <div class="profile-text-container">
                     <span class="profile-text"><a id=profile href="login.html" target="_self">Profile</a></span>                </div>
                 <div class="toggle">
@@ -49,35 +51,40 @@
         <a href="watchlist.html">
             <i class="left-menu-icon fa-solid fa-bookmark"></i>
         </a>
-        </div>
+    </div>
 
-    <!-- Search bar -->
-<div class="search-wrapper">
-    <label for="search">Search:</label>
-    <input type="search" id="search">
-
-    <!-- Movie Cards Container -->
-<div class="movie-cards" data-user-cards-container>
-    <template data-user-template>
-        <div class="card">
-            <img src="" alt="Movie Poster" data-img>
-            <div class="card-content">
-                <h2 data-header></h2>
-                <p data-year></p>
+    <div class="start-now-div">
+        <h3>1. Please choose any genre you're interested in.</h3>
+        <p>Multiple answers are possible.</p>
+        <div class="container">
+            <div class="genres1">
+                <label class="genre-option1"><input type="checkbox">Action</label><br>
+                <label class="genre-option1"><input type="checkbox">Mystery</label><br>
+                <label class="genre-option1"><input type="checkbox">Horror</label><br>
+                <label class="genre-option1"><input type="checkbox">Family</label><br>
+                <label class="genre-option1"><input type="checkbox">Thriller</label>
+            </div>
+            <div class="genres2">
+                <label class="genre-option2"><input type="checkbox">Action</label><br>
+                <label class="genre-option2"><input type="checkbox">Mystery</label><br>
+                <label class="genre-option2"><input type="checkbox">Horror</label><br>
+                <label class="genre-option2"><input type="checkbox">Family</label><br>
+                <label class="genre-option2"><input type="checkbox">Thriller</label>
             </div>
         </div>
-    </template>
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <ul>
+            <li><a href="help_center.html">Help Center</a></li>
+            <li><a href="about_us.html" >About Us</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+            <li><a href="privacy_policy.html">Privacy Policy</a></li>
+            <li><a href="terms_of_service.html">Terms of Service</a></li>
+        </ul>
+        <p>© 2025 Cinverse - All Rights Reserved.</p>
+    </div>
     
-
-</div>
-</div>
-
-
-
-    
-    
-    
-
-    <script src="app.js"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@
             <div class="menu-container">
                 <ul class="menu-list">
                     <a href="index.html"><li class="menu-list-item">Home</li></a>
-                    <a href="movies.html"><li class="menu-list-item active">Movies</li></a>
+                    <a href="recommendations.html"><li class="menu-list-item active">Recommendations</li></a>
                     <a href="watchlist.html"><li class="menu-list-item">Watchlist</li></a>
                     
                 </ul>
@@ -53,47 +53,14 @@
     </div>
 
       <!--section 1-->
-      <div class="container">
-        <div class="content-container">
-            <div class="featured-content">
-            <img class="featured-title" src="C:\Users\ok\Desktop\Cineverse--Movie-Recommendation-Website--main (1)\images\featured-title-1.png" alt="">
-            <p class="featured-desc">Movies category testing</p>
-            <button class="featured-button">FIND YOUR MOVIE</button>
-            </div>
+      <div class="rec-container">
         <div class="recommendations">
             <h1 id="movierec">Movie Recommendation</h1>
-
-            <label for="genre">Choose a genre:</label>
-                <select id="genre">
-                <option value="action">Action</option>
-                <option value="comedy">Comedy</option>
-                <option value="drama">Drama</option>
-                <option value="sci-fi">Sci-Fi</option>
-                <option value="horror">Horror</option>
-                </select>
-            <label for="year">Choose a release year:</label>
-                <select id="year">
-                <option value="2020">2020+</option>
-                <option value="2010">2010-2019</option>
-                <option value="2000">2000-2009</option>
-                <option value="1990">Before 2000</option>
-                </select>
-
-            <label for="mood">What's your mood?</label>
-                <select id="mood">
-                <option value="exciting">Exciting</option>
-                <option value="funny">Funny</option>
-                <option value="emotional">Emotional</option>
-                <option value="thought-provoking">Thought-Provoking</option>
-                <option value="scary">Scary</option>
-                </select>
-
-            <button id="recommendBtn">Get Recommendation</button>
-            <div class="output-section">
-                <h2>Recommendation:</h2>
-            <div class="recommendation" id="recommendation"></div>
-            </div>
+            <p>You can't decide between thousands of movies available for streaming?</p>
+            <p>Answer 6 questions and let us do the work!</p>
+            <button id="start-now-button" onclick="window.location.href='start_now.html'">Start Now</button>
         </div>
+      </div>
     
 
     <!-- footer -->

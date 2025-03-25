@@ -36,12 +36,86 @@ ball.addEventListener("click", () => {
 
 // Movie data (manually added)
 const movies = [
-  { name: "Joker: Folie à Deux", year: "2024", img: src="../images/movie2.jpg" },
-  { name: "Fast X", year: "2023", img: src="../images/movie13.jpg" },
-  { name: "Spider-Man: No Way Home", year: "2021", img: src="../images/movie16.png" },
-  { name: "The Batman", year: "2022", img: src="../images/movie14.jpg" },
-  { name: "Mission: Impossible - The Final Reckoning", year: "2025", img: src="../images/movie9.jpg" },
-  { name: "28 Years Later", year: "2025", img: src="../images/movie8.jpg" },
+  {
+    name: "Joker: Folie à Deux",
+    genre: ["Musical", "Crime"],
+    year: 2024,
+    ageRating: 18,
+    img: src="../images/movie2.jpg",
+    trailer: "../trailers/Peter Pan's Neverland Nightmare - Official Trailer (2025) Megan Placito, Martin Portlock.mp4"
+  },
+  {
+    name: "Peter Pan's Neverland Nightmare",
+    genre: ["Horror", "Mystery", "Thriller"],
+    year: 2025,
+    ageRating: 18,
+    img: src="../images/movie11.jpg",
+    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
+  },
+  {
+    name: "John Wick: Chapter 4",
+    genre: ["Action", "Thriller", "Crime"],
+    year: 2023,
+    ageRating: 18,
+    img: src="../images/movie12.jpg",
+    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
+  },
+  {
+    name: "Inside Out 2",
+    genre: ["Animation", "Comedy", "Drama"],
+    year: 2024,
+    ageRating: 7,
+    img: src="../images/movie28.jpg",
+    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
+  },
+  {
+    name: "Avengers: Endgame",
+    genre: ["Action", "Sci-Fi"],
+    year: 2019,
+    ageRating: 13,
+    img: src="../images/movie17.jpg",
+    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
+  },
+  {
+    name: "Paddington 2",
+    genre: ["Comedy", "Family"],
+    year: 2017,
+    ageRating: 7,
+    img: src="../images/movie35.jpg",
+    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
+  },
+  {
+    name: "Mission: Impossible - The Final Reckoning",
+    genre: ["Action", "Thriller"],
+    year: 2025,
+    ageRating: 13,
+    img: src="../images/movie9.jpg",
+    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
+  },
+  {
+    name: "Elemental",
+    genre: ["Animation", "Romance", "Comedy"],
+    year: 2023,
+    ageRating: 7,
+    img: src="../images/movie30.jpg",
+    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
+  },
+  {
+    name: "Leave the World Behind",
+    genre: ["Thriller", "Mystery", "Sci-Fi"],
+    year: 2023,
+    ageRating: 16,
+    img: src="../images/movie21.jpg",
+    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
+  },
+  {
+    name: "The Batman",
+    genre: ["Action", "Crime", "Mystery"],
+    year: 2022,
+    ageRating: 13,
+    img: src="../images/movie14.jpg",
+    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
+  }
 ];
 
 // Select elements
@@ -119,6 +193,7 @@ function recommendMovie() {
         resultDiv.innerHTML = "No movies found matching your preferences.";
     }
 }
+
 function filterYear(movieYear, selectedRange) {
   if (selectedRange === "2020") return movieYear >= 2020;
     if (selectedRange === "2010") return movieYear >= 2010 && movieYear <= 2019;

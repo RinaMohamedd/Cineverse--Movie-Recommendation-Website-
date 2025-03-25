@@ -45,7 +45,6 @@ p {
     color: black;
 }
 
-
 .navbar-container {
     display: flex;
     align-items: center;
@@ -398,13 +397,14 @@ p {
     position: absolute;
     left: 200px;
 }
+
 .container.active{
     background-color: white;
 }
+
 .movie-list-title.active{
     color:black;
 }
-
 
 .navbar-container.active{
     background-color: white;
@@ -414,12 +414,15 @@ p {
 .sidebar.active{
     background-color: white;
 }
+
 .left-menu-icon.active{
     color: black;
 }
+
 .toggle.active{
     background-color: black;
 }
+
 .toggle-ball.active{
     background-color: white;
     transform: translate(-20px);
@@ -461,8 +464,7 @@ p {
     padding-bottom: 10px;
 }
 
-
-.about-us-container, .privacy-policy, .help-center {
+.about-us-container, .privacy-policy, .help-center, .terms-of-service {
     color: white;
     padding: 0 50px;
     margin: 20px;
@@ -477,32 +479,39 @@ p {
     padding: 50px;
     text-align: center;
 }
+
 .containerContact{
     max-width: 800px;
     margin:0 auto;
 }
+
 .containerContact h2{
     font-size: 36px;
     margin-bottom: 40px;
-    color: purple;
+    color: rgb(234, 141, 234);
 }
+
 .contact-wrapper{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 30px;
 }
+
 .contact-form{
     text-align: center;
 }
+
 .contact-form h3{
     font-size: 24px;
     margin-bottom: 20px;
-    color:purple;
+    color: rgb(234, 141, 234);
 
 }
+
 .form-group{
     margin-bottom: 20px;
 }
+
 input, textarea{
     width: 70%;
     padding: 12px;
@@ -511,37 +520,44 @@ input, textarea{
     background-color: #f8f9fa;
     color:#333;
 }
+
 input:focus,
 textarea:focus{
     outline:none;
     box-shadow:0 0 8px #bbb;;
 }
+
 button{
     display: inline-block;
     padding:12px 24px;
-    background-color: purple;
+    background-color: rgb(234, 141, 234);
     color: #fff;
     border: none;
     cursor: pointer;
     transition: 0.3s ease;
 }
+
 button:hover{
     background-color: rgb(234, 141, 234);
 }
+
 .contact-info{
     text-align: center;
 }
+
 .contact-info h3{
     font-size: 24px;
     margin-bottom: 20px;
-    color: purple;
+    color: rgb(234, 141, 234);
 }
+
 .contact-info p{
     margin-bottom: 10px;
     color:#fff;
 }
+
 .contact-info i{
-    color:purple;
+    color: rgb(234, 141, 234);
     margin-right: 10px;
 }
 
@@ -558,6 +574,23 @@ button:hover{
 .movie-list-item-button-watchlist
 {
     margin:20px 15px;
+}
+
+.movie1 {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+    padding-left: 100px;
+    width: 50%;
+    height: 50%;
+}
+
+.movie1-list-item-img {
+    position: relative;
+    width: 50%;
+    height: 50%;
 }
 
 .search-body {
@@ -651,10 +684,12 @@ button:hover{
     margin-bottom: 40px; 
 
 }
+
 .movierec{
     margin-bottom: 20px;
 }
-.recommendBtn{
+
+/*.recommendBtn{
     padding: 20px;
     font-size: 16px;
     margin: 20px;
@@ -663,10 +698,12 @@ button:hover{
     background-color:purple;
     color: #fff;
     cursor: pointer;
-}
-.recommendBtn:hover{
+}*/
+
+/*.recommendBtn:hover{
     background-color:lightpink;
-}
+}*/
+
 .recommendation {
     background-color: #2e2e2e;
     padding: 20px;
@@ -687,4 +724,69 @@ button:hover{
     border-radius: 10px; 
     background: #1e1e1e; 
     max-width: 400px;
+}
+
+#start-now-button {
+    border-radius: 10px;
+    width: 200px;
+    height: 55px;
+    font-size: 20px
+}
+
+#start-now-button:hover {
+    color: rgb(234, 141, 234);
+    background-color: white;
+}
+
+.start-now-div {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    padding: 20px;
+    color: white;
+}
+
+.start-now-div h3, .start-now-div p {
+    padding-left: 70px;
+    font-size: 30px;
+}
+
+.rec-container {
+    margin: auto;
+    padding: 20px;
+    /*display: flex;*/
+}
+
+.recommendations {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.genres1 {
+    text-align: left;
+    display: grid;
+    font-size: 25px;
+}
+
+.genres2 {
+    text-align: left;
+    display: grid;
+    font-size: 25px;
+}
+
+.genre-option1 {
+    border: 2px solid white;
+    padding: 20px;
+    margin-right: 130px;
+    width: 130%;
+}
+
+.genre-option2 {
+    border: 2px solid white;
+    padding: 20px;
+    margin-left: 130px;
+    width: 130%;
 }
