@@ -53,26 +53,50 @@
         </a>
     </div>
 
-    <div class="start-now-div">
-        <h3>1. Please choose any genre you're interested in.</h3>
-        <p>Multiple answers are possible.</p>
-        <div class="container">
-            <div class="genres1">
-                <label class="genre-option1"><input type="checkbox">Action</label><br>
-                <label class="genre-option1"><input type="checkbox">Mystery</label><br>
-                <label class="genre-option1"><input type="checkbox">Horror</label><br>
-                <label class="genre-option1"><input type="checkbox">Family</label><br>
-                <label class="genre-option1"><input type="checkbox">Thriller</label>
+    <!--start now button-->
+    <form>
+        <div class="start-now-div">
+            <h3>1. Please choose any genre you're interested in.</h3>
+            <p>Multiple answers are possible.</p>
+            <div class="genre-container">
+                <div class="genres1">
+                    <label class="genre-option1"><input type="checkbox">Action</label><br>
+                    <label class="genre-option1"><input type="checkbox">Mystery</label><br>
+                    <label class="genre-option1"><input type="checkbox">Horror</label><br>
+                    <label class="genre-option1"><input type="checkbox">Family</label><br>
+                    <label class="genre-option1"><input type="checkbox">Thriller</label><br>
+                    <label class="genre-option1"><input type="checkbox">Musical</label>
+                </div>
+                <div class="genres2">
+                    <label class="genre-option2"><input type="checkbox">Crime</label><br>
+                    <label class="genre-option2"><input type="checkbox">Comedy</label><br>
+                    <label class="genre-option2"><input type="checkbox">Drama</label><br>
+                    <label class="genre-option2"><input type="checkbox">Sci-Fi</label><br>
+                    <label class="genre-option2"><input type="checkbox">Animation</label><br>
+                    <label class="genre-option2"><input type="checkbox">Romance</label>
+                </div>
             </div>
-            <div class="genres2">
-                <label class="genre-option2"><input type="checkbox">Action</label><br>
-                <label class="genre-option2"><input type="checkbox">Mystery</label><br>
-                <label class="genre-option2"><input type="checkbox">Horror</label><br>
-                <label class="genre-option2"><input type="checkbox">Family</label><br>
-                <label class="genre-option2"><input type="checkbox">Thriller</label>
+            <br><hr><br>
+
+            <div class="age-container">
+                <h3>2. How old are you?</h3><br>
+                <input type="number" id="age-textbox" placeholder="Enter age..." required>
             </div>
+            <br><br><hr><br>
+
+            <div class="release-year-container">
+                <h3>3. How old would you like the movie to be?</h3><br>
+                <label class="release-year"><input type="radio" name="releaseYear" required>Doesn't matter.</label>
+                <label class="release-year"><input type="radio" name="releaseYear">Published in the last 5 years.</label>
+                <label class="release-year"><input type="radio" name="releaseYear">Published in the last 10 years.</label>
+                <label class="release-year"><input type="radio" name="releaseYear">Published in the last 25 years.</label>
+            </div>
+            <br><hr><br>
+
+            <input type="submit" id="get-recommendation-button" value="Get Recommendation">
+
         </div>
-    </div>
+    </form>
 
     <!--footer-->
     <div class="footer">
