@@ -42,7 +42,6 @@ const movies = [
     year: 2024,
     ageRating: 18,
     img: src="../images/movie2.jpg",
-    trailer: "../trailers/Peter Pan's Neverland Nightmare - Official Trailer (2025) Megan Placito, Martin Portlock.mp4"
   },
   {
     name: "Peter Pan's Neverland Nightmare",
@@ -50,7 +49,6 @@ const movies = [
     year: 2025,
     ageRating: 18,
     img: src="../images/movie11.jpg",
-    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
   },
   {
     name: "John Wick: Chapter 4",
@@ -58,7 +56,6 @@ const movies = [
     year: 2023,
     ageRating: 18,
     img: src="../images/movie12.jpg",
-    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
   },
   {
     name: "Inside Out 2",
@@ -66,7 +63,6 @@ const movies = [
     year: 2024,
     ageRating: 7,
     img: src="../images/movie28.jpg",
-    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
   },
   {
     name: "Avengers: Endgame",
@@ -74,7 +70,6 @@ const movies = [
     year: 2019,
     ageRating: 13,
     img: src="../images/movie17.jpg",
-    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
   },
   {
     name: "Paddington 2",
@@ -82,7 +77,6 @@ const movies = [
     year: 2017,
     ageRating: 7,
     img: src="../images/movie35.jpg",
-    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
   },
   {
     name: "Mission: Impossible - The Final Reckoning",
@@ -90,7 +84,6 @@ const movies = [
     year: 2025,
     ageRating: 13,
     img: src="../images/movie9.jpg",
-    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
   },
   {
     name: "Elemental",
@@ -98,7 +91,6 @@ const movies = [
     year: 2023,
     ageRating: 7,
     img: src="../images/movie30.jpg",
-    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
   },
   {
     name: "Leave the World Behind",
@@ -106,7 +98,6 @@ const movies = [
     year: 2023,
     ageRating: 16,
     img: src="../images/movie21.jpg",
-    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
   },
   {
     name: "The Batman",
@@ -114,7 +105,6 @@ const movies = [
     year: 2022,
     ageRating: 13,
     img: src="../images/movie14.jpg",
-    trailer: "../trailers/Joker Folie À Deux   Official Trailer.mp4"
   }
 ];
 
@@ -203,7 +193,7 @@ function filterYear(movieYear, selectedRange) {
 }
 
 //will see later why this isn't working
-window.addEventListener("scroll", function () {
+/*window.addEventListener("scroll", function () {
   let navbar = document.querySelector(".navbar");
   if (window.scrollY > 50) {
       navbar.style.backgroundColor = "black";
@@ -211,4 +201,118 @@ window.addEventListener("scroll", function () {
   } else {
     navbar.style.background = "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5))";
   }
-});
+});*/
+
+/*window.addEventListerner("scroll", function () {
+  let navbar = document.querySelector(".navbar");
+  if (window.scrollY > 100) {
+    navbar.style.backgroundColor = "black";
+  } else {
+    navbar.style.background = "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5))";
+  }
+});*/
+
+/*document.addEventListener("DOMContentLoaded", function () {
+  window.addEventListener("scroll", function () {
+      let navbar = document.querySelector(".navbar");
+      console.log("Scroll position:", this.window.scrollY);
+          if (window.scrollY > 100) {
+              navbar.style.background = "black";
+          } else {
+              navbar.style.background = "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5))";
+      }
+  });
+});*/
+
+/*function changeNavbar() {
+  let scrollPosition = window.scrollY; 
+            let maxScroll = document.body.scrollHeight - window.innerHeight; 
+
+            let scrollPercentage = scrollPosition / maxScroll;
+
+            let startColor = [255, 255, 255];
+            let endColor = [0, 0, 0];
+
+            let newColor = startColor.map((start, index) => {
+                let end = endColor[index];
+                return Math.round(start + (end - start) * scrollPercentage);
+            });
+
+            document.getElementById("navbar").style.backgroundColor = `rgb(${newColor[0]}, ${newColor[1]}, ${newColor[2]})`;
+}*/
+
+//recommendation functions
+
+//1.function to check if the input year matches the movie's year
+function isYearMatch(movie, inputYear) {
+  return movie.year >= inputYear;
+}
+
+//2.function to check if the user's age is equal to or more than the movie's age rating
+function isAgeAllowed(movie, userAge) {
+  return userAge >= movie.ageRating;
+}
+
+//3.function to check how many matches we find for the movie genre
+function genreMatchCount(movie, userGenres) {
+  /*let count = 0;
+  for (let genre of movie.genre) {
+    if (userGenres.includes(genre)) {
+      count++;
+    }
+  }
+  return count;*/
+  return movie.genre.filter(genre => userGenres.includes(genre)).length;
+}
+
+//4.function to find the best movie recommendation
+function getBestMovie(movies, inputYear, userAge, userGenres) {
+  let bestMovie = null;
+  let maxGenreMatches = 0;
+
+  for (let movie of movies) {
+    if (isYearMatch(movie, inputYear) && isAgeAllowed(movie, userAge)) {
+      let genreMatches = genreMatchCount(movie, userGenres);
+      if (genreMatches > maxGenreMatches) {
+        maxGenreMatches = genreMatches;
+        bestMovie = movie;
+      }
+    }
+  }
+  return bestMovie;
+}
+
+//5.function to get recommendation
+function getRecommendation(event) {
+  event.preventDefault();
+  console.log("Form submitted!"); // Debugging line
+
+  const selectedGenres = [...document.querySelectorAll('#recommendation-form input[type="checkbox"]:checked')].map(cb => cb.parentElement.textContent.trim());
+  console.log("Selected genres:", selectedGenres); // Debugging line
+
+  const userAge = parseInt(document.getElementById("age-textbox").value);
+  console.log("User age:", userAge); // Debugging line
+
+  const selectedYearOption = document.querySelector('#recommendation-form input[name="releaseYear"]:checked');
+  console.log("Selected year option:", selectedYearOption ? selectedYearOption.value : "None"); // Debugging line
+
+
+  let yearLimit = Infinity;
+  if (selectedYearOption) {
+    const text = selectedYearOption.parentElement.textContent.trim();
+    if (text.includes("5 years")) yearLimit = new Date().getFullYear() - 5;
+    else if (text.includes("10 years")) yearLimit = new Date().getFullYear() - 10;
+    else if (text.includes("25 years")) yearLimit = new Date().getFullYear() - 25;
+  }
+
+  const bestMovie = getBestMovie(movies, yearLimit, userAge, selectedGenres);
+
+  const resultDiv = document.getElementById("recommendation-result");
+  resultDiv.innerHTML = bestMovie
+  ? `<h3>Recommended Movie: ${bestMovie.name}</h3>
+      <img src="${bestMovie.img}" alt="${bestMovie.name}" style="width:200px;">`
+    : "<h3>No matching movie found.</h3>";
+}
+
+document.getElementById("recommendation-form").addEventListener("submit", getRecommendation);
+//
