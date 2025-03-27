@@ -201,3 +201,14 @@ function filterYear(movieYear, selectedRange) {
     if (selectedRange === "1990") return movieYear < 2000;
     return false;
 }
+
+//will see later why this isn't working
+window.addEventListener("scroll", function () {
+  let navbar = document.querySelector(".navbar");
+  if (window.scrollY > 50) {
+      navbar.style.backgroundColor = "black";
+      navbar.offsetHeight;
+  } else {
+    navbar.style.background = "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5))";
+  }
+});

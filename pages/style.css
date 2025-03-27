@@ -36,7 +36,14 @@ p {
 .navbar {
     width: 100%;
     height: 50px;
-    background-color: black;
+    display: flex;
+    /*background-color: black;*/
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    position: fixed;
 }
 
 .navbar-container.active, 
@@ -468,6 +475,7 @@ p {
     color: white;
     padding: 0 50px;
     margin: 20px;
+    padding-top: 40px;
 }
 
 .what-we-do {
@@ -599,7 +607,7 @@ button:hover{
 }
 
 .search-wrapper {
-    margin: 30px 50px;
+    margin: 50px 50px;
     color: white;
     min-height: calc(100vh - 50px);
     display: flex;
