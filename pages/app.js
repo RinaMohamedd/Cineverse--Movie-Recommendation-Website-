@@ -34,81 +34,82 @@ ball.addEventListener("click", () => {
 });
 
 
-// Movie data (manually added)
+// Movie data (manually added)----------------------------------------------
 const movies = [
   {
     name: "Joker: Folie à Deux",
     genre: ["Musical", "Crime"],
     year: 2024,
     ageRating: 18,
-    img: src="../images/movie2.jpg",
+    img: "../images/movie2.jpg",
   },
   {
     name: "Peter Pan's Neverland Nightmare",
     genre: ["Horror", "Mystery", "Thriller"],
     year: 2025,
     ageRating: 18,
-    img: src="../images/movie11.jpg",
+    img: "../images/movie11.jpg",
   },
   {
     name: "John Wick: Chapter 4",
     genre: ["Action", "Thriller", "Crime"],
     year: 2023,
     ageRating: 18,
-    img: src="../images/movie12.jpg",
+    img: "../images/movie12.jpg",
   },
   {
     name: "Inside Out 2",
     genre: ["Animation", "Comedy", "Drama"],
     year: 2024,
     ageRating: 7,
-    img: src="../images/movie28.jpg",
+    img: "../images/movie28.jpg",
   },
   {
     name: "Avengers: Endgame",
     genre: ["Action", "Sci-Fi"],
     year: 2019,
     ageRating: 13,
-    img: src="../images/movie17.jpg",
+    img: "../images/movie17.jpg",
   },
   {
     name: "Paddington 2",
     genre: ["Comedy", "Family"],
     year: 2017,
     ageRating: 7,
-    img: src="../images/movie35.jpg",
+    img: "../images/movie35.jpg",
   },
   {
     name: "Mission: Impossible - The Final Reckoning",
     genre: ["Action", "Thriller"],
     year: 2025,
     ageRating: 13,
-    img: src="../images/movie9.jpg",
+    img: "../images/movie9.jpg",
   },
   {
     name: "Elemental",
     genre: ["Animation", "Romance", "Comedy"],
     year: 2023,
     ageRating: 7,
-    img: src="../images/movie30.jpg",
+    img: "../images/movie30.jpg",
   },
   {
     name: "Leave the World Behind",
     genre: ["Thriller", "Mystery", "Sci-Fi"],
     year: 2023,
     ageRating: 16,
-    img: src="../images/movie21.jpg",
+    img: "../images/movie21.jpg",
   },
   {
     name: "The Batman",
     genre: ["Action", "Crime", "Mystery"],
     year: 2022,
     ageRating: 13,
-    img: src="../images/movie14.jpg",
+    img: "../images/movie14.jpg",
   }
 ];
+//----------------------------------------------------------------------------------
 
-// Select elements
+// Select elements------------------------------------------------------------------------
 const searchInput = document.getElementById("search");
 const movieCardsContainer = document.querySelector(".movie-cards"); // FIXED: Use class selector
 const movieTemplate = document.querySelector("[data-user-template]");
@@ -139,10 +140,13 @@ searchInput.addEventListener("input", (e) => {
     const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(searchValue));
     displayMovies(filteredMovies);
 });
+//-----------------------------------------------------------------------------------------------------------
 
-// Display all movies on load
-displayMovies(movies);
-const movierecommendations = [
+// Display all movies on load--------------------------------------------------------------------------------------------------------
+
+/*displayMovies(movies);*/
+
+/*const movierecommendations = [
   { title: "Mad Max: Fury Road", genre: "action", year: 2015, mood: "exciting" },
   { title: "John Wick", genre: "action", year: 2014, mood: "exciting" },
   { title: "Extraction 2", genre: "action", year: 2023, mood: "exciting" },
@@ -157,12 +161,14 @@ const movierecommendations = [
   { title: "The Creator", genre: "sci-fi", year: 2023, mood: "thought-provoking" },
   { title: "Get Out", genre: "horror", year: 2017, mood: "scary" },
   { title: "A Quiet Place", genre: "horror", year: 2018, mood: "scary" }
-];
-document.getElementById('recommendBtn').addEventListener('click', () => {
+];*/
+
+/*document.getElementById('recommendBtn').addEventListener('click', () => {
   alert('Button clicked!');
   recommendMovie();
-});
-function recommendMovie() {
+});*/
+
+/*function recommendMovie() {
     const selectedGenre = document.getElementById('genre').value;
     const selectedYear = document.getElementById('year').value;
     const selectedMood = document.getElementById('mood').value;
@@ -182,17 +188,18 @@ function recommendMovie() {
     } else {
         resultDiv.innerHTML = "No movies found matching your preferences.";
     }
-}
+}*/
 
-function filterYear(movieYear, selectedRange) {
+/*function filterYear(movieYear, selectedRange) {
   if (selectedRange === "2020") return movieYear >= 2020;
     if (selectedRange === "2010") return movieYear >= 2010 && movieYear <= 2019;
     if (selectedRange === "2000") return movieYear >= 2000 && movieYear <= 2009;
     if (selectedRange === "1990") return movieYear < 2000;
     return false;
-}
+}*/
+//---------------------------------------------------------------------------------------
 
-//will see later why this isn't working
+//will see later why this isn't working-----------------------------------------------------------
 /*window.addEventListener("scroll", function () {
   let navbar = document.querySelector(".navbar");
   if (window.scrollY > 50) {
@@ -240,8 +247,9 @@ function filterYear(movieYear, selectedRange) {
 
             document.getElementById("navbar").style.backgroundColor = `rgb(${newColor[0]}, ${newColor[1]}, ${newColor[2]})`;
 }*/
+//--------------------------------------------------------------------------------------------------------
 
-//recommendation functions
+//recommendation functions----------------------------------------------------------------------------------------
 
 //1.function to check if the input year matches the movie's year
 function isYearMatch(movie, inputYear) {
@@ -308,11 +316,17 @@ function getRecommendation(event) {
   const bestMovie = getBestMovie(movies, yearLimit, userAge, selectedGenres);
 
   const resultDiv = document.getElementById("recommendation-result");
-  resultDiv.innerHTML = bestMovie
-  ? `<h3>Recommended Movie: ${bestMovie.name}</h3>
-      <img src="${bestMovie.img}" alt="${bestMovie.name}" style="width:200px;">`
-    : "<h3>No matching movie found.</h3>";
+  if (bestMovie) {
+    resultDiv.innerHTML = `
+      <h3>Recommended Movie: ${bestMovie.name}</h3>
+      <img src="${bestMovie.img}" alt="${bestMovie.name}" style="width:200px;">
+    `;
+  } else {
+    resultDiv.innerHTML = `
+      <h3>No matching movie found.</h3>
+      <p>Try adjusting your preferences, like selecting more genres or a different release year range.</p>
+    `;
+  }
 }
-
 document.getElementById("recommendation-form").addEventListener("submit", getRecommendation);
-//
+//----------------------------------------------------------------------------------------------------------------
