@@ -506,6 +506,7 @@ p {
     grid-gap: 30px;
 }
 
+
 .contact-form{
     text-align: center;
 }
@@ -568,6 +569,22 @@ button:hover{
     color: rgb(234, 141, 234);
     margin-right: 10px;
 }
+.movie-list-watchlist {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+}
+.movie-list-item-watchlist {
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
 
 .label-watchlist{
     color: grey;
