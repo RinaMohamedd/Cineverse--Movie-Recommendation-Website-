@@ -42,6 +42,7 @@ const movies = [
     year: 2024,
     ageRating: 18,
     img: "../images/movie2.jpg",
+    description: "Arthur Fleck (Joaquin Phoenix) forms a twisted bond with Lee Quinzel (Lady Gaga) in Arkham Asylum, blending psychological drama with musical elements."
   },
   {
     name: "Peter Pan's Neverland Nightmare",
@@ -49,6 +50,55 @@ const movies = [
     year: 2025,
     ageRating: 18,
     img: "../images/movie11.jpg",
+    description: "It is a dark reimagining where Peter Pan becomes a tyrant in a twisted Neverland, with Tinerbell portrayed as a drug addict."
+  },
+  {
+    name: "Snow White",
+    genre: ["Fantacy", "Musical"],
+    year: 2025,
+    ageRating: 10,
+    img: "../images/movie6.jpg",
+    description: "The live-action adaptation where Snow White (Rachel Zegler) embarks on a journey to become a fearless leader, confronting her stepmother, teh Evil Queen (Gal Gadot)."
+  },
+  {
+    name: "Mufasa: The Lion King",
+    genre: ["Animation", "Family", "Drama"],
+    year: 2024,
+    ageRating: 10,
+    img: "../images/movie3.jpg",
+    description: "A prequel exploring Mufasa's rise from orphaned cub to Pride Lands' king, highlighting his bond with brother Taka (later Scar)."
+  },
+  {
+    name: "Wicked: Part One",
+    genre: ["Musical", "Fantacy", "Drama"],
+    year: 2024,
+    ageRating: 10,
+    img: "../images/movie7.jpg",
+    description: "A musical fantasy exploring the origins of Elphaba, the future Wicked Witch of the West, and her complex friendship with Glinda in the Land of Oz."
+  },
+  {
+    name: "28 Years Later",
+    genre: ["Horror", "Thriller"],
+    year: 2025,
+    ageRating: 18,
+    img: "../images/movie8.jpg",
+    description: "A sequel to 28 Days Later and 28 Weeks Later, this film explores the aftermath of the rage virus decades later, as new survivors face a terrifying resurgence of the infection."
+  },
+  {
+    name: "Mission: Impossible - The Final Reckoning",
+    genre: ["Action", "Adventure", "Thriller"],
+    year: 2025,
+    ageRating: 13,
+    img: "../images/movie9.jpg",
+    description: "Following Ethan Hunt (Tom Cruise) as he confronts the aftermath of battling a rogue A.I. known as the Entity, leading to high-stakes missions across land, sea, and air."
+  },
+  {
+    name: "Mickey 17",
+    genre: ["Sci-Fi", "Comedy", "Adventure"],
+    year: 2025,
+    ageRating: 17,
+    img: "../images/movie10.jpg",
+    description: "A is a sci-fi film where Mickey (Robert Pattinson), a clone worker on a space mission, returns to find he's been replaced, leading to a secret struggle for survival."
   },
   {
     name: "John Wick: Chapter 4",
@@ -56,6 +106,127 @@ const movies = [
     year: 2023,
     ageRating: 18,
     img: "../images/movie12.jpg",
+    description: "John Wick uncovers a way to defeat the High Table but must face powerfuk new enemies across the globe."
+  },
+  {
+    name: "Fast X",
+    genre: ["Action", "Adventure"],
+    year: 2023,
+    ageRating: 13,
+    img: "../images/movie13.jpg",
+    description: "Dom Toretto and his family are hunted by Dante Reyes, who seeks revenge for his father's downfall."
+  },
+  {
+    name: "The Batman",
+    genre: ["Action", "Adventure", "Crime", "Drama"],
+    year: 2022,
+    ageRating: 13,
+    img: "../images/movie14.jpg",
+    description: "Btaman investigates a series of cryptic murders by the Riddler, uncovering corruption in Gotham."
+  },
+  {
+    name: "Top Gun: Maverick",
+    genre: ["Action", "Adventure"],
+    year: 2022,
+    ageRating: 13,
+    img: "../images/movie15.jpg",
+    description: "Maverick returns to train elite pilots for a high-stakes mission while confronting his past."
+  },
+  {
+    name: "Spider-Man: No Way Home",
+    genre: ["Action", "Adventure", "Fantacy"],
+    year: 2021,
+    ageRating: 13,
+    img: "../images/movie16.jpg",
+    description: "A spell gone wrong opens the multiverse, bringing past Spider-Man villains into Peter Parker's world."
+  },
+  {
+    name: "Avengers: Endgame",
+    genre: ["Action", "Adventure", "Drama", "Fantacy", "Sci-Fi"],
+    year: 2019,
+    ageRating: 13,
+    img: "../images/movie187.jpg",
+    description: "The Avengers unite for a final battle to undo Thanos' snap and restore the universe."
+  },
+  {
+    name: "Mad Max: Fury Road",
+    genre: ["Action", "Adventure", "Sci-Fi"],
+    year: 2015,
+    ageRating: 17,
+    img: "../images/movie18.jpg",
+    description: "In a post-apocalyptic wasteland, Max joins forces with Furiosa to escape a tyrannical waelord."
+  },
+  {
+    name: "Deadpool & Wolverine",
+    genre: ["Action", "Adventure", "Comedy"],
+    year: 2024,
+    ageRating: 17,
+    img: "../images/movie19.jpg",
+    description: "Deadpool teams up with a reluctant Wolverine to take on a new multiversal threat."
+  },
+  {
+    name: "Oppenheimer",
+    genre: ["Thriller", "Drama"],
+    year: 2023,
+    ageRating: 17,
+    img: "../images/movie20.jpg",
+    description: "J.Robert Oppenheimer leads the creation of the atomic bomb, facing the weight of its devastating impact."
+  },
+  {
+    name: "Leave the World Behind",
+    genre: ["Thriller", "Drama", "Mystery", "Sci-Fi"],
+    year: 2023,
+    ageRating: 17,
+    img: "../images/movie21.jpg",
+    description: "A family's vacation turns eerie as a mysterious blackout hints at a global catastrophe."
+  },
+  {
+    name: "Knock at the Cabin",
+    genre: ["Horror", "Mystery", "Thriller"],
+    year: 2023,
+    ageRating: 17,
+    img: "../images/movie22.jpg",
+    description: "A family is forced to make an unthinkable choice to prevent an impending apocalypse."
+  },
+  {
+    name: "Missing",
+    genre: ["Mystery", "Thriller"],
+    year: 2023,
+    ageRating: 13,
+    img: "../images/movie23.jpg",
+    description: "A tech-savvy teen uses online tools to track down her mother, who vanished on vacation."
+  },
+  {
+    name: "The Call",
+    genre: ["Mystery", "Thriller", "Horror"],
+    year: 2020,
+    ageRating: 17,
+    img: "../images/movie24.jpg",
+    description: "A woman connects with a stranger from the past, only to realize she's a dangerous killer."
+  },
+  {
+    name: "The Black Phone",
+    genre: ["Mystery", "Thriller", "Horror"],
+    year: 2022,
+    ageRating: 17,
+    img: "../images/movie25.jpg",
+    description: "A kidnapped boy receives calls from past victims on a mysterious disconnected phone."
+  },
+  {
+    name: "The Boy",
+    genre: ["Mystery", "Thriller", "Horror"],
+    year: 2016,
+    ageRating: 13,
+    img: "../images/movie26.jpg",
+    description: "A nanny is hired to care for a lifelike doll, but eerie events suggest it may be alive."
+  },
+  {
+    name: "Nope",
+    genre: ["Mystery", "Sci-Fi", "Horror"],
+    year: 2022,
+    ageRating: 17,
+    img: "../images/movie27.jpg",
+    description: "Siblings running a horse ranch discover a mysterious, otherworldly presence in the sky."
   },
   {
     name: "Inside Out 2",
@@ -63,27 +234,15 @@ const movies = [
     year: 2024,
     ageRating: 7,
     img: "../images/movie28.jpg",
+    description: "Riley's mind welcomes new emotions, shaking up her journey through teenage life."
   },
   {
-    name: "Avengers: Endgame",
-    genre: ["Action", "Sci-Fi"],
-    year: 2019,
-    ageRating: 13,
-    img: "../images/movie17.jpg",
-  },
-  {
-    name: "Paddington 2",
-    genre: ["Comedy", "Family"],
-    year: 2017,
-    ageRating: 7,
-    img: "../images/movie35.jpg",
-  },
-  {
-    name: "Mission: Impossible - The Final Reckoning",
-    genre: ["Action", "Thriller"],
-    year: 2025,
-    ageRating: 13,
-    img: "../images/movie9.jpg",
+    name: "Wish",
+    genre: ["Animation", "Adventure", "Fantasy", "Family"],
+    year: 2023,
+    ageRating: 10,
+    img: "../images/movie29.jpg",
+    description: "A young girl's wish brings a magical star to life, leading to an adventure to save her kingdom."
   },
   {
     name: "Elemental",
@@ -91,20 +250,47 @@ const movies = [
     year: 2023,
     ageRating: 7,
     img: "../images/movie30.jpg",
+    description: "In a city where elements don't mix, a fiery girl and a watery guy form an unlikely bond."
   },
   {
-    name: "Leave the World Behind",
-    genre: ["Thriller", "Mystery", "Sci-Fi"],
-    year: 2023,
-    ageRating: 16,
-    img: "../images/movie21.jpg",
-  },
-  {
-    name: "The Batman",
-    genre: ["Action", "Crime", "Mystery"],
+    name: "Puss in Boots: The Last Wish",
+    genre: ["Animation", "Adventure", "Fantasy"],
     year: 2022,
-    ageRating: 13,
-    img: "../images/movie14.jpg",
+    ageRating: 10,
+    img: "../images/movie31.jpg",
+    description: "Puss embarks on a daring quest to restore his nine lives before time runs out."
+  },
+  {
+    name: "Encanto",
+    genre: ["Animation", "Fantasy", "Family"],
+    year: 2021,
+    ageRating: 8,
+    img: "../images/movie32.jpg",
+    description: "A girl in a magical family discovers she's the only one without powers and must eave their home."
+  },
+  {
+    name: "Luca",
+    genre: ["Animation", "Adventure", "Comedy"],
+    year: 2021,
+    ageRating: 8,
+    img: "../images/movie33.jpg",
+    description: "A young sea monster experiences a life-changing summer in a charming Italian town."
+  },
+  {
+    name: "Coco",
+    genre: ["Animation", "Adventure", "Family", "Fantasy", "Musical"],
+    year: 2017,
+    ageRating: 8,
+    img: "../images/movie34.jpg",
+    description: "A boy travels to the Land of the Dead to uncover his family's hidden past and love for music."
+  },
+  {
+    name: "Paddington 2",
+    genre: ["Comedy", "Family", "Adventure"],
+    year: 2017,
+    ageRating: 8,
+    img: "../images/movie35.jpg",
+    description: "Paddington goes on a fun adventure to clear his name after being wrongly accused of theft."
   }
 ];
 //----------------------------------------------------------------------------------
