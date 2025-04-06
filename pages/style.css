@@ -130,8 +130,8 @@ p {
     color: rgb(234, 141, 234);
 }
 
-.login-body{
-    background-color:#151515;
+.login-body {
+    background-color: #151515;
     font-family: sans-serif;
 }
 
@@ -162,6 +162,7 @@ p {
 .input-control {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 
 .input-control input {
@@ -177,6 +178,7 @@ p {
 .input-control input:focus {
     outline: 0;
 }
+
 
 .input-control.success input {
     border-color: aqua;
@@ -653,6 +655,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 80%;
 }
 
 .card {
@@ -667,6 +670,7 @@ button:hover{
 
 .card:hover {
     transform: scale(1.02);
+    cursor: pointer;
 }
 
 .card img {
@@ -685,10 +689,11 @@ button:hover{
 .card-content h2 {
     font-size: 18px;
     margin: 0;
+    padding-bottom: 3px;
 }
 
 .card-content p {
-    margin: 5px 0;
+    margin: 3px 0;
     font-size: 14px;
     color: #b3b3b3; /* Slightly lighter text */
 }

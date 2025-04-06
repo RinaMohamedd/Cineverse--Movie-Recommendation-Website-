@@ -38,7 +38,7 @@ ball.addEventListener("click", () => {
 const movies = [
   {
     name: "Joker: Folie à Deux",
-    genre: ["Musical", "Crime"],
+    genre: ["Musical", " Crime"],
     year: 2024,
     ageRating: 18,
     img: "../images/movie2.jpg",
@@ -46,7 +46,7 @@ const movies = [
   },
   {
     name: "Peter Pan's Neverland Nightmare",
-    genre: ["Horror", "Mystery", "Thriller"],
+    genre: ["Horror", " Mystery", " Thriller"],
     year: 2025,
     ageRating: 18,
     img: "../images/movie11.jpg",
@@ -54,7 +54,7 @@ const movies = [
   },
   {
     name: "Snow White",
-    genre: ["Fantacy", "Musical"],
+    genre: ["Fantasy", " Musical"],
     year: 2025,
     ageRating: 10,
     img: "../images/movie6.jpg",
@@ -62,7 +62,7 @@ const movies = [
   },
   {
     name: "Mufasa: The Lion King",
-    genre: ["Animation", "Family", "Drama"],
+    genre: ["Animation", " Family", " Drama"],
     year: 2024,
     ageRating: 10,
     img: "../images/movie3.jpg",
@@ -70,7 +70,7 @@ const movies = [
   },
   {
     name: "Wicked: Part One",
-    genre: ["Musical", "Fantacy", "Drama"],
+    genre: ["Musical", " Fantasy", " Drama"],
     year: 2024,
     ageRating: 10,
     img: "../images/movie7.jpg",
@@ -78,7 +78,7 @@ const movies = [
   },
   {
     name: "28 Years Later",
-    genre: ["Horror", "Thriller"],
+    genre: ["Horror", " Thriller"],
     year: 2025,
     ageRating: 18,
     img: "../images/movie8.jpg",
@@ -86,7 +86,7 @@ const movies = [
   },
   {
     name: "Mission: Impossible - The Final Reckoning",
-    genre: ["Action", "Adventure", "Thriller"],
+    genre: ["Action", " Adventure", " Thriller"],
     year: 2025,
     ageRating: 13,
     img: "../images/movie9.jpg",
@@ -94,7 +94,7 @@ const movies = [
   },
   {
     name: "Mickey 17",
-    genre: ["Sci-Fi", "Comedy", "Adventure"],
+    genre: ["Sci-Fi", " Comedy", " Adventure"],
     year: 2025,
     ageRating: 17,
     img: "../images/movie10.jpg",
@@ -102,7 +102,7 @@ const movies = [
   },
   {
     name: "John Wick: Chapter 4",
-    genre: ["Action", "Thriller", "Crime"],
+    genre: ["Action", " Thriller", " Crime"],
     year: 2023,
     ageRating: 18,
     img: "../images/movie12.jpg",
@@ -110,7 +110,7 @@ const movies = [
   },
   {
     name: "Fast X",
-    genre: ["Action", "Adventure"],
+    genre: ["Action", " Adventure"],
     year: 2023,
     ageRating: 13,
     img: "../images/movie13.jpg",
@@ -118,7 +118,7 @@ const movies = [
   },
   {
     name: "The Batman",
-    genre: ["Action", "Adventure", "Crime", "Drama"],
+    genre: ["Action", " Adventure", " Crime", " Drama"],
     year: 2022,
     ageRating: 13,
     img: "../images/movie14.jpg",
@@ -126,7 +126,7 @@ const movies = [
   },
   {
     name: "Top Gun: Maverick",
-    genre: ["Action", "Adventure"],
+    genre: ["Action", " Adventure"],
     year: 2022,
     ageRating: 13,
     img: "../images/moviee15.jpg",
@@ -134,7 +134,7 @@ const movies = [
   },
   {
     name: "Spider-Man: No Way Home",
-    genre: ["Action", "Adventure", "Fantacy"],
+    genre: ["Action", " Adventure", " Fantasy"],
     year: 2021,
     ageRating: 13,
     img: "../images/movie16.png",
@@ -142,7 +142,7 @@ const movies = [
   },
   {
     name: "Avengers: Endgame",
-    genre: ["Action", "Adventure", "Drama", "Fantacy", "Sci-Fi"],
+    genre: ["Action", " Adventure", " Drama", " Fantasy", " Sci-Fi"],
     year: 2019,
     ageRating: 13,
     img: "../images/movie17.jpg",
@@ -150,7 +150,7 @@ const movies = [
   },
   {
     name: "Mad Max: Fury Road",
-    genre: ["Action", "Adventure", "Sci-Fi"],
+    genre: ["Action", " Adventure", " Sci-Fi"],
     year: 2015,
     ageRating: 17,
     img: "../images/movie18.jpg",
@@ -158,7 +158,7 @@ const movies = [
   },
   {
     name: "Deadpool & Wolverine",
-    genre: ["Action", "Adventure", "Comedy"],
+    genre: ["Action", " Adventure", " Comedy"],
     year: 2024,
     ageRating: 17,
     img: "../images/movie19.jpg",
@@ -166,7 +166,7 @@ const movies = [
   },
   {
     name: "Oppenheimer",
-    genre: ["Thriller", "Drama"],
+    genre: ["Thriller", " Drama"],
     year: 2023,
     ageRating: 17,
     img: "../images/movie20.jpg",
@@ -174,7 +174,7 @@ const movies = [
   },
   {
     name: "Leave the World Behind",
-    genre: ["Thriller", "Drama", "Mystery", "Sci-Fi"],
+    genre: ["Thriller", " Drama", " Mystery", " Sci-Fi"],
     year: 2023,
     ageRating: 17,
     img: "../images/movie21.jpg",
@@ -182,7 +182,7 @@ const movies = [
   },
   {
     name: "Knock at the Cabin",
-    genre: ["Horror", "Mystery", "Thriller"],
+    genre: ["Horror", " Mystery", " Thriller"],
     year: 2023,
     ageRating: 17,
     img: "../images/movie22.jpg",
@@ -190,7 +190,7 @@ const movies = [
   },
   {
     name: "Missing",
-    genre: ["Mystery", "Thriller"],
+    genre: ["Mystery", " Thriller"],
     year: 2023,
     ageRating: 13,
     img: "../images/moviee23.jpg",
@@ -198,7 +198,7 @@ const movies = [
   },
   {
     name: "The Call",
-    genre: ["Mystery", "Thriller", "Horror"],
+    genre: ["Mystery", " Thriller", " Horror"],
     year: 2020,
     ageRating: 17,
     img: "../images/movie24.jpg",
@@ -206,7 +206,7 @@ const movies = [
   },
   {
     name: "The Black Phone",
-    genre: ["Mystery", "Thriller", "Horror"],
+    genre: ["Mystery", " Thriller", " Horror"],
     year: 2022,
     ageRating: 17,
     img: "../images/movie25.jpg",
@@ -214,7 +214,7 @@ const movies = [
   },
   {
     name: "The Boy",
-    genre: ["Mystery", "Thriller", "Horror"],
+    genre: ["Mystery", " Thriller", " Horror"],
     year: 2016,
     ageRating: 13,
     img: "../images/movie26.jpg",
@@ -222,7 +222,7 @@ const movies = [
   },
   {
     name: "Nope",
-    genre: ["Mystery", "Sci-Fi", "Horror"],
+    genre: ["Mystery", " Sci-Fi", " Horror"],
     year: 2022,
     ageRating: 17,
     img: "../images/movie27.jpg",
@@ -230,7 +230,7 @@ const movies = [
   },
   {
     name: "Inside Out 2",
-    genre: ["Animation", "Comedy", "Drama"],
+    genre: ["Animation", " Comedy", " Drama"],
     year: 2024,
     ageRating: 7,
     img: "../images/movie28.jpg",
@@ -238,7 +238,7 @@ const movies = [
   },
   {
     name: "Wish",
-    genre: ["Animation", "Adventure", "Fantasy", "Family"],
+    genre: ["Animation", " Adventure", " Fantasy", " Family"],
     year: 2023,
     ageRating: 10,
     img: "../images/movie29.jpg",
@@ -246,7 +246,7 @@ const movies = [
   },
   {
     name: "Elemental",
-    genre: ["Animation", "Romance", "Comedy"],
+    genre: ["Animation", " Romance", " Comedy"],
     year: 2023,
     ageRating: 7,
     img: "../images/moviee30.jpg",
@@ -254,7 +254,7 @@ const movies = [
   },
   {
     name: "Puss in Boots: The Last Wish",
-    genre: ["Animation", "Adventure", "Fantasy"],
+    genre: ["Animation", " Adventure", " Fantasy"],
     year: 2022,
     ageRating: 10,
     img: "../images/movie31.jpg",
@@ -262,7 +262,7 @@ const movies = [
   },
   {
     name: "Encanto",
-    genre: ["Animation", "Fantasy", "Family"],
+    genre: ["Animation", " Fantasy", " Family"],
     year: 2021,
     ageRating: 8,
     img: "../images/movie32.jpg",
@@ -270,7 +270,7 @@ const movies = [
   },
   {
     name: "Luca",
-    genre: ["Animation", "Adventure", "Comedy"],
+    genre: ["Animation", " Adventure", " Comedy"],
     year: 2021,
     ageRating: 8,
     img: "../images/movie33.jpg",
@@ -278,7 +278,7 @@ const movies = [
   },
   {
     name: "Coco",
-    genre: ["Animation", "Adventure", "Family", "Fantasy", "Musical"],
+    genre: ["Animation", " Adventure", " Family", " Fantasy", " Musical"],
     year: 2017,
     ageRating: 8,
     img: "../images/moviee34.jpg",
@@ -286,7 +286,7 @@ const movies = [
   },
   {
     name: "Paddington 2",
-    genre: ["Comedy", "Family", "Adventure"],
+    genre: ["Comedy", " Family", " Adventure"],
     year: 2017,
     ageRating: 8,
     img: "../images/movie35.jpg",
@@ -306,18 +306,20 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Function to create movie cards
-function displayMovies(filteredMovies) {
-    movieCardsContainer.innerHTML = ""; // Clear previous content
+function displayMovies(movies) {
+  movieCardsContainer.innerHTML = ""; // Clear previous content
 
-    filteredMovies.forEach(movie => {
-        const movieCard = movieTemplate.content.cloneNode(true).firstElementChild; // FIXED: Get first child
-        movieCard.querySelector("[data-header]").textContent = movie.name;
-        movieCard.querySelector("[data-year]").textContent = movie.year;
-        movieCard.querySelector("[data-img]").src = movie.img;
-        movieCard.querySelector("[data-img]").alt = movie.name;
+  movies.forEach(movie => {
+      const movieCard = movieTemplate.content.cloneNode(true).firstElementChild; // FIXED: Get first child
+      movieCard.querySelector("[data-header]").textContent = movie.name;
+      movieCard.querySelector("[data-year]").textContent = movie.year;
+      movieCard.querySelector("[data-genre]").textContent = movie.genre;
+      movieCard.querySelector("[data-img]").src = movie.img;
+      movieCard.querySelector("[data-img]").alt = movie.name;
+      
 
-        movieCardsContainer.appendChild(movieCard);
-    });
+      movieCardsContainer.appendChild(movieCard);
+  });
 }
 
 // Event listener for search input
@@ -434,6 +436,68 @@ searchInput.addEventListener("input", (e) => {
             document.getElementById("navbar").style.backgroundColor = `rgb(${newColor[0]}, ${newColor[1]}, ${newColor[2]})`;
 }*/
 //--------------------------------------------------------------------------------------------------------
+
+//Login Validation
+/*const form = document.getElementById('form');
+  const username = document.getElementById('username');
+  const password = document.getElementById('password');
+
+  const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success');
+  }
+
+  const setSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+  };
+
+  const validateInputs = () => {
+    const usernameValue = username.value.trim();
+    const passwordValue = password.value.trim();
+    let isValid = true;
+
+    if(usernameValue === ''){
+      setError(username, 'Username is required!');
+      isValid = false;
+    } else {
+      setSuccess(username);
+    }
+
+    if(passwordValue === '') {
+      setError(password, 'Password is required!');
+      isValid = false; 
+    } else if (passwordValue.length < 8) {
+      setError(password, 'Password must be at least 8 characters!');
+      isValid = false;
+    } else {
+      setSuccess(password);
+    }
+
+    if (isValid) {
+      window.location.href = "index.html";
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+  
+      validateInputs();
+    });
+
+  };
+*/
+//--------------------------------------------------------------------------------------------------------
+
+
+
 
 //recommendation functions----------------------------------------------------------------------------------------
 
