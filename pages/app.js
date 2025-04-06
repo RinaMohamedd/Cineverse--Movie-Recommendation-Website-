@@ -129,7 +129,7 @@ const movies = [
     genre: ["Action", " Adventure"],
     year: 2022,
     ageRating: 13,
-    img: "../images/movie15.jpg",
+    img: "../images/moviee15.jpg",
     description: "Maverick returns to train elite pilots for a high-stakes mission while confronting his past."
   },
   {
@@ -137,7 +137,7 @@ const movies = [
     genre: ["Action", " Adventure", " Fantasy"],
     year: 2021,
     ageRating: 13,
-    img: "../images/movie16.jpg",
+    img: "../images/movie16.png",
     description: "A spell gone wrong opens the multiverse, bringing past Spider-Man villains into Peter Parker's world."
   },
   {
@@ -145,7 +145,7 @@ const movies = [
     genre: ["Action", " Adventure", " Drama", " Fantasy", " Sci-Fi"],
     year: 2019,
     ageRating: 13,
-    img: "../images/movie187.jpg",
+    img: "../images/movie17.jpg",
     description: "The Avengers unite for a final battle to undo Thanos' snap and restore the universe."
   },
   {
@@ -193,7 +193,7 @@ const movies = [
     genre: ["Mystery", " Thriller"],
     year: 2023,
     ageRating: 13,
-    img: "../images/movie23.jpg",
+    img: "../images/moviee23.jpg",
     description: "A tech-savvy teen uses online tools to track down her mother, who vanished on vacation."
   },
   {
@@ -249,7 +249,7 @@ const movies = [
     genre: ["Animation", " Romance", " Comedy"],
     year: 2023,
     ageRating: 7,
-    img: "../images/movie30.jpg",
+    img: "../images/moviee30.jpg",
     description: "In a city where elements don't mix, a fiery girl and a watery guy form an unlikely bond."
   },
   {
@@ -281,7 +281,7 @@ const movies = [
     genre: ["Animation", " Adventure", " Family", " Fantasy", " Musical"],
     year: 2017,
     ageRating: 8,
-    img: "../images/movie34.jpg",
+    img: "../images/moviee34.jpg",
     description: "A boy travels to the Land of the Dead to uncover his family's hidden past and love for music."
   },
   {
@@ -579,4 +579,34 @@ function getRecommendation(event) {
   }
 }
 document.getElementById("recommendation-form").addEventListener("submit", getRecommendation);
+    
+function togglePassword(fieldId, icon) {
+  const input = document.getElementById(fieldId);
+  const isPassword = input.type === 'password';
+  input.type = isPassword ? 'text' : 'password';
+  icon.classList.toggle('fa-eye-slash', isPassword);
+ }
+  
 //----------------------------------------------------------------------------------------------------------------
+
+//functions to generate the pages with the movies' details
+function closeMovieDetails() {
+  const movieDetailsBox = document.getElementById('movie-modal');
+  movieDetailsBox.style.display = 'none';
+}
+
+function showMovieDetails(movieTitle) {
+  const movie = movies.find(m => m.name === movieTitle);
+  if (!movie) {
+    document.getElementById("modal-content").innerHTML = "<p>Movie not found 😢</p>";
+    return;
+  }
+  document.getElementById("movie-name").innerText = movie.name;
+  document.getElementById("movie-img").src = movie.img;
+  document.getElementById("movie-genres").innerText = movie.genre.join(", ");
+  document.getElementById("movie-year").innerText = movie.year;
+  document.getElementById("movie-rating").innerText = movie.ageRating;
+  document.getElementById("movie-description").innerText = movie.description;
+  document.getElementById("movie-modal").style.display = "block";
+}
+//------------------------------------------------------------------------------------------------------------------

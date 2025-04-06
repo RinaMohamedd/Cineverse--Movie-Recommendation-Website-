@@ -863,3 +863,125 @@ button:hover{
     color: white;
     cursor: pointer;
 }
+
+.signup-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 2rem;
+    background-color: #111;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.signup-container h1 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-container label {
+    color: #ccc; 
+    font-size: 1rem; 
+    font-weight: bold; 
+}
+
+.input-control {
+    margin-bottom: 20px;
+}
+
+.input-control input {
+    width: 95%;
+    height: 9px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #444; 
+    outline: none;
+    font-size: 1rem;
+}
+
+.signup-container input:focus {
+    border-color:rgb(234, 141, 234); 
+}
+
+.signup-container button {
+    background-color: rgb(234, 141, 234); 
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    margin-top: -10px; 
+    margin-left: auto; 
+    margin-right: auto;
+    transition: background-color 0.3s;
+}
+
+.input-control.password-control {
+    position: relative; 
+}
+
+.toggle-password {
+    position: absolute; 
+    right: 5px; 
+    top: 66%;
+    transform: translateY(-50%); 
+    color: #000;
+    cursor: pointer; 
+}
+
+.signup-container button:hover {
+    background-color: rgb(234, 141, 234); 
+}
+
+.login-link {
+    color: #ccc;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.login-link a {
+    color: rgb(234, 141, 234); 
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.movie-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 80%;
+    height: 80%;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 100px;
+    margin-left: 165px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    border-radius: 7%;
+}
+
+#movie-img {
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
