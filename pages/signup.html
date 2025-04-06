@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cineverse - Login</title>
+    <title>Cineverse - Sign Up</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="../images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -42,10 +42,20 @@
         <a href="watchlist.html"><i class="left-menu-icon fa-solid fa-bookmark"></i></a>
     </div>
 
-    <!-- Login Form -->
+    <!-- Sign Up Form -->
     <div class="signup-container">
-        <form id="login-form" action="#">
-            <h1>Login</h1>
+        <form id="signup-form" action="#">
+            <h1>Sign Up</h1>
+
+            <div class="input-control">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+
+            <div class="input-control">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
             <div class="input-control">
                 <label for="username">Username</label>
@@ -58,9 +68,15 @@
                 <i class="fa-regular fa-eye toggle-password" onclick="togglePassword('password', this)"></i>
             </div>
 
-            <button type="submit">Login</button>
+            <div class="input-control password-control">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                <i class="fa-regular fa-eye toggle-password" onclick="togglePassword('confirm-password', this)"></i>
+            </div>
 
-            <p class="login-link">Don't have an account? <a href="signup.html">Sign Up</a></p>
+            <button type="submit">Sign Up</button>
+
+            <p class="login-link">Already have an account? <a href="login.html">Log in</a></p>
         </form>
     </div>
 
@@ -75,7 +91,7 @@
         </ul>
         <p>© 2025 Cineverse - All Rights Reserved.</p>
     </div>
-    
     <script src="app.js"></script>
+    
 </body>
 </html>
