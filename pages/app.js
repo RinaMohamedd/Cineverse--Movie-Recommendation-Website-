@@ -360,39 +360,39 @@ function closeOverlay() {
   overlay.style.display = "none";
 }
 
-// // Select elements------------------------------------------------------------------------
-// const searchInput = document.getElementById("search");
-// const movieCardsContainer = document.querySelector(".movie-cards"); // FIXED: Use class selector
-// const movieTemplate = document.querySelector("[data-user-template]");
+// Select elements------------------------------------------------------------------------
+const searchInput = document.getElementById("search");
+const movieCardsContainer = document.querySelector(".movie-cards"); // FIXED: Use class selector
+const movieTemplate = document.querySelector("[data-user-template]");
 
-// // Ensure script runs after DOM is loaded
-// document.addEventListener("DOMContentLoaded", function () {
-//     displayMovies(movies);
-// });
+// Ensure script runs after DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+    displayMovies(movies);
+});
 
-// // Function to create movie cards
-// function displayMovies(movies) {
-//   movieCardsContainer.innerHTML = ""; // Clear previous content
+// Function to create movie cards
+function displayMovies(movies) {
+  movieCardsContainer.innerHTML = ""; // Clear previous content
 
-//   movies.forEach(movie => {
-//       const movieCard = movieTemplate.content.cloneNode(true).firstElementChild; // FIXED: Get first child
-//       movieCard.querySelector("[data-header]").textContent = movie.name;
-//       movieCard.querySelector("[data-year]").textContent = movie.year;
-//       movieCard.querySelector("[data-genre]").textContent = movie.genre;
-//       movieCard.querySelector("[data-img]").src = movie.img;
-//       movieCard.querySelector("[data-img]").alt = movie.name;
+  movies.forEach(movie => {
+      const movieCard = movieTemplate.content.cloneNode(true).firstElementChild; // FIXED: Get first child
+      movieCard.querySelector("[data-header]").textContent = movie.name;
+      movieCard.querySelector("[data-year]").textContent = movie.year;
+      movieCard.querySelector("[data-genre]").textContent = movie.genre;
+      movieCard.querySelector("[data-img]").src = movie.img;
+      movieCard.querySelector("[data-img]").alt = movie.name;
       
 
-//       movieCardsContainer.appendChild(movieCard);
-//   });
-// }
+      movieCardsContainer.appendChild(movieCard);
+  });
+}
 
-// // Event listener for search input
-// searchInput.addEventListener("input", (e) => {
-//     const searchValue = e.target.value.toLowerCase();
-//     const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(searchValue));
-//     displayMovies(filteredMovies);
-// });
+// Event listener for search input
+searchInput.addEventListener("input", (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(searchValue));
+    displayMovies(filteredMovies);
+});
 //-----------------------------------------------------------------------------------------------------------
 
 // Display all movies on load--------------------------------------------------------------------------------------------------------
