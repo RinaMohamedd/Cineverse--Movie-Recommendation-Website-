@@ -381,9 +381,14 @@ function displayRecommendedMovie(movie) {
   const movieName = document.getElementById('recommended-movie-name');
   const movieImg = document.getElementById('recommended-movie-img');
   const movieDesc = document.getElementById('recommended-movie-description');
+  const videoURL = movie.trailer;
+  const embedURL = videoURL.replace("watch?v=", "embed/");
+  const movieTrailer = document.getElementById('trailer-container').innerHTML =
+  '<iframe width="560" height="315" src="' + embedURL + '" frameborder="0"></iframe>';
   movieName.textContent = movie.name;
   movieImg.src = movie.img;
   movieDesc.textContent = movie.description;
+
   overlay.style.display = "block";
 }
 
