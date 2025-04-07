@@ -57,6 +57,7 @@ const movies = [
     year: 2024,
     ageRating: 18,
     img: "../images/movie2.jpg",
+    trailer: "https://www.youtube.com/watch?v=zAGVQLHvwOY",
     description: "Arthur Fleck (Joaquin Phoenix) forms a twisted bond with Lee Quinzel (Lady Gaga) in Arkham Asylum, blending psychological drama with musical elements."
   },
   {
@@ -65,6 +66,7 @@ const movies = [
     year: 2025,
     ageRating: 18,
     img: "../images/movie11.jpg",
+    trailer: "https://www.youtube.com/watch?v=IpvJ67xxJQA",
     description: "It is a dark reimagining where Peter Pan becomes a tyrant in a twisted Neverland, with Tinerbell portrayed as a drug addict."
   },
   {
@@ -73,6 +75,7 @@ const movies = [
     year: 2025,
     ageRating: 10,
     img: "../images/movie6.jpg",
+    trailer: "https://www.youtube.com/watch?v=iV46TJKL8cU",
     description: "The live-action adaptation where Snow White (Rachel Zegler) embarks on a journey to become a fearless leader, confronting her stepmother, teh Evil Queen (Gal Gadot)."
   },
   {
@@ -81,6 +84,7 @@ const movies = [
     year: 2024,
     ageRating: 10,
     img: "../images/movie3.jpg",
+    trailer: "https://www.youtube.com/watch?v=o17MF9vnabg",
     description: "A prequel exploring Mufasa's rise from orphaned cub to Pride Lands' king, highlighting his bond with brother Taka (later Scar)."
   },
   {
@@ -89,6 +93,7 @@ const movies = [
     year: 2024,
     ageRating: 10,
     img: "../images/movie7.jpg",
+    trailer: "https://www.youtube.com/watch?v=6COmYeLsz4c",
     description: "A musical fantasy exploring the origins of Elphaba, the future Wicked Witch of the West, and her complex friendship with Glinda in the Land of Oz."
   },
   {
@@ -97,6 +102,7 @@ const movies = [
     year: 2025,
     ageRating: 18,
     img: "../images/movie8.jpg",
+    trailer: "https://www.youtube.com/watch?v=mcvLKldPM08",
     description: "A sequel to 28 Days Later and 28 Weeks Later, this film explores the aftermath of the rage virus decades later, as new survivors face a terrifying resurgence of the infection."
   },
   {
@@ -105,6 +111,7 @@ const movies = [
     year: 2025,
     ageRating: 13,
     img: "../images/movie9.jpg",
+    trailer: "https://www.youtube.com/watch?v=NOhDyUmT9z0",
     description: "Following Ethan Hunt (Tom Cruise) as he confronts the aftermath of battling a rogue A.I. known as the Entity, leading to high-stakes missions across land, sea, and air."
   },
   {
@@ -113,6 +120,7 @@ const movies = [
     year: 2025,
     ageRating: 17,
     img: "../images/movie10.jpg",
+    trailer: "https://www.youtube.com/watch?v=osYpGSz_0i4",
     description: "A is a sci-fi film where Mickey (Robert Pattinson), a clone worker on a space mission, returns to find he's been replaced, leading to a secret struggle for survival."
   },
   {
@@ -121,6 +129,7 @@ const movies = [
     year: 2023,
     ageRating: 18,
     img: "../images/movie12.jpg",
+    trailer: "https://www.youtube.com/watch?v=qEVUtrk8_B4",
     description: "John Wick uncovers a way to defeat the High Table but must face powerfuk new enemies across the globe."
   },
   {
@@ -129,6 +138,7 @@ const movies = [
     year: 2023,
     ageRating: 13,
     img: "../images/movie13.jpg",
+    trailer: "https://www.youtube.com/watch?v=eoOaKN4qCKw",
     description: "Dom Toretto and his family are hunted by Dante Reyes, who seeks revenge for his father's downfall."
   },
   {
@@ -137,6 +147,7 @@ const movies = [
     year: 2022,
     ageRating: 13,
     img: "../images/movie14.jpg",
+    trailer: "https://www.youtube.com/watch?v=mqqft2x_Aa4",
     description: "Btaman investigates a series of cryptic murders by the Riddler, uncovering corruption in Gotham."
   },
   {
@@ -145,6 +156,7 @@ const movies = [
     year: 2022,
     ageRating: 13,
     img: "../images/moviee15.jpg",
+    trailer: "https://www.youtube.com/watch?v=qSqVVswa420",
     description: "Maverick returns to train elite pilots for a high-stakes mission while confronting his past."
   },
   {
@@ -153,6 +165,7 @@ const movies = [
     year: 2021,
     ageRating: 13,
     img: "../images/movie16.png",
+    trailer: "https://www.youtube.com/watch?v=JfVOs4VSpmA",
     description: "A spell gone wrong opens the multiverse, bringing past Spider-Man villains into Peter Parker's world."
   },
   {
@@ -161,6 +174,7 @@ const movies = [
     year: 2019,
     ageRating: 13,
     img: "../images/movie17.jpg",
+    trailer: "https://www.youtube.com/watch?v=TcMBFSGVi1c",
     description: "The Avengers unite for a final battle to undo Thanos' snap and restore the universe."
   },
   {
@@ -169,6 +183,7 @@ const movies = [
     year: 2015,
     ageRating: 17,
     img: "../images/movie18.jpg",
+    trailer: "https://www.youtube.com/watch?v=hEJnMQG9ev8",
     description: "In a post-apocalyptic wasteland, Max joins forces with Furiosa to escape a tyrannical waelord."
   },
   {
@@ -177,6 +192,7 @@ const movies = [
     year: 2024,
     ageRating: 17,
     img: "../images/movie19.jpg",
+    trailer: "https://www.youtube.com/watch?v=73_1biulkYk",
     description: "Deadpool teams up with a reluctant Wolverine to take on a new multiversal threat."
   },
   {
@@ -185,6 +201,7 @@ const movies = [
     year: 2023,
     ageRating: 17,
     img: "../images/movie20.jpg",
+    trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg",
     description: "J.Robert Oppenheimer leads the creation of the atomic bomb, facing the weight of its devastating impact."
   },
   {
@@ -193,6 +210,7 @@ const movies = [
     year: 2023,
     ageRating: 17,
     img: "../images/movie21.jpg",
+    trailer: "https://www.youtube.com/watch?v=cMVBi_e8o-Y",
     description: "A family's vacation turns eerie as a mysterious blackout hints at a global catastrophe."
   },
   {
@@ -201,6 +219,7 @@ const movies = [
     year: 2023,
     ageRating: 17,
     img: "../images/movie22.jpg",
+    trailer: "https://www.youtube.com/watch?v=0wiBHEACNHs",
     description: "A family is forced to make an unthinkable choice to prevent an impending apocalypse."
   },
   {
@@ -209,6 +228,7 @@ const movies = [
     year: 2023,
     ageRating: 13,
     img: "../images/moviee23.jpg",
+    trailer: "https://www.youtube.com/watch?v=LVAsRO4QxXU",
     description: "A tech-savvy teen uses online tools to track down her mother, who vanished on vacation."
   },
   {
@@ -217,6 +237,7 @@ const movies = [
     year: 2020,
     ageRating: 17,
     img: "../images/movie24.jpg",
+    trailer: "https://www.youtube.com/watch?v=hxkKeniT-0Q",
     description: "A woman connects with a stranger from the past, only to realize she's a dangerous killer."
   },
   {
@@ -225,6 +246,7 @@ const movies = [
     year: 2022,
     ageRating: 17,
     img: "../images/movie25.jpg",
+    trailer: "https://www.youtube.com/watch?v=3eGP6im8AZA",
     description: "A kidnapped boy receives calls from past victims on a mysterious disconnected phone."
   },
   {
@@ -233,6 +255,7 @@ const movies = [
     year: 2016,
     ageRating: 13,
     img: "../images/movie26.jpg",
+    trailer: "https://www.youtube.com/watch?v=XGbB9UQ6r1g",
     description: "A nanny is hired to care for a lifelike doll, but eerie events suggest it may be alive."
   },
   {
@@ -241,6 +264,7 @@ const movies = [
     year: 2022,
     ageRating: 17,
     img: "../images/movie27.jpg",
+    trailer: "https://www.youtube.com/watch?v=JtK1dLwCABg",
     description: "Siblings running a horse ranch discover a mysterious, otherworldly presence in the sky."
   },
   {
@@ -249,6 +273,7 @@ const movies = [
     year: 2024,
     ageRating: 7,
     img: "../images/movie28.jpg",
+    trailer: "https://www.youtube.com/watch?v=LEjhY15eCx0",
     description: "Riley's mind welcomes new emotions, shaking up her journey through teenage life."
   },
   {
@@ -257,6 +282,7 @@ const movies = [
     year: 2023,
     ageRating: 10,
     img: "../images/movie29.jpg",
+    trailer: "https://www.youtube.com/watch?v=oyRxxpD3yNw",
     description: "A young girl's wish brings a magical star to life, leading to an adventure to save her kingdom."
   },
   {
@@ -265,6 +291,7 @@ const movies = [
     year: 2023,
     ageRating: 7,
     img: "../images/moviee30.jpg",
+    trailer: "https://www.youtube.com/watch?v=hXzcyx9V0xw",
     description: "In a city where elements don't mix, a fiery girl and a watery guy form an unlikely bond."
   },
   {
@@ -273,6 +300,7 @@ const movies = [
     year: 2022,
     ageRating: 10,
     img: "../images/movie31.jpg",
+    trailer: "https://www.youtube.com/watch?v=RqrXhwS33yc",
     description: "Puss embarks on a daring quest to restore his nine lives before time runs out."
   },
   {
@@ -281,6 +309,7 @@ const movies = [
     year: 2021,
     ageRating: 8,
     img: "../images/movie32.jpg",
+    trailer: "https://www.youtube.com/watch?v=CaimKeDcudo",
     description: "A girl in a magical family discovers she's the only one without powers and must eave their home."
   },
   {
@@ -289,6 +318,7 @@ const movies = [
     year: 2021,
     ageRating: 8,
     img: "../images/movie33.jpg",
+    trailer: "https://www.youtube.com/watch?v=0hgHY9k-44U",
     description: "A young sea monster experiences a life-changing summer in a charming Italian town."
   },
   {
@@ -297,6 +327,7 @@ const movies = [
     year: 2017,
     ageRating: 8,
     img: "../images/moviee34.jpg",
+    trailer: "https://www.youtube.com/watch?v=xlnPHQ3TLX8",
     description: "A boy travels to the Land of the Dead to uncover his family's hidden past and love for music."
   },
   {
@@ -305,8 +336,9 @@ const movies = [
     year: 2017,
     ageRating: 8,
     img: "../images/movie35.jpg",
+    trailer: "https://www.youtube.com/watch?v=sw7RElt-SvE",
     description: "Paddington goes on a fun adventure to clear his name after being wrongly accused of theft."
-  },
+  }
 ];
 //----------------------------------------------------------------------------------
 
