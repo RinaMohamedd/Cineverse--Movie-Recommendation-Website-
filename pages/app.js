@@ -390,6 +390,7 @@ function displayRecommendedMovie(movie) {
   movieDesc.textContent = movie.description;
 
   overlay.style.display = "block";
+  document.getElementById("recommendation-form").reset()
 }
 
 function closeOverlay() {
