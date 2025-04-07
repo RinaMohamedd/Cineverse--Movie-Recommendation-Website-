@@ -65,7 +65,8 @@
                     <label class="genre-option1"><input type="checkbox" name="genre" value="Horror">Horror</label><br>
                     <label class="genre-option1"><input type="checkbox" name="genre" value="Family">Family</label><br>
                     <label class="genre-option1"><input type="checkbox" name="genre" value="Thriller">Thriller</label><br>
-                    <label class="genre-option1"><input type="checkbox" name="genre" value="Musical">Musical</label>
+                    <label class="genre-option1"><input type="checkbox" name="genre" value="Musical">Musical</label><br>
+                    <label class="genre-option1"><input type="checkbox" name="genre" value="Fantacy">Fantacy</label>
                 </div>
                 <div class="genres2">
                     <label class="genre-option2"><input type="checkbox" name="genre" value="Crime">Crime</label><br>
@@ -73,7 +74,8 @@
                     <label class="genre-option2"><input type="checkbox" name="genre" value="Drama">Drama</label><br>
                     <label class="genre-option2"><input type="checkbox" name="genre" value="Sci-Fi">Sci-Fi</label><br>
                     <label class="genre-option2"><input type="checkbox" name="genre" value="Animation">Animation</label><br>
-                    <label class="genre-option2"><input type="checkbox" name="genre" value="Romance">Romance</label>
+                    <label class="genre-option2"><input type="checkbox" name="genre" value="Romance">Romance</label><br>
+                    <label class="genre-option2"><input type="checkbox" name="genre" value="Adventure">Adventure</label>
                 </div>
             </div>
             <br><hr><br>
@@ -97,7 +99,14 @@
 
         </div>
     </form>
-    <div id="recommendation-result"></div>
+    <div id="movie-overlay" class="overlay" style="display:none;">
+        <div class="overlay-content">
+            <button class="close-btn" onclick="closeOverlay()">X</button>
+            <h3 id="recommended-movie-name"></h3>
+            <img id="recommended-movie-img" src="" alt="" style="width:200px;">
+            <p id="recommended-movie-description"></p>
+        </div>
+    </div>
 
     <!--footer-->
     <div class="footer">

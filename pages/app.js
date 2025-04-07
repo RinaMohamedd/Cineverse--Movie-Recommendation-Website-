@@ -540,7 +540,25 @@ function getBestMovie(movies, inputYear, userAge, userGenres) {
   return bestMovie;
 }
 
-//5.function to get recommendation
+//5.function to show the movie overlay
+function showOverlay(bestMovie) {
+  const overlay = document.getElementById('movie-overlay');
+  const movieName = document.getElementById('recommended-movie-name');
+  const movieImg = document.getElementById('recommended-movie-img');
+  const movieDescription = document.getElementById('recommended-movie-description');
+  movieName.textContent = bestMovie.name;
+  movieImg.src = bestMovie.img;
+  movieDescription.textContent = bestMovie.description;
+  overlay.style.display = 'flex';
+}
+
+//6.function to close the overlay
+function closeOverlay() {
+  const overlay = document.getElementById('movie-overlay');
+  overlay.style.display = 'none';
+}
+
+//7.function to get recommendation
 function getRecommendation(event) {
   event.preventDefault();
   console.log("Form submitted!"); // Debugging line
@@ -556,16 +574,31 @@ function getRecommendation(event) {
 
 
   let yearLimit = Infinity;
-  if (selectedYearOption) {
+  /*if (selectedYearOption) {
     const text = selectedYearOption.parentElement.textContent.trim();
     if (text.includes("5 years")) yearLimit = new Date().getFullYear() - 5;
     else if (text.includes("10 years")) yearLimit = new Date().getFullYear() - 10;
     else if (text.includes("25 years")) yearLimit = new Date().getFullYear() - 25;
+  }*/
+  if (selectedYearOption) {
+    const value = selectedYearOption.value;
+    if (value === "5") yearLimit = new Date().getFullYear() - 5;
+    else if (value === "10") yearLimit = new Date().getFullYear() - 10;
+    else if (value === "25") yearLimit = new Date().getFullYear() - 25;
+    // No need to change yearLimit for "any", as it's already set to Infinity
   }
+
 
   const bestMovie = getBestMovie(movies, yearLimit, userAge, selectedGenres);
 
-  const resultDiv = document.getElementById("recommendation-result");
+  if (bestMovie) {
+    showOverlay(bestMovie);
+  } else {
+    alert("No matching movie found. Try adjusting your preferences.");
+  }
+  document.getElementById("recommendation-form").reset();
+
+  /*const resultDiv = document.getElementById("recommendation-result");
   if (bestMovie) {
     resultDiv.innerHTML = `
       <h3>Recommended Movie: ${bestMovie.name}</h3>
@@ -576,17 +609,18 @@ function getRecommendation(event) {
       <h3>No matching movie found.</h3>
       <p>Try adjusting your preferences, like selecting more genres or a different release year range.</p>
     `;
-  }
+  }*/
 }
 document.getElementById("recommendation-form").addEventListener("submit", getRecommendation);
+//-------------------------------------------------------------------------
     
+//toggle password function
 function togglePassword(fieldId, icon) {
   const input = document.getElementById(fieldId);
   const isPassword = input.type === 'password';
   input.type = isPassword ? 'text' : 'password';
   icon.classList.toggle('fa-eye-slash', isPassword);
  }
-  
 //----------------------------------------------------------------------------------------------------------------
 
 //functions to generate the pages with the movies' details
