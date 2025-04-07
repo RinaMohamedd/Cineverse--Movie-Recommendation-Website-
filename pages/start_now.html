@@ -28,6 +28,7 @@
                 <img class="profile-picture" src="../images/profile1.jpg" alt="">
                 <div class="profile-text-container">
                     <span class="profile-text"><a id=profile href="login.html" target="_self">Profile</a></span>                </div>
+                    <i class="fa-solid fa-bell notification-icon"></i>
                 <div class="toggle">
                     <i class="fa-solid fa-moon toggle-icon"></i>
                     <i class="fa-solid fa-sun toggle-icon"></i>
@@ -56,8 +57,8 @@
     <!--start now button-->
     <form id="recommendation-form" onsubmit="getRecommendation(event)">
         <div class="start-now-div">
-            <h3>1. Please choose any genre you're interested in.</h3>
-            <p>Multiple answers are possible.</p>
+            <h3>1. What genres are you interested in?</h3>
+            <p>Select more than one:</p>
             <div class="genre-container">
                 <div class="genres1">
                     <label class="genre-option1"><input type="checkbox" name="genre" value="Action">Action</label><br>
@@ -81,13 +82,13 @@
             <br><hr><br>
 
             <div class="age-container">
-                <h3>2. How old are you?</h3><br>
+                <h3>2. Tell us your age:</h3><br>
                 <input type="number" id="age-textbox" name="age" placeholder="Enter age..." required>
             </div>
             <br><br><hr><br>
 
             <div class="release-year-container">
-                <h3>3. How old would you like the movie to be?</h3><br>
+                <h3>3. Do you prefer newer or older movies?</h3><br>
                 <label class="release-year"><input type="radio" name="releaseYear" value="any" required>Doesn't matter.</label>
                 <label class="release-year"><input type="radio" name="releaseYear" value="5">Published in the last 5 years.</label>
                 <label class="release-year"><input type="radio" name="releaseYear" value="10">Published in the last 10 years.</label>
