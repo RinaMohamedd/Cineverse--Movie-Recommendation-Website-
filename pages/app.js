@@ -746,3 +746,27 @@ function showMovieDetails(movieTitle) {
   document.getElementById("movie-description").innerText = movie.description;
   document.getElementById("movie-modal").style.display = "block";
 }
+
+let prevScrollPos = window.scrollY;
+window.addEventListener("scroll", function () {
+  let currentScrollPos = this.window.scrollY;
+  const navbar = document.querySelector(".navbar");
+  if (prevScrollPos > currentScrollPos) {
+    navbar.style.top = "0";
+  } else {
+    navbar.style.top = "-50px";
+  }
+  prevScrollPos = currentScrollPos;
+});
+
+/*let prevScrollPos = window.scrollY;
+window.addEventListener("scroll", function () {
+  let currentScrollPos = this.window.scrollY;
+  const navbar = document.querySelector(".navbar-container");
+  if (prevScrollPos > currentScrollPos) {
+    navbar.style.top = "0";
+  } else {
+    navbar.style.top = "-50px";
+  }
+  prevScrollPos = currentScrollPos;
+});*/

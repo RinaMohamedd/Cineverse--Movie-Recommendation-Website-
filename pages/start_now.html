@@ -15,20 +15,19 @@
     <!--navigation bar-->
     <div class="navbar">
         <div class="navbar-container">
-            <div class="logo-container"><h1 class = "logo">Cineverse</h1></div> 
+            <div class="logo-container"><h1 class="logo">Cineverse</h1></div> 
             <div class="menu-container">
                 <ul class="menu-list">
                     <a href="index.html"><li class="menu-list-item active">Home</li></a>
-                    <a href="recommendations.html"><li class="menu-list-item">Recommendations</li></a>
                     <a href="watchlist.html"><li class="menu-list-item">Watchlist</li></a>
-                    
                 </ul>
             </div>
             <div class="profile-container">
-                <img class="profile-picture" src="../images/profile1.jpg" alt="">
+                <a href="login.html"><img class="profile-picture" src="../images/profile1.jpg" alt=""></a>
                 <div class="profile-text-container">
-                    <span class="profile-text"><a id=profile href="login.html" target="_self">Profile</a></span>                </div>
-                    <i class="fa-solid fa-bell notification-icon"></i>
+                    <span class="profile-text"><a id="profile" href="login.html" target="_self">Profile</a></span>
+                </div>
+                <i class="fa-solid fa-bell notification-icon"></i>
                 <div class="toggle">
                     <i class="fa-solid fa-moon toggle-icon"></i>
                     <i class="fa-solid fa-sun toggle-icon"></i>
@@ -38,24 +37,9 @@
         </div>
     </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="index.html">
-            <i class="left-menu-icon fa-solid fa-home"></i>
-        </a> 
-        <a href="search.html">
-            <i class="left-menu-icon fa-solid fa-magnifying-glass"></i>
-        </a> 
-        <a href="login.html">
-            <i class="left-menu-icon fa-solid fa-users"></i>
-        </a>
-        <a href="watchlist.html">
-            <i class="left-menu-icon fa-solid fa-bookmark"></i>
-        </a>
-    </div>
-
     <!--start now button-->
     <form id="recommendation-form" onsubmit="getRecommendation(event)">
+    <div class="gradient-border">
         <div class="start-now-div">
             <h3>1. What genres are you interested in?</h3>
             <p>Select more than one:</p>
@@ -100,6 +84,7 @@
 
         </div>
     </form>
+</div>
     <div id="movie-overlay" class="overlay" style="display:none;">
         <div class="overlay-content">
             <button class="close-btn" onclick="closeOverlay()">X</button>

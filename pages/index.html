@@ -10,7 +10,7 @@
     <title>Cineverse - Series</title>
 </head>
 
-<body onscroll="changeNavbar()">
+<body class="home-body" onscroll="changeNavbar()">
     <!--navigation bar-->
     <div class="navbar">
         <div class="navbar-container">
@@ -18,7 +18,6 @@
             <div class="menu-container">
                 <ul class="menu-list">
                     <a href="index.html"><li class="menu-list-item active">Home</li></a>
-                    <a href="recommendations.html"><li class="menu-list-item">Recommendations</li></a>
                     <a href="watchlist.html"><li class="menu-list-item">Watchlist</li></a>
                 </ul>
             </div>
@@ -37,333 +36,28 @@
         </div>
     </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="index.html">
-            <i class="left-menu-icon fa-solid fa-home"></i>
-        </a>
-        <a href="search.html">
-            <i class="left-menu-icon fa-solid fa-magnifying-glass"></i>
-        </a>
-        <a href="login.html">
-            <i class="left-menu-icon fa-solid fa-users"></i>
-        </a>
-        <a href="watchlist.html">
-            <i class="left-menu-icon fa-solid fa-bookmark"></i>
+    <div class="section1">
+        <hr class="cine-hr">
+        <h1 class="cineverse">CINEVERSE</h1>
+        <p class="cine-desc">Lost in the endless scroll? Let us be your guide.</p><br>
+        <a href="recommendations.html">
+            <button class="cine-button">   FIND YOUR MOVIE  &#8594</button>
         </a>
     </div>
-    <!--section 1-->
-    <div class="container">
-        <div class="content-container">
-            <div class="featured-content">
-            <img class="featured-title" src="C:\Users\ok\Desktop\Cineverse--Movie-Recommendation-Website--main (1)\images\featured-title-1.png" alt="">
-            <p class="featured-desc">Lost in the endless scroll? Let Cineverse be your guide. 
-                Whether you're craving heart-pounding action, mind-bending thrillers, or feel-good classics,
-                 we've got the perfect pick for you. From epic blockbusters to hidden gems,
-                 we help you discover your next obsession--so you can spend less time searching and more time watching!</p>
-                 <a href="recommendations.html">
-                    <button class="featured-button" onclick="window.location.href='recommendations.html'">FIND YOUR MOVIE</button>
-                </a>            
-            </div>
-            <!--movie list 1-->
-            <div class="movie-list-container">
-                <h1 class="movie-list-title">NEW RELEASES</h1>
-                <div class="movie-list-wrapper">
-                    <div class="movie-list">
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie2.jpg"alt="">
-                            <span class="movie-list-item-title" id="Joker: Folie à Deux">Joker: Folie à Deux</span>
-                            <p class="movie-list-item-desc">Arthur Fleck (Joaquin Phoenix)
-                                forms a twisted bond with Lee Quinzel (Lady Gaga) in Arkham Asylum, blending
-                                psychological drama with musical elements.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Joker: Folie à Deux')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie11.jpg"alt="">
-                            <span class="movie-list-item-title" id="Peter Pan's Neverland Nightmare">Peter Pan's Neverland Nightmare</span>
-                            <p class="movie-list-item-desc">It is a dark reimagining where Peter Pan becomes a tyrant in
-                                a twisted Neverland, with Tinerbell portrayed as a drug addict.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Peter Pan\'s Neverland Nightmare')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie6.jpg"alt="">
-                            <span class="movie-list-item-title" id="Snow White">Snow White</span>
-                            <p class="movie-list-item-desc">The live-action adaptation where Snow White (Rachel Zegler)
-                                embarks on a journey to become a fearless leader, confronting her stepmother, teh Evil
-                                Queen (Gal Gadot).</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Snow White')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie3.jpg"alt="">
-                            <span class="movie-list-item-title" id="Mufasa: The Lion King">Mufasa: The Lion King</span>
-                            <p class="movie-list-item-desc">A prequel exploring Mufasa's rise from orphaned cub to Pride Lands'
-                                king, highlighting his bond with brother Taka (later Scar).</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Mufasa: The Lion King')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie7.jpg"alt="">
-                            <span class="movie-list-item-title" id="Wicked: Part One">Wicked: Part One</span>
-                            <p class="movie-list-item-desc">A musical fantasy exploring the origins of Elphaba,
-                                the future Wicked Witch of the West, and her complex friendship with Glinda
-                                in the Land of Oz.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Wicked: Part One')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie8.jpg"alt="">
-                            <span class="movie-list-item-title" id="28 Years Later">28 Years Later</span>
-                            <p class="movie-list-item-desc">A sequel to 28 Days Later and 28 Weeks Later, this film explores the
-                                aftermath of the rage virus decades later, as new survivors face a terrifying resurgence of
-                                the infection.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('28 Years Later')">DETAILS</button>    
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie9.jpg"alt="">
-                            <span class="movie-list-item-title" id="Mission: Impossible - The Final Reckoning">Mission: Impossible - The Final Reckoning</span>
-                            <p class="movie-list-item-desc">Following Ethan Hunt (Tom Cruise) as he confronts the aftermath of
-                                battling a rogue A.I. known as the Entity, leading to high-stakes missions across land, sea, and air.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Mission: Impossible - The Final Reckoning')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie10.jpg"alt="">
-                            <span class="movie-list-item-title" id="Mickey 17">Mickey 17</span>
-                            <p class="movie-list-item-desc">A is a sci-fi film where Mickey (Robert Pattinson), a clone worker on a 
-                                space mission, returns to find he's been replaced, leading to a secret struggle for survival.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Mickey 17')">DETAILS</button>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-            </div>
-            <!--movie list 2-->
-            <div class="movie-list-container">
-                <h1 class="movie-list-title">ACTION</h1>
-                <div class="movie-list-wrapper">
-                    <div class="movie-list">
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie12.jpg"alt="">
-                            <span class="movie-list-item-title" id="John Wick: Chapter 4">John Wick: Chapter 4</span>
-                            <p class="movie-list-item-desc">John Wick uncovers a way to defeat the High Table but must face 
-                                powerfuk new enemies across the globe.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('John Wick: Chapter 4')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie13.jpg"alt="">
-                            <span class="movie-list-item-title" id="Fast X">Fast X</span>
-                            <p class="movie-list-item-desc">Dom Toretto and his family are hunted by Dante Reyes, who seeks
-                                revenge for his father's downfall.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Fast X')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie14.jpg"alt="">
-                            <span class="movie-list-item-title" id="The Batman">The Batman</span>
-                            <p class="movie-list-item-desc">Btaman investigates a series of cryptic murders by the Riddler,
-                                uncovering corruption in Gotham.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('The Batman')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie15.jpg"alt="">
-                            <span class="movie-list-item-title" id="Top Gun: Maverick">Top Gun: Maverick</span>
-                            <p class="movie-list-item-desc">Maverick returns to train elite pilots for a high-stakes mission
-                                while confronting his past.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Top Gun: Maverick')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie16.png"alt="">
-                            <span class="movie-list-item-title" id="Spider-Man: No Way Home">Spider-Man: No Way Home</span>
-                            <p class="movie-list-item-desc">A spell gone wrong opens the multiverse, bringing past Spider-Man
-                                villains into Peter Parker's world.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Spider-Man: No Way Home')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie17.jpg"alt="">
-                            <span class="movie-list-item-title" id="Avengers: Endgame">Avengers: Endgame</span>
-                            <p class="movie-list-item-desc">The Avengers unite for a final battle to undo Thanos' snap and restore
-                                the universe.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Avengers: Endgame')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie18.jpg"alt="">
-                            <span class="movie-list-item-title" id="Mad Max: Fury Road">Mad Max: Fury Road</span>
-                            <p class="movie-list-item-desc">In a post-apocalyptic wasteland, Max joins forces with Furiosa to 
-                                escape a tyrannical waelord.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Mad Max: Fury Road')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie19.jpg"alt="">
-                            <span class="movie-list-item-title" id="Deadpool & Wolverine">Deadpool & Wolverine</span>
-                            <p class="movie-list-item-desc">Deadpool teams up with a reluctant Wolverine to take on a new
-                                multiversal threat.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Deadpool & Wolverine')">DETAILS</button>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-            </div>
+
+    <div class="stars"></div>
             
-            <!--section 2-->
-            <div class="featured-content"
-            style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url(../images/featured2.jpg);">
-            <img class="featured-title" src="../images/featured title2.png" alt="">
-            <p class="featured-desc">A twisted psychological thriller where a tormented man unravels a series of cryptic events surrounding his missing sister.
-                 As he dives deeper into the darkness, 
-                he encounters chilling secrets, a sinister cult, and
-                 horrifying visions that blur the line between reality and nightmare, pushing him to the brink of madness.</p>
-            <button class="featured-button" onclick="window.location.href='recommendations.html'">GET RECOMMENDATIONS</button>
-            </div>
-            <!--movie list 3-->
-            <div class="movie-list-container">
-                <h1 class="movie-list-title">THRILLER</h1>
-                <div class="movie-list-wrapper">
-                    <div class="movie-list">
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie20.jpg"alt="">
-                            <span class="movie-list-item-title" id="Oppenheimer">Oppenheimer</span>
-                            <p class="movie-list-item-desc">J.Robert Oppenheimer leads the creation of the atomic bomb,
-                                facing the weight of its devastating impact.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Oppenheimer')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie21.jpg"alt="">
-                            <span class="movie-list-item-title" id="Leave the World Behind">Leave the World Behind</span>
-                            <p class="movie-list-item-desc">A family's vacation turns eerie as a mysterious blackout hints
-                                at a global catastrophe.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Leave the World Behind')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie22.jpg"alt="">
-                            <span class="movie-list-item-title" id="Knock at the Cabin">Knock at the Cabin</span>
-                            <p class="movie-list-item-desc">A family is forced to make an unthinkable choice to prevent
-                                an impending apocalypse.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Knock at the Cabin')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie23.jpg"alt="">
-                            <span class="movie-list-item-title" id="Missing">Missing</span>
-                            <p class="movie-list-item-desc">A tech-savvy teen uses online tools to track down her mother,
-                                who vanished on vacation.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Missing')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie24.jpg"alt="">
-                            <span class="movie-list-item-title" id="The Call">The Call</span>
-                            <p class="movie-list-item-desc">A woman connects with a stranger from the past, only to realize
-                                she's a dangerous killer.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('The Call')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie25.jpg"alt="">
-                            <span class="movie-list-item-title" id="The Black Phone">The Black Phone</span>
-                            <p class="movie-list-item-desc">A kidnapped boy receives calls from past victims on a 
-                                mysterious disconnected phone.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('The Black Phone')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie26.jpg"alt="">
-                            <span class="movie-list-item-title" id="The Boy">The Boy</span>
-                            <p class="movie-list-item-desc">A nanny is hired to care for a lifelike doll, but eerie events
-                                suggest it may be alive.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('The Boy')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie27.jpg"alt="">
-                            <span class="movie-list-item-title" id="Nope">Nope</span>
-                            <p class="movie-list-item-desc">Siblings running a horse ranch discover a mysterious,
-                                otherworldly presence in the sky.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Nope')">DETAILS</button>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-            </div>
-            <!--movie list 4-->
-            <div class="movie-list-container">
-                <h1 class="movie-list-title">FAMILY</h1>
-                <div class="movie-list-wrapper">
-                    <div class="movie-list">
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie28.jpg"alt="">
-                            <span class="movie-list-item-title" id="Inside Out 2">Inside Out 2</span>
-                            <p class="movie-list-item-desc">Riley's mind welcomes new emotions, shaking up her journey
-                                through teenage life.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Inside Out 2')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie29.jpg"alt="">
-                            <span class="movie-list-item-title" id="Wish">Wish</span>
-                            <p class="movie-list-item-desc">A young girl's wish brings a magical star to life, leading
-                                to an adventure to save her kingdom.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Wish')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie30.jpg"alt="">
-                            <span class="movie-list-item-title" id="Elemental">Elemental</span>
-                            <p class="movie-list-item-desc">In a city where elements don't mix, a fiery girl and a watery
-                                guy form an unlikely bond.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Elemental')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie31.jpg"alt="">
-                            <span class="movie-list-item-title" id="Puss in Boots: The Last Wish">Puss in Boots: The Last Wish</span>
-                            <p class="movie-list-item-desc">Puss embarks on a daring quest to restore his nine lives
-                                before time runs out.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Puss in Boots: The Last Wish')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie32.jpg"alt="">
-                            <span class="movie-list-item-title" id="Encanto">Encanto</span>
-                            <p class="movie-list-item-desc">A girl in a magical family discovers she's the only one without
-                                powers and must eave their home.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Encanto')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie33.jpg"alt="">
-                            <span class="movie-list-item-title" id="Luca">Luca</span>
-                            <p class="movie-list-item-desc">A young sea monster experiences a life-changing summer in 
-                                a charming Italian town.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Luca')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie34.jpg"alt="">
-                            <span class="movie-list-item-title" id="Coco">Coco</span>
-                            <p class="movie-list-item-desc">A boy travels to the Land of the Dead to uncover his family's 
-                                hidden past and love for music.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Coco')">DETAILS</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="../images/movie35.jpg"alt="">
-                            <span class="movie-list-item-title" id="Paddington 2">Paddington 2</span>
-                            <p class="movie-list-item-desc">Paddington goes on a fun adventure to clear his name after 
-                                being wrongly accused of theft.</p>
-                            <button class="movie-list-item-button" onclick="showMovieDetails('Paddington 2')">DETAILS</button>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-            </div>
-
-            <div id="movie-modal" class="movie-modal">
-                <div class="modal-content">
-                  <button class="close-btn" onclick="closeMovieDetails()">X</button>
-                  <h2 id="movie-name"></h2>
-                  <img id="movie-img" src="" alt="Movie Image" />
-                  <p><strong>Genres:</strong> <span id="movie-genres"></span></p>
-                  <p><strong>Release Year:</strong> <span id="movie-year"></span></p>
-                  <p><strong>Age Rating:</strong> <span id="movie-rating"></span></p>
-                  <p><strong>Description:</strong> <span id="movie-description"></span></p>
-                </div>
-            </div>
-
-            <!--footer-->
-            <div class="footer">
-                <ul>
-                    <li><a href="help_center.html">Help Center</a></li>
-                    <li><a href="about_us.html" >About Us</a></li>
-                    <li><a href="contact_us.html">Contact Us</a></li>
-                    <li><a href="privacy_policy.html">Privacy Policy</a></li>
-                    <li><a href="terms_of_service.html">Terms of Service</a></li>
-                </ul>
-                <p>© 2025 Cineverse - All Rights Reserved.</p>
-            </div>
+    <!--footer-->
+    <div class="footer">
+        <ul>
+            <li><a href="help_center.html">Help Center</a></li>
+            <li><a href="about_us.html" >About Us</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+            <li><a href="privacy_policy.html">Privacy Policy</a></li>
+            <li><a href="terms_of_service.html">Terms of Service</a></li>
+        </ul>
+        <p>© 2025 Cineverse - All Rights Reserved.</p>
+    </div>
 
 
     </div>

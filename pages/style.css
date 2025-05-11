@@ -20,10 +20,73 @@
     font-weight: 100 900;
 }
 
-body {
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* may not need this */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/*body {
     font-family: 'Roboto', sans-serif;
     background-color: black;
+}*/
+
+body {
+    /*font-family: 'Roboto', sans-serif;*/
+    /*background: linear-gradient(to bottom, rgb(70, 7, 71), #5f187f, #df95e9);*/
+    /*background: linear-gradient(to bottom, rgb(228, 135, 245), rgb(237, 177, 247), #9edef0);*/
+    /*background: linear-gradient(to bottom, rgb(81, 9, 83), rgb(212, 78, 236), #9edef0);*/
+    background-color: #2d2b2b;
+    /*background-image: url(../images/background8.jpg);
+    background-size: 140% 110%;
+    animation: gradientFlow 14s ease infinite;*/
+    height: 100%;
+    margin: 0;
 }
+
+.home-body {
+    background-image: url(../images/background8.jpg);
+    background-size: 140% 110%;
+    animation: gradientFlow 14s ease infinite;
+    height: 100vh;
+}
+
+/*.home-body:active {
+    background-image: url(../images/background9.jpg);
+}*/
+
+/*.stars {
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow:
+    50px 80px white,
+    120px 200px white,
+    300px 400px white,
+    500px 100px white,
+    650px 300px white,
+    900px 250px white,
+    100px 500px white,
+    700px 600px white,
+    400px 700px white,
+    850px 100px white,
+    200px 300px white,
+    600px 450px white;
+    animation: twinkle 1.5s infinite ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+}*/
 
 h1 {
     font-weight: 700;
@@ -36,14 +99,21 @@ p {
 .navbar {
     width: 100%;
     height: 50px;
+    /*padding: 0 50px;*/
     display: flex;
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)) !important;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.7);
+    /*background: linear-gradient(to left, rgb(150, 200, 244), rgb(196, 146, 218), rgb(236, 139, 238));*/
+    /*background-color: rgb(244, 165, 247);*/
+    /*box-shadow: 0px 5px 20px rgba(224, 210, 227, 0.7);*/
     top: 0;
-    left: 0;
-    z-index: 1000;
+    z-index: 100;
     position: fixed;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
+    /*border-radius: 20px;*/
+    justify-content: center;
+    align-items: center;
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
+    transition: top 0.3s;
 }
 
 .navbar-container.active, 
@@ -54,7 +124,7 @@ p {
 }
 
 .navbar-container {
-    width: 100%;
+    width: 85%;
     display: flex;
     align-items: center;
     padding: 0 50px;
@@ -68,8 +138,11 @@ p {
 }
 
 .logo {
-    font-size: 30px;
-    color: rgb(234, 141, 234);
+    font-size: 25px;
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fil-color: transparent;
+    color:transparent;
 }
 
 .menu-container {
@@ -88,7 +161,7 @@ p {
 }
 
 .menu-list a:hover {
-    color: rgb(234, 141, 234);
+    color: rgb(243, 215, 242);
 }
 
 .menu-list-item {
@@ -129,11 +202,15 @@ p {
 }
 
 .container.active #profile {
-    color: black; 
+    color: #281147; 
 }
 
 #profile:hover {
-    color: rgb(234, 141, 234);
+    color: rgb(243, 215, 242);
+}
+
+.profile-text-container a:hover {
+    color: rgb(243, 215, 242);
 }
 
 .login-body {
@@ -185,7 +262,6 @@ p {
     outline: 0;
 }
 
-
 .input-control.success input {
     border-color: aqua;
 }
@@ -201,10 +277,6 @@ p {
     padding: 2px;
 }
 
-.profile-text-container a:hover {
-    color: rgb(234, 141, 234);
-}
-
 .toggle {
     width: 40px;
     height:20px;
@@ -218,13 +290,13 @@ p {
 }
 
 .toggle-icon {
-    color: rgb(234, 141, 234);
+    color: #281147;
 }
 
 .toggle-ball {
     width: 18px;
     height: 18px;
-    background-color: black;
+    background-color: #281147;
     position: absolute;
     right: 1px;
     border-radius: 50%;
@@ -235,13 +307,18 @@ p {
 .sidebar {
     width: 50px;
     height: 100%;
-    background-color: black;
+    background: linear-gradient(to bottom, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
     position: fixed;
     top: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 60px;
+    border-radius: 4px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+
 }
 
 .sidebar a {
@@ -255,13 +332,91 @@ p {
 }
 
 .sidebar i:hover {
-    color: rgb(234, 141, 234) !important;
+    color: white !important;
 }
 
-.left-menu-icon {
-    color: white;
+.right-menu-icon {
+    color: #281147;
     font-size: 20px;
     margin-bottom: 40px;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.right-menu-icon:hover {
+    color: white;
+    transform: scale(1.2);
+}
+
+.section1 {
+    margin: 20px;
+    margin-top: 200px;
+    margin-left: 90px;
+    justify-content: space-between;
+    height: 540px;
+}
+
+.cine-hr {
+    margin-top: 60px;
+    margin-left: 0;
+    width: 80px;
+    height: 5px;
+    border-radius: 9px;
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    border: none;
+    margin-bottom: 25px;
+}
+
+.cineverse {
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fil-color: transparent;
+    color:transparent;
+    background-size: 350px;
+    font-size: 60px;
+    margin-bottom: 25px;
+}
+
+.cine-desc {
+    /*background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));*/
+    background-color: white;
+    -webkit-background-clip: text;
+    -webkit-text-fil-color: transparent;
+    color:transparent;
+    font-size: 50px;
+    width: 580px;
+    margin-bottom: 25px;
+}
+
+.cine-button {
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    width: 270px;
+    height: 50px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    text-align: left;
+    margin-bottom: 400px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(952, 152, 219, 0.6);
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.cine-button:hover {
+    transform: scale(1.07);
+    /*translateX: scale(5px);*/
+    box-shadow: 
+    0 0 27px rgb(240, 115, 243),
+    0 0 17px rgb(191, 126, 219),
+    0 0 7px rgb(125, 187, 242);
+    color: white;
+    padding-left: 60px;
+    font-size: 18px;
+    /*text-align: center;*/
+    /*width: 280px;
+    height: 60px;*/
 }
 
 .container {
@@ -445,7 +600,7 @@ p {
 }
 
 .footer {
-    background-color: rgba(128, 128, 128, 0.211);
+    /*background-color: rgba(128, 128, 128, 0.210);*/
     padding: 70px;
     align-items: center;
     text-align: center;
@@ -467,17 +622,62 @@ p {
 
 .footer ul a {
     text-decoration: none;
-    color: grey;
+    color: white;
     transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .footer ul a:hover {
-    color: rgb(234, 141, 234);
+    transform: scale(1.1);
+    color: rgb(243, 215, 242);
 }
 
 .footer p {
     padding: 0 50px;
+    /*padding-bottom: 0;
+    margin-bottom: 0;*/
     padding-bottom: 10px;
+}
+
+.footer-title1 {
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fil-color: transparent;
+    color:transparent;
+    background-size: 230px;
+}
+
+.footer-title2 {
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fil-color: transparent;
+    color:transparent;
+    background-size: 220px;
+}
+
+.footer-title3 {
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fil-color: transparent;
+    color:transparent;
+    background-size: 170px;
+}
+
+.footer-title4 {
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fil-color: transparent;
+    color:transparent;
+    background-size: 200px;
+}
+
+.footer-title5 {
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fil-color: transparent;
+    color:transparent;
+    background-size: 250px;
 }
 
 .about-us-container, .privacy-policy, .help-center, .terms-of-service {
@@ -505,7 +705,6 @@ p {
 .containerContact h2{
     font-size: 36px;
     margin-bottom: 40px;
-    color: rgb(234, 141, 234);
 }
 
 .contact-wrapper{
@@ -547,8 +746,9 @@ textarea:focus{
 button{
     display: inline-block;
     padding:12px 24px;
-    background-color: rgb(234, 141, 234);
-    color: #fff;
+    /*background-color: rgb(234, 141, 234);*/
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    color: white;
     border: none;
     cursor: pointer;
     transition: 0.3s ease;
@@ -592,7 +792,6 @@ button:hover{
     align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-
 
 .label-watchlist{
     color: grey;
@@ -641,7 +840,6 @@ button:hover{
     gap: 10px;
     align-items: center;
 }
-
 
 .search-wrapper .input{
     font-size: 1rem;
@@ -722,6 +920,10 @@ button:hover{
 
 .movierec{
     margin-bottom: 20px;
+    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fil-color: transparent;
+    color:transparent;
 }
 
 /*.recommendBtn{
@@ -806,7 +1008,6 @@ button:hover{
     padding: 20px;
     display: flex;
     background-color: #2e2e2e;
-
 }
 
 .genres1, .genres2 {
@@ -1041,7 +1242,6 @@ button:hover{
     margin-bottom: 20px;
 }
 
-
 .notification-icon {
     font-size: 19px;          
     color: #fff;
@@ -1062,6 +1262,10 @@ button:hover{
     right: -4px;
     width: 8px;
     height: 8px;
-    background: red;
+    background: rgb(255, 0, 225);
     border-radius: 50%;
+}
+
+.start-now-div {
+    border: 1;
 }
