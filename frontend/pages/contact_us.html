@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Cineverse - Contact Us</title>
+</head>
+<body>
+    <!--navigation bar-->
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container"><h1 class = "logo">Cineverse</h1></div> 
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <a href="index.html"><li class="menu-list-item active">Home</li></a>
+                    <a href="recommendations.html"><li class="menu-list-item">Recommendations</li></a>
+                    <a href="watchlist.html"><li class="menu-list-item">Watchlist</li></a>
+                    
+                </ul>
+            </div>
+            <div class="profile-container">
+                <a href="login.html"><img class="profile-picture" src="../images/profile1.jpg" alt=""></a>
+                <div class="profile-text-container">
+                    <span class="profile-text"><a id=profile href="login.html" target="_self">Profile</a></span>                
+                </div>
+                <i class="fa-solid fa-bell notification-icon"></i>
+                <div class="toggle">
+                    <i class="fa-solid fa-moon toggle-icon"></i>
+                    <i class="fa-solid fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <section class="contact">
+        <div class="containerContact">
+            <h2 class="footer-title2">Contact Us</h2>
+            <div class="contact-wrapper">
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                           <textarea name="message" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact information</h3>
+                    <p><i class="fas fa-phone"></i>+20 100 974 6614</p>
+                    <p><i class="fas fa-envelope"></i>Cineverse@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i>123 Street, Cairo, Egypt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+     <!--footer-->
+     <div class="footer">
+        <ul>
+            <li><a href="help_center.html">Help Center</a></li>
+            <li><a href="about_us.html" >About Us</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+            <li><a href="privacy_policy.html">Privacy Policy</a></li>
+            <li><a href="terms_of_service.html">Terms of Service</a></li>
+        </ul>
+        <p>© 2025 Cineverse - All Rights Reserved.</p>
+    </div>
+    <script src="../scripts/app.js"></script>
+</body>
+</html>
