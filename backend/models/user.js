@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        lowwercase: true,
+        lowercase: true,
     },
 
     password: {
@@ -20,10 +20,9 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
 
-    role: {
-        type: String,
-        enum: ['user', 'admin'],
-        default: 'user',
+    isAdmin:  { 
+        type: Boolean, 
+        default: false 
     },
 
     //the use of square brakets is beacuse these are arrays and not a single value

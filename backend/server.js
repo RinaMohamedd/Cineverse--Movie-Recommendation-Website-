@@ -4,30 +4,39 @@ const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 const path = require('path');
-const homeRouter = require("./routes/home")
-const watchlistRouter = require("./routes/watchlist")
-const loginRouter = require("./routes/login")
-const recomRouter = require("./routes/recommendations")
+const homeRoutes = require("./routes/home")
+const watchlistRoutes = require("./routes/watchlist")
+const recomRoutes = require("./routes/recommendations")
+const userRoutes = require('./routes/userRoutes');
 
 const uri = process.env.MONGODB_URI;
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.set('view engine', 'ejs'); // Set template engine
 
 app.set('views', path.join(__dirname, '../frontend/pages'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
-//middleware to parse JSON files and it's important for APIs
-app.use(express.json());
 
 //to test that the server is alive
-app.use("/", homeRouter);
-app.use("/watchlist", watchlistRouter);
-app.use("/login", loginRouter);
-app.use("/recommendations", recomRouter);
+app.use("/", homeRoutes);
+app.use("/watchlist", watchlistRoutes);
+app.use("/recommendations", recomRoutes);
+app.use("/userRoutes", userRoutes);
 
 /*mongoose.connect(uri)
 .then(() => console.log('MongoDB Connected'))
 .catch((err) => console.error('MongoDB Connection Error: ', err));*/
+
+//middleware to parse JSON files and it's important for APIs which let's you use req.body
+app.use(express.json());
+
+//routes setup
+app.use('/api/users', userRoutes);
+/*
+my routes now are:
+http://localhost:3000/api/users/signup
+http://localhost:3000/api/users/login
+*/
 
 app.listen(PORT, () => {
 console.log(`Server is on http://localhost:${PORT}`);
