@@ -18,14 +18,19 @@ app.set('views', path.join(__dirname, '../frontend/pages'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 //to test that the server is alive
+app.get('/', (req, res) => {
+    res.send('Server Is Alive!');
+});
+
 app.use("/", homeRoutes);
 app.use("/watchlist", watchlistRoutes);
 app.use("/recommendations", recomRoutes);
 app.use("/userRoutes", userRoutes);
 
-/*mongoose.connect(uri)
+//connecting to mongodb
+mongoose.connect(uri)
 .then(() => console.log('MongoDB Connected'))
-.catch((err) => console.error('MongoDB Connection Error: ', err));*/
+.catch((err) => console.error('MongoDB Connection Error: ', err));
 
 //middleware to parse JSON files and it's important for APIs which let's you use req.body
 app.use(express.json());
