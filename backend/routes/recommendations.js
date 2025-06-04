@@ -7,4 +7,9 @@ router.get('/', (req, res) => {
   res.render('recommendations'); 
 });
 
+router.get('/start_now', (req, res) => {
+  console.log("start_now route hit");
+  res.render('start_now'); 
+});
+
 module.exports = router;

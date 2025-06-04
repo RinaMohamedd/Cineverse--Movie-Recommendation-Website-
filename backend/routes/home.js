@@ -6,14 +6,36 @@ router.get('/', (req, res) => {
   res.render('home'); 
 });
 
-/*router.get('/watchlist', (req, res) => {
-  console.log("Watchlist route hit");
-  res.render('watchlist'); 
-});*/
+// Start now in recommondations
+router.get('/start_now', (req, res) => {
+  console.log("start_now route hit");
+  res.render('start_now'); 
+});
 
-/*router.get('/login', (req, res) => {
-  console.log("Login route hit");
-  res.render('login'); 
-});*/
+// Footer
+router.get('/help_center', (req, res) => {
+  console.log("Footer route hit");
+  res.render('help_center'); 
+});
+
+router.get('/about_us', (req, res) => {
+  console.log("Footer route hit");
+  res.render('about_us'); 
+});
+
+router.get('/contact_us', (req, res) => {
+  console.log("Footer route hit");
+  res.render('contact_us'); 
+});
+
+router.get('/privacy_policy', (req, res) => {
+  console.log("Footer route hit");
+  res.render('privacy_policy'); 
+});
+
+router.get('/terms_of_service', (req, res) => {
+  console.log("Footer route hit");
+  res.render('terms_of_service'); 
+});
 
 module.exports = router;
