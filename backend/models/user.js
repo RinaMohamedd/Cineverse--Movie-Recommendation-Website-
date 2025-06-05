@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+    fullname: {
+        type: String,
+        required: true
+    },
+    
     username: {
         type: String,
         required: true,
@@ -26,7 +31,7 @@ const userSchema = new mongoose.Schema({
     },
 
     //the use of square brakets is beacuse these are arrays and not a single value
-    whatchlist: [
+    watchlist: [
         {
             //this is so an id will be generated for each movie instead of taking the whole movie object
             type: mongoose.Schema.Types.ObjectId,

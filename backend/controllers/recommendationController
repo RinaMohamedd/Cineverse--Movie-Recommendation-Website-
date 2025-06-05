@@ -39,5 +39,5 @@ exports.getRecommendation = async (req, res) => {
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 };
-//i just added a function thT recommends a movie based on the genre, age and release period.
-// it also saves the recommended movie to the user's recommendation history(we can remove that if yall dont want it)
+//i just added a function that recommends a movie based on the genre, age and release period.
+//it also saves the recommended movie to the user's recommendation history

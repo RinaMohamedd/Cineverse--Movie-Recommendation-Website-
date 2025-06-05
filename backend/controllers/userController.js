@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken'); //for making tokens for users that logged i
 //for users that are registering for the first time
 const signupUser = async (req, res) => {
     //this reads what the user typed in the signup form
-    const {username, email, password} = req.body; //grab from inputs
+    const {fullname, username, email, password} = req.body; //grab from inputs
 
 try {
     //check if the email is already in use, if yes then throw an error
@@ -17,6 +17,7 @@ try {
 
     //now we're creating a new user and saving it to the database
     const newUser = new User({
+        fullname,
         username, 
         email, 
         password: hashedPassword
@@ -53,11 +54,12 @@ const loginUser = async (req, res) => { //if you use async you can then use awai
         );
 
         //this returns the token plus basic user info to the frontend
-        res.status(200).json({message: 'Login successful', userId: user._id, isAdmin: user.isAdmin});
+        res.status(200).json({message: 'Login successful', userId: user._id, isAdmin: user.isAdmin, token});
     } catch (err) { //server error
         res.status(500).json({message: 'Server error', error: err.message});
     }
 };
+
 const getProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.userId).select('-password');//this fetches all the fields except the password
@@ -71,8 +73,8 @@ const addToWatchlist = async (req, res) => {
     try {
         const user = await User.findById(req.user.userId);//find the user usinf the ID
         if (!user) return res.status(404).json({ message: 'User not found' });//if user not found send 404 error
-        if (!user.whatchlist.includes(movieId)) {//adds the movie to the list if it isnt already there in order to pervent duplicatess
-            user.whatchlist.push(movieId);
+        if (!user.watchlist.includes(movieId)) {//adds the movie to the list if it isnt already there in order to pervent duplicatess
+            user.watchlist.push(movieId);
             await user.save();
         }
         res.json({ message: 'Added to watchlist' });
@@ -83,7 +85,7 @@ const addToWatchlist = async (req, res) => {
 const getWatchlist = async (req, res) => {
     try {
         const user = await User.findById(req.user.userId).populate('whatchlist');//.populate('watchlist')di 3shan a get full ovie details not just IDs
-        res.json(user.whatchlist);//sends the watchlist (an array of movies) as a JSON response
+        res.json(user.watchlist);//sends the watchlist (an array of movies) as a JSON response
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });
     }
