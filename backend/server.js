@@ -3,6 +3,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
+const cors = require('cors');//cross-origin resource sharing
 const path = require('path');
 const homeRoutes = require("./routes/home")
 const watchlistRoutes = require("./routes/watchlist")
@@ -20,6 +21,7 @@ app.set('views', path.join(__dirname, '../frontend/pages'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 //middleware to parse JSON files and it's important for APIs which let's you use req.body
+app.use(cors());//middleware to allow cross origin requests (frontend-backend communication)
 app.use(express.json());
 
 //to test that the server is alive
@@ -33,6 +35,7 @@ app.use("/recommendations", recomRoutes);
 app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
 
+
 //connecting to mongodb
 mongoose.connect(uri)
 .then(() => console.log('MongoDB Connected'))
@@ -40,6 +43,7 @@ mongoose.connect(uri)
 
 //routes setup
 app.use('/api/users', userRoutes);
+app.use('/api/recommendation', recomRoutes);//endpoints
 /*
 my routes now are:
 http://localhost:3000/api/users/signup

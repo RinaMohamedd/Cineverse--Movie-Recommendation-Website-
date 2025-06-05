@@ -1,0 +1,43 @@
+const Movie = require('../models/movie');
+const User = require('../models/user');
+function getReleaseYearRange(option){
+    const now= new Date().getFullYear();
+    if(option === "recent")return [now -1, now];
+     if (option === "5") return [now - 5, now];
+    if (option === "20") return [now - 20, now];
+    if (option === "25") return [now - 25, now];
+    return [1900, now];
+}   
+exports.getRecommendation = async (req, res) => {
+    try {
+        const { genres, age, releasePeriod } = req.body;
+        if (!genres || !Array.isArray(genres) || genres.length === 0) {
+            return res.status(400).json({ message: 'Genres are required' });
+        }
+        const [startYear, endYear] = getReleaseYearRange(releasePeriod);
+        const movies = await Movie.find({
+            genres: { $in: genres },
+            releaseYear: { $gte: startYear, $lte: endYear }
+        });
+         if (movies.length === 0) {
+            return res.status(404).json({ message: 'No movies found for the selected criteria.' });
+        }
+        const movie = movies[Math.floor(Math.random() * movies.length)];
+        await User.findByIdAndUpdate(
+            req.user.userId,
+            { $addToSet: { recommendationHistory: movie._id } }
+        );
+
+        res.json({
+            name: movie.name,
+            poster: movie.image,
+            trailer: movie.trailer,
+            description: movie.description,
+            releaseYear: movie.releaseYear
+        });
+         } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err.message });
+    }
+};
+//i just added a function thT recommends a movie based on the genre, age and release period.
+// it also saves the recommended movie to the user's recommendation history(we can remove that if yall dont want it)
