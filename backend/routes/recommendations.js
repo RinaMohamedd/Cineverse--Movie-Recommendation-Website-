@@ -7,6 +7,4 @@ router.get('/', (req, res) => {
   res.render('recommendations'); 
 });
 
-
-
 module.exports = router;
