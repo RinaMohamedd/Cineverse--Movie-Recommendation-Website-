@@ -58,5 +58,35 @@ const loginUser = async (req, res) => { //if you use async you can then use awai
         res.status(500).json({message: 'Server error', error: err.message});
     }
 };
+const getProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.userId).select('-password');
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err.message });
+    }
+};
+const addToWatchlist = async (req, res) => {
+    const { movieId } = req.body;
+    try {
+        const user = await User.findById(req.user.userId);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!user.whatchlist.includes(movieId)) {
+            user.whatchlist.push(movieId);
+            await user.save();
+        }
+        res.json({ message: 'Added to watchlist' });
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err.message });
+    }
+};
+const getWatchlist = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.userId).populate('whatchlist');
+        res.json(user.whatchlist);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err.message });
+    }
+};
 
-module.exports = {signupUser, loginUser};
+module.exports = {signupUser, loginUser,getProfile,addToWatchlist,getWatchlist};

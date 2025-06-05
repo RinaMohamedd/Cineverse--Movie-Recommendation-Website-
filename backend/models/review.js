@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const rebiewSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user', //our user model

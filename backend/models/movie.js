@@ -16,7 +16,7 @@ const movieSchema = new mongoose.Schema({
         required: true,
     },
 
-    ageRatinf: {
+    ageRating: {
         type: String,
         required: true,
     },
@@ -35,13 +35,13 @@ const movieSchema = new mongoose.Schema({
         required: true,
     },
 
-    averageRatinf: {
+    averageRating: {
         type: String,
         required: true,
     },
 
     reviews: [{
-        type: mongoose.Schema.Typer.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'review',
     }],
 }, { timestamps: true });
