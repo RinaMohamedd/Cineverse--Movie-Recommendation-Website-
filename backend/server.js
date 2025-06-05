@@ -46,8 +46,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/recommendation', recomRoutes);//endpoints
 /*
 my routes now are:
-http://localhost:3000/api/users/signup
-http://localhost:3000/api/users/login
+http://localhost:5000/api/users/signup
+http://localhost:5000/api/users/login
 */
 
 app.listen(PORT, () => {
