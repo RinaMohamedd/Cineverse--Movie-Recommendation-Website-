@@ -1,4 +1,22 @@
+// Disappearing navbar after scroll
+document.addEventListener('DOMContentLoaded', () => {
+  let lastScrollTop = 0;
+  const navbar = document.getElementById('navbar');
 
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+      navbar.style.top = "-100px"; // hide
+    } else {
+      navbar.style.top = "0"; // show
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+});
+
+//---------------------------------------------
 
 
 const arrows = document.querySelectorAll(".arrow");
