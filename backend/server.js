@@ -52,9 +52,10 @@ http://localhost:5000/api/movies/
 
 //connecting to mongodb
 mongoose.connect(uri)
-.then(() => console.log('MongoDB Connected'))
+.then(() => { 
+    console.log('MongoDB Connected')
+    app.listen(process.env.PORT, () => {
+    console.log(`Server is on http://localhost:${process.env.PORT}`);
+    });
+})
 .catch((err) => console.error('MongoDB Connection Error: ', err));
-
-app.listen(process.env.PORT, () => {
-console.log(`Server is on http://localhost:${process.env.PORT}`);
-});
