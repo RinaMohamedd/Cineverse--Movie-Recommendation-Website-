@@ -5,13 +5,13 @@ const express = require('express');
 const app = express();
 const cors = require('cors');//cross-origin resource sharing
 const path = require('path');
-const homeRoutes = require("./routes/home")
-const watchlistRoutes = require("./routes/watchlist")
-const recomRoutes = require("./routes/recommendations")
+const homeRoutes = require("./routes/home");
 const loginRoutes = require("./routes/login");
+const movieRoutes = require('./routes/movieRoutes');
+const recomRoutes = require("./routes/recommendations");
 const signupRoutes = require("./routes/signup");
 const userRoutes = require("./routes/userRoutes");
-const movieRoutes = require('./routes/movieRoutes');
+const watchlistRoutes = require("./routes/watchlist");
 const uri = process.env.MONGODB_URI;
 
 app.set('view engine', 'ejs'); // Set template engine
@@ -22,24 +22,22 @@ app.use(express.static(path.join(__dirname, '../frontend/public')));
 //middleware to parse JSON files and it's important for APIs which let's you use req.body
 app.use(cors());//middleware to allow cross origin requests (frontend-backend communication)
 app.use(express.json());
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
+})
 
 //to test that the server is alive
 /*app.get('/', (req, res) => {
     res.send('Server Is Alive!');
 });*/
 
+//this gets all the different routes we created so they could be used on the app
 app.use("/", homeRoutes);
 app.use("/watchlist", watchlistRoutes);
 app.use("/recommendations", recomRoutes);
 app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
-
-
-//connecting to mongodb
-mongoose.connect(uri)
-.then(() => console.log('MongoDB Connected'))
-.catch((err) => console.error('MongoDB Connection Error: ', err));
-
 //routes setup
 app.use('/api/users', userRoutes);
 app.use('/api/recommendation', recomRoutes);//endpoints
@@ -48,7 +46,14 @@ app.use('/api/movies', movieRoutes);
 my routes now are:
 http://localhost:5000/api/users/signup
 http://localhost:5000/api/users/login
+http://localhost:5000/api/recommendation/recommendations
+http://localhost:5000/api/movies/
 */
+
+//connecting to mongodb
+mongoose.connect(uri)
+.then(() => console.log('MongoDB Connected'))
+.catch((err) => console.error('MongoDB Connection Error: ', err));
 
 app.listen(process.env.PORT, () => {
 console.log(`Server is on http://localhost:${process.env.PORT}`);
