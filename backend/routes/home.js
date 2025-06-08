@@ -6,6 +6,11 @@ router.get('/', (req, res) => {
   res.render('home'); 
 });
 
+router.get('/admin', (req, res) => {
+  console.log('Admin page loaded');
+  res.render('admin'); // renders admin.ejs
+});
+
 // Start now in recommondations
 router.get('/start_now', (req, res) => {
   console.log("start_now route hit");

@@ -50,6 +50,10 @@ http://localhost:5000/api/recommendation/recommendations
 http://localhost:5000/api/movies/
 */
 
+app.listen(process.env.PORT, () => {
+    console.log(`Server is on http://localhost:${process.env.PORT}`);
+    });
+
 //connecting to mongodb
 mongoose.connect(uri)
 .then(() => { 
