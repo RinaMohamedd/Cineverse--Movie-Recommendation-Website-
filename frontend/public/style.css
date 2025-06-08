@@ -205,6 +205,8 @@ p {
   align-items: center;
   margin-top: 20px;
   padding-bottom: 40px;
+  align-items: stretch;
+  justify-content: space-between;
 }
 
 
@@ -218,6 +220,7 @@ p {
   justify-content: center;
   box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
   transition: 0.2 ease-in-out;
+  flex: 1;
 }
 
 .dashboard-card:hover {
