@@ -60,6 +60,7 @@ const loginUser = async (req, res) => { //if you use async you can then use awai
     }
 };
 
+
 const getProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.userId).select('-password');//this fetches all the fields except the password
@@ -68,6 +69,8 @@ const getProfile = async (req, res) => {
         res.status(500).json({ message: 'Server error', error: err.message });//lw an error occurd send server error(500) and the error details
     }
 };//this function gets the user profile and returns all the data except the password
+
+
 const addToWatchlist = async (req, res) => {
     const { movieId } = req.body;
     try {
@@ -82,6 +85,8 @@ const addToWatchlist = async (req, res) => {
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 };//just to let the user save movies they like or want to watch at a later time
+
+
 const getWatchlist = async (req, res) => {
     try {
         const user = await User.findById(req.user.userId).populate('whatchlist');//.populate('watchlist')di 3shan a get full ovie details not just IDs
@@ -91,4 +96,4 @@ const getWatchlist = async (req, res) => {
     }
 };//the user needs to be able to view their saved movies at anytime, so that's what this functtion does
 
-module.exports = {signupUser, loginUser,getProfile,addToWatchlist,getWatchlist};
+module.exports = {signupUser, loginUser, getProfile, addToWatchlist, getWatchlist};

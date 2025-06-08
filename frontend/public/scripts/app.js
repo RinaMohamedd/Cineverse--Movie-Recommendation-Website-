@@ -788,3 +788,11 @@ window.addEventListener("scroll", function () {
   }
   prevScrollPos = currentScrollPos;
 });*/
+
+function showAdminMovieForm(formType) {
+  const forms = ['add', 'remove', 'update'];
+  forms.forEach(type => {
+    const form = document.getElementById(`${type}-form`);
+    form.style.display = (type === formType) ? 'block' : 'none';
+  });
+}
