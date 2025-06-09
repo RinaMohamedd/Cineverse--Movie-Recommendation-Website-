@@ -7,18 +7,19 @@ const cors = require('cors');//cross-origin resource sharing
 const path = require('path');
 const homeRoutes = require("./routes/home");
 const loginRoutes = require("./routes/login");
-const movieRoutes = require('./routes/movieRoutes');
+const movieRoutes = require("./routes/movieRoutes");
 const recomRoutes = require("./routes/recommendations");
 const signupRoutes = require("./routes/signup");
 const userRoutes = require("./routes/userRoutes");
 const watchlistRoutes = require("./routes/watchlist");
-const bodyParser = require('body-parser');
-const adminRoutes = require('./routes/admin');
+//const bodyParser = require('body-parser');
+//const adminRoutes = require('./routes/admin');
 const uri = process.env.MONGODB_URI;
 
-app.use(bodyParser.urlencoded({ extended: true }));//parses incoming requests m3 el url encoded payload
+//app.use(bodyParser.urlencoded({ extended: true }));//parses incoming requests m3 el url encoded payload
 app.use(cors());//middleware to allow cross origin requests (frontend-backend communication)
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 app.set('view engine', 'ejs'); // Set template engine
@@ -41,14 +42,14 @@ app.use((req, res, next) => {
 //this gets all the different routes we created so they could be used on the app
 app.use("/", homeRoutes);
 app.use("/watchlist", watchlistRoutes);
-app.use("/recommendations", recomRoutes);
 app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
-app.use('/admin',adminRoutes);
+//app.use('/admin',adminRoutes);
+app.use('/recommendations', recomRoutes);
 //routes setup
 app.use('/api/users', userRoutes);
 app.use('/api/recommendation', recomRoutes);//endpoints
-app.use('/api/movies', movieRoutes);
+app.use('/', movieRoutes);
 
 /*
 my routes now are:
@@ -60,7 +61,7 @@ http://localhost:5000/api/movies/
 
 /*app.listen(process.env.PORT, () => {
     console.log(`Server is on http://localhost:${process.env.PORT}`);
-    });*/
+});*/
 
 //connecting to mongodb
 mongoose.connect(uri)

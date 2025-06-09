@@ -17,7 +17,7 @@ const movieSchema = new mongoose.Schema({
     },
 
     ageRating: {
-        type: String,
+        type: Number,
         required: true,
     },
 
