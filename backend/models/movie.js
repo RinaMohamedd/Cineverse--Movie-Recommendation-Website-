@@ -23,11 +23,13 @@ const movieSchema = new mongoose.Schema({
 
     image: {
         type: String,
+        required: true,
     },
 
     trailer: 
     {
         type: String,
+        required: true,
     },
 
     description: {
@@ -37,7 +39,6 @@ const movieSchema = new mongoose.Schema({
 
     averageRating: {
         type: String,
-        required: true,
     },
 
     reviews: [{

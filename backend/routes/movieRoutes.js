@@ -5,8 +5,9 @@ const {createMovie, deleteMovie, updateMovie} = require('../controllers/movieCon
 //const admin = require('../middleware/admin');
 
 router.post('/admin/movies/add', createMovie);
-router.post('/admin/movies/remove', deleteMovie);
-router.post('/admin/movies/update', updateMovie);
+router.delete('/admin/movies/:id', deleteMovie);
+//router.post('/admin/movies/update/:id', updateMovie);
+router.put('/admin/movies/:id', updateMovie);
 
 module.exports = router;
 

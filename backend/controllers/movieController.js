@@ -2,7 +2,7 @@ const Movie = require('../models/movie');
 
 const createMovie = async (req, res) => {
     const {name, genres, releaseYear, ageRating, image, trailer, description} = req.body;
-    if(!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only'});//only allows admins
+    //if(!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only'});//only allows admins
 
     try {
         const existingMovie = await Movie.findOne({name});
@@ -46,23 +46,16 @@ const getMovieById = async (req, res) => {//gets a single movie by its ID
 
 const updateMovie = async (req, res) => {
     const {name, genres, releaseYear, ageRating, image, trailer, description} = req.body;
-    if (!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only.' });//allows only admins to do the operation
+    const {id} = req.params;
+    //if (!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only.' });//allows only admins to do the operation
 
     try {
-        const movie = await Movie.findOne({name});
+        const movie = await Movie.findByIdAndUpdate(
+            id,
+            {name, genres, releaseYear, ageRating, image, trailer, description},
+            {new: true, runValidators: true}
+        );
         if (!movie) return res.status(400).json({message: 'Movie not found'});
-
-        const newMovie = new Movie ({
-            name,
-            genres,
-            releaseYear,
-            ageRating,
-            image,
-            trailer, 
-            description
-        });
-        await newMovie.save();
-
         res.status(201).json({message: 'Movie updated successfully'});
     } catch (err) {
         res.status(500).json({message: 'Server error', error: err.message});
@@ -70,13 +63,13 @@ const updateMovie = async (req, res) => {
 };
 
 const deleteMovie = async (req, res) => {
-    const {name} = req.body;
-    if (!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only.' });
+    //const {name} = req.body;
+    const {id} = req.params;
+    //if (!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only.' });
 
     try {
-        const movie = await Movie.findOne({name});
+        const movie = await Movie.findByIdAndDelete(id);
         if (!movie) return res.status(400).json({message: 'Movie not found'});
-        await Movie.deleteOne({name});
         res.status(200).json({message: 'Movie deleted successfully'});
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });
