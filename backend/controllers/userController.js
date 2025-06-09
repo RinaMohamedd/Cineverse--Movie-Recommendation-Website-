@@ -1,6 +1,7 @@
 const User = require('../models/user'); //import user model
 const bcrypt = require('bcrypt'); //for hashing passwords
 const jwt = require('jsonwebtoken'); //for making tokens for users that logged in before
+const nodemailer = require('nodemailer');
 
 //for users that are registering for the first time
 const signupUser = async (req, res) => {
@@ -20,12 +21,43 @@ try {
         fullname,
         username, 
         email, 
-        password: hashedPassword
+        password: hashedPassword,
+        verified: false
     });
     await newUser.save();
 
+    //create email verification token
+    const token = jwt.sign(
+        { userId: newUser._id },
+        process.env.EMAIL_SECRET, // create this in your .env
+        { expiresIn: '1d' }
+    );
+
+    //set up email transporter
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
+
+    //email content
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: newUser.email,
+        subject: 'Verify Your Email',
+        html: 
+            `<h2>Hello ${newUser.fullname}!</h2>
+            <p>Click the link below to verify your email:</p>
+            <a href="http://localhost:5000/auth/verify/${token}">Verify Email</a>`
+    };
+
+    //send it
+    await transporter.sendMail(mailOptions);
+
     //this is a success response
-    res.status(201).json({message: 'User signed up successfully'});
+    res.status(201).json({message: 'Signup successful. Please verify your email!'});
    } catch (err) { //this error means it wasn't a client error so it must've been a server error
     res.status(500).json({message: 'Server error', error: err.message});
    }
@@ -41,6 +73,11 @@ const loginUser = async (req, res) => { //if you use async you can then use awai
         //checks if the user exists in the database by email and throws an error if they don't
         const user = await User.findOne({email});
         if (!user) return res.status(400).json({message: 'User not found'});
+
+        //check if user is verified
+        if (!user.verified) {
+            return res.status(401).json({ message: 'Please verify your email before logging in.' });
+        }
 
         //in case of existance then we'll compare the password entered with the saved one, throw an error if it's not a match
         const isMatch = await bcrypt.compare(password, user.password);
