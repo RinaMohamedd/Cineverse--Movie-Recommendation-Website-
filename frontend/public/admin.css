@@ -5,7 +5,7 @@
     margin-right: 10px;
 }
 
-#movie-description {
+#addmovie-description, #updatemovie-description {
     border: 1px solid black;
     padding: 10px;
     border-radius: 8px;
@@ -15,7 +15,7 @@
     width: 95%;
 }
 
-.movie-genres {
+#addmovie-genres, #updatemovie-genres {
     border: 1px solid black;
     padding: 10px;
     margin-bottom: 15px;
