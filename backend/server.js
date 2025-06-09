@@ -12,7 +12,14 @@ const recomRoutes = require("./routes/recommendations");
 const signupRoutes = require("./routes/signup");
 const userRoutes = require("./routes/userRoutes");
 const watchlistRoutes = require("./routes/watchlist");
+const bodyParser = require('body-parser');
+const adminRoutes = require('./routes/admin');
 const uri = process.env.MONGODB_URI;
+
+app.use(bodyParser.urlencoded({ extended: true }));//parses incoming requests m3 el url encoded payload
+app.use(cors());//middleware to allow cross origin requests (frontend-backend communication)
+app.use(express.json());
+
 
 app.set('view engine', 'ejs'); // Set template engine
 
@@ -20,8 +27,7 @@ app.set('views', path.join(__dirname, '../frontend/pages'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 //middleware to parse JSON files and it's important for APIs which let's you use req.body
-app.use(cors());//middleware to allow cross origin requests (frontend-backend communication)
-app.use(express.json());
+
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
@@ -38,10 +44,12 @@ app.use("/watchlist", watchlistRoutes);
 app.use("/recommendations", recomRoutes);
 app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
+app.use('/admin',adminRoutes);
 //routes setup
 app.use('/api/users', userRoutes);
 app.use('/api/recommendation', recomRoutes);//endpoints
 app.use('/api/movies', movieRoutes);
+
 /*
 my routes now are:
 http://localhost:5000/api/users/signup
@@ -50,9 +58,9 @@ http://localhost:5000/api/recommendation/recommendations
 http://localhost:5000/api/movies/
 */
 
-app.listen(process.env.PORT, () => {
+/*app.listen(process.env.PORT, () => {
     console.log(`Server is on http://localhost:${process.env.PORT}`);
-    });
+    });*/
 
 //connecting to mongodb
 mongoose.connect(uri)
@@ -63,3 +71,7 @@ mongoose.connect(uri)
     });
 })
 .catch((err) => console.error('MongoDB Connection Error: ', err));
+//app.use(express.static('public')); 
+
+/*app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');*/

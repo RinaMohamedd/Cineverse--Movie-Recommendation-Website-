@@ -75,7 +75,7 @@
     <button class="admin-buttons" onclick="showAdminMovieForm('add')">Add Movie</button>
     <button class="admin-buttons" onclick="showAdminMovieForm('remove')">Remove Movie</button>
     <button class="admin-buttons" onclick="showAdminMovieForm('update')">Update Movie</button>
-    <form id="add-form" style="display: none;">
+    <form id="add-form" action="/admin/movies/add" method="POST" style="display: none;"> <!--el action attribute bet7aded el url el el form data should be sent when the form is submitted-->
       <h1 class="admin-header">Add Movie</h1>
         <div class="input-control">
             <label for="movie-title">Title</label>
@@ -121,7 +121,7 @@
         <button type="submit" class="admin-buttons">Submit</button>
     </form>
 
-    <form id="remove-form" style="display: none;">
+    <form id="remove-form" action="/admin/movies/remove" method="POST" style="display: none;">
       <h1 class="admin-header">Remove Movie</h1>
         <div class="input-control">
             <label for="movie-title">Title</label>
@@ -130,7 +130,7 @@
         <button type="submit" class="admin-buttons">Submit</button>
     </form>
 
-    <form id="update-form" style="display: none;">
+    <form id="update-form" action="/admin/movies/update" method="POST" style="display: none;">
       <h1 class="admin-header">Update Movie</h1>
         <div class="input-control">
             <label for="movie-title">Title</label>

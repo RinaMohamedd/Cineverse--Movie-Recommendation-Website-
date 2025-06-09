@@ -796,3 +796,4 @@ function showAdminMovieForm(formType) {
     form.style.display = (type === formType) ? 'block' : 'none';
   });
 }
+
