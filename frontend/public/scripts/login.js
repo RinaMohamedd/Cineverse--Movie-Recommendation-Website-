@@ -19,7 +19,13 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
                     alert('Login successful!');
                     //stores the token in localStorage or cookie
                     localStorage.setItem('token', data.token);
-                    window.location.href = '/';
+
+                    //check isAdmin flag from response data
+                    if (data.isAdmin == true) {
+                        window.location.href = '/admin';
+                    } else {
+                        window.location.href = '/';
+                    }
                 } else {
                     alert(`Login failed: ${data.message}`);
                     if (data.message === 'User not found') {

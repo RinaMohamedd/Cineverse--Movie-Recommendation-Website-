@@ -75,9 +75,9 @@ const loginUser = async (req, res) => { //if you use async you can then use awai
         if (!user) return res.status(400).json({message: 'User not found'});
 
         //check if user is verified
-        if (!user.verified) {
+        /*if (!user.verified) {
             return res.status(401).json({ message: 'Please verify your email before logging in.' });
-        }
+        }*/
 
         //in case of existance then we'll compare the password entered with the saved one, throw an error if it's not a match
         const isMatch = await bcrypt.compare(password, user.password);
@@ -93,7 +93,7 @@ const loginUser = async (req, res) => { //if you use async you can then use awai
         //this returns the token plus basic user info to the frontend
         res.status(200).json({message: 'Login successful', userId: user._id, isAdmin: user.isAdmin, token});
     } catch (err) { //server error
-        res.status(500).json({message: 'Server error', error: err.message});
+        res.status(500).json({message: 'Server error. Please try again later', error: err.message});
     }
 };
 
