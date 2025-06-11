@@ -13,6 +13,7 @@ const signupRoutes = require("./routes/signup");
 const userRoutes = require("./routes/userRoutes");
 const watchlistRoutes = require("./routes/watchlist");
 const recommendationRoutes = require('./routes/recommendationRoutes');
+const adminRoutes = require('./routes/adminRoutes');//adding the admin routes
 //const bodyParser = require('body-parser');
 //const adminRoutes = require('./routes/admin');
 const uri = process.env.MONGODB_URI;
@@ -45,7 +46,7 @@ app.use("/", homeRoutes);
 app.use("/watchlist", watchlistRoutes);
 app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
-//app.use('/admin',adminRoutes);
+app.use('/admin', adminRoutes);
 app.use('/recommendations', recomRoutes);
 //routes setup
 app.use('/api/users', userRoutes);
