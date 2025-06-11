@@ -9,6 +9,9 @@ module.exports = (req, res, next) => {//exports el middleware function so it can
         req.user = decoded;//add the decoded user info to the request object 3shan tosta5dam f req.user b3d kda
         next();
     } catch (err) {
+        if (err.name === 'TokenExpiredError') {
+            return res.status(401).json({ message: 'Token expired, please log in again' });
+        }
         res.status(401).json({ message: 'Token is not valid' });
     }
 };//it checks whetehr the user is logged in or not, that is done by verifying a JWT token sent from the fronend 
