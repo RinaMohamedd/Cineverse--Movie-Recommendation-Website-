@@ -16,7 +16,7 @@
     <%- include('partials/navbar.ejs') %>
 
     <!--start now button-->
-    <form id="recommendation-form" onsubmit="getRecommendation(event)">
+    <form id="recommendation-form">
     <div class="gradient-border">
         <div class="start-now-div">
             <h3>1. What genres are you interested in?</h3>
@@ -65,7 +65,7 @@
 </div>
     <div id="movie-overlay" class="overlay" style="display:none;">
         <div class="overlay-content">
-            <button class="close-btn" onclick="closeOverlay()">X</button>
+            <button class="close-btn">X</button>
             <h3 id="recommended-movie-name"></h3>
             <img id="recommended-movie-img" src="" alt="" style="width:200px;">
             <p id="recommended-movie-description"></p>

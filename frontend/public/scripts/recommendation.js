@@ -1,70 +1,83 @@
-async function getRecommendation(event) {
-  event.preventDefault();
-  const selectedGenres = Array.from(document.querySelectorAll('input[name="genre"]:checked'))
-      .map(checkbox => checkbox.value);
-  const age = parseInt(document.getElementById('age-textbox').value);
-  const releaseYear = document.querySelector('input[name="releaseYear"]:checked')?.value;
-
-  const response = await fetch('http://localhost:5000/api/recommendation/start_now', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({selectedGenres, age, releaseYear})
-  });
-
-  const result = await response.json();
-
-  if (result.success) {
-    displayRecommendedMovie(result.movie);
-  } else {
-    alert(result.message);
-  }
-}
-
-
-function displayRecommendedMovie(movie) {
-  const overlay = document.getElementById('movie-overlay');
-  document.getElementById('recommended-movie-name').textContent = movie.name;
-  document.getElementById('recommended-movie-img').src = movie.img;
-  document.getElementById('recommended-movie-description').textContent = movie.description;
-
-  const embedURL = movie.trailer.replace("watch?v=", "embed/");
-  document.getElementById('trailer-container').innerHTML =
-  `<iframe width="560" height="315" src="${embedURL} " frameborder="0" allowfullscreen></iframe>`;
-
-  overlay.style.display = "block";
-  document.getElementById("recommendation-form").reset()
-}
-
-function closeOverlay() {
-  document.getElementById('movie-overlay').style.display = "none";
-}
-
-document.querySelector('#recommendation-form').addEventListener('submit', getRecommendation);
-
-/*document.querySelector('#recommendation-form').addEventListener('submit', async (e) => {
+document.getElementById("get-recommendation-button").addEventListener("click", async (e) => {
     e.preventDefault();
 
-    const genre = document.querySelector('#genre').value;
-    const age = document.querySelector('#age').value;
-    const releaseYear = document.querySelector('#releaseYear').value;
-
-    const response = await fetch('/api/recommendation/recommendations', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({genre, age, releaseYear})
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
-        document.querySelector('#movie-result').innerHTML =
-        `<h3>${result.title}</h3>
-        <a href="${result.link}" target="_blank">Watch Now</a>`;
-    } else {
-        document.querySelector('#movie-result').textContent = result.message || 'Error happened';
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("You need to be logged in to get a movie recommendation");
+        return;
     }
-});*/
+
+    const genreInputs = document.querySelectorAll('input[name="genre"]:checked');
+    const selectedGenres = Array.from(genreInputs).map(input => input.value);
+
+    if (selectedGenres.length < 2) {
+        alert("Please select at least two genres");
+        return;
+    }
+
+    const age = document.getElementById("age-textbox").value;
+    if (!age || age <= 0) {
+        alert("PLease enter a valid age");
+        return;
+    }
+
+    const releaseYear = document.querySelector('input[name="releaseYear"]:checked')?.value;
+    if (!releaseYear) {
+        alert("Please pick a release year option");
+        return;
+    }
+
+    const preferences = {
+        genres: selectedGenres,
+        ageRating: parseInt(age),
+        releaseYear: releaseYear
+    };
+
+    try {
+        const response = await fetch("/api/recommendation/start_now", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(preferences)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            const movie = data.movie;
+            console.log("Recommended Movie:", movie);
+
+            //update overlay content
+            document.getElementById("recommended-movie-name").textContent = movie.name || "No name given";
+            document.getElementById("recommended-movie-img").src = movie.image || "";
+            document.getElementById("recommended-movie-img").alt = movie.name || "Movie poster";
+            document.getElementById("recommended-movie-description").textContent = movie.description || "No description available";
+
+            let trailerURL = movie.trailer || "";
+            if (trailerURL.includes("watch?v=")) {
+                trailerURL = trailerURL.replace("watch?v=", "embed/");
+            }
+            const trailerContainer = document.getElementById("trailer-container");
+            trailerContainer.innerHTML = movie.trailer 
+            ? `<iframe width="300" height="200" src="${trailerURL}" frameborder="0" allowfullscreen></iframe>` 
+            : "";
+
+            document.getElementById("movie-overlay").style.display = "flex";
+        } else {
+            console.log(data.message || "Failed to get recommendation");
+        }
+    } catch (error) {
+        console.error("Error fetching recommendation", error)
+    }
+});
+
+document.querySelector(".close-btn").addEventListener("click", () => {
+    document.getElementById("movie-overlay").style.display = "none";
+    document.getElementById("recommended-movie-name").textContent = "";
+    document.getElementById("recommended-movie-img").src = "";
+    document.getElementById("recommended-movie-description").textContent = "";
+    document.getElementById("trailer-container").innerHTML = "";
+    document.getElementById("recommendation-form").reset();
+});
