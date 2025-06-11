@@ -360,15 +360,30 @@ const movies = [
 ];
 //----------------------------------------------------------------------------------
 
-function getRecommendation(event) {
+/*async function getRecommendation(event) {
   event.preventDefault();
   const selectedGenres = Array.from(document.querySelectorAll('input[name="genre"]:checked'))
       .map(checkbox => checkbox.value);
   const age = parseInt(document.getElementById('age-textbox').value);
-
   const releaseYear = document.querySelector('input[name="releaseYear"]:checked')?.value;
 
-  const filteredMovies = movies.filter(movie => {
+  const response = await fetch('http://localhost:5000/api/recommendation', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({selectedGenres, age, releaseYear})
+  });
+
+  const result = await response.json();
+
+  if (result.success) {
+    displayRecommendedMovie(result.movie);
+  } else {
+    alert(result.message);
+  }
+
+  /*const filteredMovies = movies.filter(movie => {
       const genreMatch = selectedGenres.some(genre => movie.genre.includes(genre));
 
       let yearMatch = false;
@@ -390,11 +405,11 @@ function getRecommendation(event) {
     displayRecommendedMovie(recommendedMovie);
   } else {
       alert("No movie found based on your preferences.");
-  }
-}
+  }*/
+//}
 
 
-function displayRecommendedMovie(movie) {
+/*function displayRecommendedMovie(movie) {
   const overlay = document.getElementById('movie-overlay');
   const movieName = document.getElementById('recommended-movie-name');
   const movieImg = document.getElementById('recommended-movie-img');
@@ -409,12 +424,12 @@ function displayRecommendedMovie(movie) {
 
   overlay.style.display = "block";
   document.getElementById("recommendation-form").reset()
-}
+}*/
 
-function closeOverlay() {
+/*function closeOverlay() {
   const overlay = document.getElementById('movie-overlay');
   overlay.style.display = "none";
-}
+}*/
 
 // Select elements------------------------------------------------------------------------
 const searchInput = document.getElementById("search");

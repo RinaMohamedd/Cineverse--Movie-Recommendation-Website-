@@ -12,6 +12,7 @@ const recomRoutes = require("./routes/recommendations");
 const signupRoutes = require("./routes/signup");
 const userRoutes = require("./routes/userRoutes");
 const watchlistRoutes = require("./routes/watchlist");
+const recommendationRoutes = require('./routes/recommendationRoutes');
 const adminRoutes = require('./routes/adminRoutes');//adding the admin routes
 //const bodyParser = require('body-parser');
 //const adminRoutes = require('./routes/admin');
@@ -49,8 +50,9 @@ app.use('/admin', adminRoutes);
 app.use('/recommendations', recomRoutes);
 //routes setup
 app.use('/api/users', userRoutes);
-app.use('/api/recommendation', recomRoutes);//endpoints
+//app.use('/api/recommendation', recomRoutes);
 app.use('/', movieRoutes);
+app.use('/api/recommendation/start_now', recommendationRoutes);
 
 /*
 my routes now are:
@@ -77,3 +79,8 @@ mongoose.connect(uri)
 
 /*app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');*/
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({message: 'Something broke!'});
+});
