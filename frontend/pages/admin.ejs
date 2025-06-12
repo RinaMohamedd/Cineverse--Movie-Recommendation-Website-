@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/admin.css">
+    <title>Document</title>
+</head>
+<body>
+  <!-- Sidebar on the left -->
+<!-- Sidebar -->
+<div class="sidebar">
+  <img src="/images/Cineverse_logo-removebg1.png" alt="Cineverse Logo" />
+  <ul>
+    <li onclick="showSection('dashboard')">Dashboard</li>
+    <li onclick="showSection('movies')">Movie Management</li>
+    <li onclick="showSection('users')">User Management</li>
+    <li onclick="showSection('analytics')">Analytics</li>
+    <li onclick="logout()">Logout</li>
+  </ul>
+</div>
+
+<div class="main-content">
+  <div id="dashboard" class="section">
+    <h1 id="Dashboard-overview">Dashboard Overview</h1>
+    <div class="dashboard-cards-container">
+    <div class="dashboard-card">
+      <h2>Total Movies</h2>
+      <p><%= movieCount %></p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Users</h2>
+      <p><%= userCount %></p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Reviews</h2>
+      <p><%= reviewCount %></p>
+    </div>
+    </div>
+    <div class="recent-activity">
+    <h2>Recent Activity</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Email</th>
+          <th>Joined</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jane Doe</td>
+          <td>jane@example.com</td>
+          <td>2025-06-01</td>
+          <td>Rated Movie</td>
+        </tr>
+        <tr>
+          <td>John Smith</td>
+          <td>john@example.com</td>
+          <td>2025-06-02</td>
+          <td>Added to Watchlist</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  
+
+  <!-- Movie Management -->
+  <div id="movies" class="section" style="display: none;">
+    <h1>Movie Management</h1>
+    <button class="admin-buttons" onclick="showAdminMovieForm('add')">Add Movie</button>
+    <button class="admin-buttons" onclick="showAdminMovieForm('remove')">Remove Movie</button>
+    <button class="admin-buttons" onclick="showAdminMovieForm('update')">Update Movie</button>
+
+    <form id="add-form" action="/movies/add" method="POST" style="display: none;"> <!--el action attribute bet7aded el url el el form data should be sent when the form is submitted-->
+      <h1 class="admin-header">Add Movie</h1>
+        <div class="input-control">
+            <label for="addmovie-title">Title</label>
+            <input type="text" id="addmovie-title" name="addmovie-title" required>
+        </div>
+        <fieldset id="addmovie-genres">
+            <legend>Genres</legend>
+            <label><input type="checkbox" name="genre" value="Action"> Action</label><br>
+            <label><input type="checkbox" name="genre" value="Mystery"> Mystery</label><br>
+            <label><input type="checkbox" name="genre" value="Family"> Family</label><br>
+            <label><input type="checkbox" name="genre" value="Thriller"> Thriller</label><br>
+            <label><input type="checkbox" name="genre" value="Horror"> Horror</label><br>
+            <label><input type="checkbox" name="genre" value="Musical"> Musical</label><br>
+            <label><input type="checkbox" name="genre" value="Fantasy"> Fantasy</label><br>
+            <label><input type="checkbox" name="genre" value="Crime"> Crime</label><br>
+            <label><input type="checkbox" name="genre" value="Comedy"> Comedy</label><br>
+            <label><input type="checkbox" name="genre" value="Drama"> Drama</label><br>
+            <label><input type="checkbox" name="genre" value="Sci-Fi"> Sci-Fi</label><br>
+            <label><input type="checkbox" name="genre" value="Animation"> Animation</label><br>
+            <label><input type="checkbox" name="genre" value="Romance"> Romance</label><br>
+            <label><input type="checkbox" name="genre" value="Adventure"> Adventure</label><br>
+        </fieldset>
+        <div class="input-control">
+            <label for="addmovie-year">Release Year</label>
+            <input type="text" id="addmovie-year" name="addmovie-year" required>
+        </div>
+        <div class="input-control">
+            <label for="addmovie-age">Age Rating</label>
+            <input type="text" id="addmovie-age" name="addmovie-age" required>
+        </div>
+        <div class="input-control">
+            <label for="addmovie-image">Poster Link</label>
+            <input type="text" id="addmovie-image" name="addmovie-image" required>
+        </div>
+        <div class="input-control">
+            <label for="addmovie-trailer">Trailer Link</label>
+            <input type="text" id="addmovie-trailer" name="addmovie-trailer" required>
+        </div>
+        <div class="input-control">
+            <label for="addmovie-description">Description:</label>
+            <textarea id="addmovie-description" name="addmovie-description" rows="10" cols="130" required></textarea>
+        </div>
+        <button type="submit" class="admin-buttons">Add</button>
+    </form>
+
+    <form id="remove-form" action="/movies/remove" method="POST" style="display: none;">
+      <h1 class="admin-header">Remove Movie</h1>
+        <div class="input-control">
+            <label for="removemovie-id">Movie ID</label>
+            <input type="text" id="removemovie-id" name="removemovie-id" required>
+        </div>
+        <button type="submit" class="admin-buttons">Delete</button>
+    </form>
+
+    <form id="update-form" action="/movies/update" method="POST" style="display: none;">
+      <h1 class="admin-header">Update Movie</h1>
+        <div class="input-control">
+            <label for="updatemovie-id">Movie ID</label>
+            <input type="text" id="updatemovie-id" name="updatemovie-id" required>
+        </div>
+        <fieldset id="updatemovie-genres">
+            <legend>Genres</legend>
+            <label><input type="checkbox" name="genre" value="Action"> Action</label><br>
+            <label><input type="checkbox" name="genre" value="Mystery"> Mystery</label><br>
+            <label><input type="checkbox" name="genre" value="Family"> Family</label><br>
+            <label><input type="checkbox" name="genre" value="Thriller"> Thriller</label><br>
+            <label><input type="checkbox" name="genre" value="Horror"> Horror</label><br>
+            <label><input type="checkbox" name="genre" value="Musical"> Musical</label><br>
+            <label><input type="checkbox" name="genre" value="Fantasy"> Fantasy</label><br>
+            <label><input type="checkbox" name="genre" value="Crime"> Crime</label><br>
+            <label><input type="checkbox" name="genre" value="Comedy"> Comedy</label><br>
+            <label><input type="checkbox" name="genre" value="Drama"> Drama</label><br>
+            <label><input type="checkbox" name="genre" value="Sci-Fi"> Sci-Fi</label><br>
+            <label><input type="checkbox" name="genre" value="Animation"> Animation</label><br>
+            <label><input type="checkbox" name="genre" value="Romance"> Romance</label><br>
+            <label><input type="checkbox" name="genre" value="Adventure"> Adventure</label><br>
+        </fieldset>
+        <div class="input-control">
+            <label for="updatemovie-year">Release Year</label>
+            <input type="text" id="updatemovie-year" name="updatemovie-year" required>
+        </div>
+        <div class="input-control">
+            <label for="updatemovie-age">Age Rating</label>
+            <input type="text" id="updatemovie-age" name="updatemovie-age" required>
+        </div>
+        <div class="input-control">
+            <label for="updatemovie-image">Poster Link</label>
+            <input type="text" id="updatemovie-image" name="updatemovie-image" required>
+        </div>
+        <div class="input-control">
+            <label for="updatemovie-trailer">Trailer Link</label>
+            <input type="text" id="updatemovie-trailer" name="updatemovie-trailer" required>
+        </div>
+        <div class="input-control">
+            <label for="updatemovie-description">Description:</label>
+            <textarea id="updatemovie-description" name="updatemovie-description" rows="10" cols="130" required></textarea>
+        </div>
+        <button type="submit" class="admin-buttons">Update</button>
+    </form>
+  </div>
+
+  <!-- User Management -->
+  <div id="users" class="section" style="display: none;">
+    <h1>User Management</h1>
+  </div>
+
+  <!-- Analytics -->
+  <div id="analytics" class="section" style="display: none;">
+    <h1>Analytics</h1>
+  </div>
+</div>
+
+
+
+  <script src="/scripts/app.js"></script>
+  <script src="/scripts/admin.js"></script>
+</body>
+</html>

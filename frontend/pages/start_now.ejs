@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Cineverse - Recommendations</title>
+</head>
+
+<body>
+    <!--navigation bar-->
+    <%- include('partials/navbar.ejs') %>
+
+    <!--start now button-->
+    <form id="recommendation-form" onsubmit="getRecommendation(event)">
+    <div class="gradient-border">
+        <div class="start-now-div">
+            <h3>1. What genres are you interested in?</h3>
+            <p>Select more than one:</p>
+            <div class="genre-container">
+                <div class="genres1">
+                    <label class="genre-option1"><input type="checkbox" name="genre" value="Action">Action</label><br>
+                    <label class="genre-option1"><input type="checkbox" name="genre" value="Mystery">Mystery</label><br>
+                    <label class="genre-option1"><input type="checkbox" name="genre" value="Horror">Horror</label><br>
+                    <label class="genre-option1"><input type="checkbox" name="genre" value="Family">Family</label><br>
+                    <label class="genre-option1"><input type="checkbox" name="genre" value="Thriller">Thriller</label><br>
+                    <label class="genre-option1"><input type="checkbox" name="genre" value="Musical">Musical</label><br>
+                    <label class="genre-option1"><input type="checkbox" name="genre" value="Fantasy">Fantasy</label>
+                </div>
+                <div class="genres2">
+                    <label class="genre-option2"><input type="checkbox" name="genre" value="Crime">Crime</label><br>
+                    <label class="genre-option2"><input type="checkbox" name="genre" value="Comedy">Comedy</label><br>
+                    <label class="genre-option2"><input type="checkbox" name="genre" value="Drama">Drama</label><br>
+                    <label class="genre-option2"><input type="checkbox" name="genre" value="Sci-Fi">Sci-Fi</label><br>
+                    <label class="genre-option2"><input type="checkbox" name="genre" value="Animation">Animation</label><br>
+                    <label class="genre-option2"><input type="checkbox" name="genre" value="Romance">Romance</label><br>
+                    <label class="genre-option2"><input type="checkbox" name="genre" value="Adventure">Adventure</label>
+                </div>
+            </div>
+            <br><hr><br>
+
+            <div class="age-container">
+                <h3>2. Tell us your age:</h3><br>
+                <input type="number" id="age-textbox" name="age" placeholder="Enter age..." required>
+            </div>
+            <br><br><hr><br>
+
+            <div class="release-year-container">
+                <h3>3. Do you prefer newer or older movies?</h3><br>
+                <label class="release-year"><input type="radio" name="releaseYear" value="any" required>Doesn't matter.</label>
+                <label class="release-year"><input type="radio" name="releaseYear" value="5">Published in the last 5 years.</label>
+                <label class="release-year"><input type="radio" name="releaseYear" value="10">Published in the last 10 years.</label>
+                <label class="release-year"><input type="radio" name="releaseYear" value="25">Published in the last 25 years.</label>
+            </div>
+            <br><hr><br>
+
+            <input type="submit" id="get-recommendation-button" value="Get Recommendation">
+
+        </div>
+    </form>
+</div>
+    <div id="movie-overlay" class="overlay" style="display:none;">
+        <div class="overlay-content">
+            <button class="close-btn" onclick="closeOverlay()">X</button>
+            <h3 id="recommended-movie-name"></h3>
+            <img id="recommended-movie-img" src="" alt="" style="width:200px;">
+            <p id="recommended-movie-description"></p>
+            <div id="trailer-container"></div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <%- include('partials/footer.ejs') %>
+
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/recommendation.js"></script>
+    
+</body>
+</html>

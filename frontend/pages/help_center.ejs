@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Cineverse - Help Center</title>
+</head>
+
+<body>
+    <!--navigation bar-->
+    <%- include('partials/navbar.ejs') %>
+
+    <!--help center-->
+    <div class="help-center">
+        <h1 class="footer-title3">Help Center</h1><br>
+        <h3>How can we help you?</h3><br>
+        <p>Find answers to common questions and get support for any issues you encounter while using Ciniverse.</p><br>
+        <hr><br>
+        <h2>1. Getting Started</h2><br>
+        <ul>
+            <li><strong>How does Cineverse work?</strong><br>Simply tell us your mood or preferences, and we'll
+            recommend movies that match your taste.</li><br>
+            <li><strong>Do I need an account to use Cineverse?</strong><br>No, you can browse recommendations 
+            without an account. However, creating an account lets you save favorites and get more personalized
+            suggestions.</li><br>
+        </ul>
+        <hr><br>
+        <h2>2. Movie Recommendations</h2><br>
+        <ul>
+            <li><strong>How are recommendations generated?</strong><br>Our system analyzes your preferences, 
+            watch history, and trending films to suggest the best options for you.</li><br>
+            <li><strong>Can I filter recommendations?</strong><br>Yes! You can filter by genre, release year,
+            rating, and more to find exactly what you're looking for.</li><br>
+        </ul>
+        <hr><br>
+        <h2>3. Troubleshooting & Support</h2><br>
+        <ul>
+            <li><strong>Why am I not getting any recommendations?</strong><br>Try refreshing the page or 
+            updating your preferences. If the issue continues, contact us for support.</li><br>
+            <li><strong>I found incorrect information about a movie. What should I do?</strong><br>Let us
+            know by clicking the "Report" button on the movie page.</li><br>
+            <li><strong>How do I contact support?</strong><br>You can reach through out 
+            <strong>Contact Us</strong> page.</li><br>
+        </ul>
+        <hr><br>
+        <h2>4. Privacy & Account Settings</h2><br>
+        <ul>
+            <li><strong>Is my data safe with Cineverse?</strong><br>Absolutely! We take privacy seriously
+            and don't share your data with third parties. See our 
+            <a href="privacy_policy.html" style="color:rgb(234, 141, 234);">Privacy Policy</a> for details.</li><br>
+            <li><strong>Can I delete my account?</strong><br>Yes, go to you <strong>Account Settings</strong>
+            and select <strong>Delete Account</strong>. This will remove all your data permanently.</li><br>
+        </ul>
+        <hr><br>
+        <h2>Still need help?</h2><br>
+        <p>If you coundn't find what you were looking for, feel free to 
+        <a href="contact_us.html" style="color: rgb(234, 141, 234);">Contact Us</a>. We're happy to assist you!</p>
+    </div>
+
+    <!--footer-->
+    <%- include('partials/footer.ejs') %>
+
+    <script src="/scripts/app.js"></script>
+
+</body>
+</html>
