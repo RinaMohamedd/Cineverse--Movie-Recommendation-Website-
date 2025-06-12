@@ -29,7 +29,7 @@
 /* may not need this */
 @keyframes twinkle {
     0%, 100% {
-        opacity: 0.7;
+        opacity: 0.3;
     }
     50% {
         opacity: 1;
@@ -40,6 +40,11 @@
     font-family: 'Roboto', sans-serif;
     background-color: black;
 }*/
+
+html {
+    background-color: #2d2b2b;
+    min-height: 100%;
+}
 
 body {
     /*font-family: 'Roboto', sans-serif;*/
@@ -52,41 +57,65 @@ body {
     animation: gradientFlow 14s ease infinite;*/
     height: 100%;
     margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .home-body {
     background-image: url(../images/background8.jpg);
     background-size: 140% 110%;
     animation: gradientFlow 14s ease infinite;
-    height: 100vh;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 /*.home-body:active {
     background-image: url(../images/background9.jpg);
 }*/
 
-/*.stars {
-    width: 2px;
-    height: 2px;
-    background: transparent;
-    box-shadow:
-    50px 80px white,
-    120px 200px white,
-    300px 400px white,
-    500px 100px white,
-    650px 300px white,
-    900px 250px white,
-    100px 500px white,
-    700px 600px white,
-    400px 700px white,
-    850px 100px white,
-    200px 300px white,
-    600px 450px white;
-    animation: twinkle 1.5s infinite ease-in-out;
+.stars {
     position: absolute;
     top: 0;
     left: 0;
-}*/
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.stars::before,
+.stars::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    box-shadow: 
+        50px 80px white,
+        120px 200px white,
+        300px 400px white,
+        500px 100px white,
+        650px 300px white,
+        900px 250px white,
+        100px 500px white,
+        700px 600px white,
+        400px 700px white,
+        850px 100px white,
+        200px 300px white,
+        600px 450px white;
+    animation: twinkle 1.5s infinite ease-in-out;
+}
+
+.stars::after {
+    animation-delay: 0.75s;
+}
 
 h1 {
     font-weight: 700;
@@ -283,6 +312,15 @@ p {
     margin-right: 30px;
 }
 
+.footer-container {
+    padding-top: 20px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
+    margin-top: auto;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
 
 .profile-container {
     flex: 2;
@@ -465,6 +503,14 @@ p {
     margin-left: 90px;
     justify-content: space-between;
     height: 540px;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .cine-hr {
@@ -476,27 +522,54 @@ p {
     background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
     border: none;
     margin-bottom: 25px;
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    from { width: 0; }
+    to { width: 80px; }
 }
 
 .cineverse {
     background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
     -webkit-background-clip: text;
-    -webkit-text-fil-color: transparent;
-    color:transparent;
+    -webkit-text-fill-color: transparent;
     background-size: 350px;
-    font-size: 60px;
+    font-size: 72px;
     margin-bottom: 25px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(236, 70, 239, 0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 20px rgba(236, 70, 239, 0.3); }
+    to { text-shadow: 0 0 30px rgba(236, 70, 239, 0.6); }
 }
 
 .cine-desc {
-    /*background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));*/
     background-color: white;
     -webkit-background-clip: text;
-    -webkit-text-fil-color: transparent;
-    color:transparent;
-    font-size: 50px;
+    -webkit-text-fill-color: transparent;
+    font-size: 42px;
     width: 580px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
+    line-height: 1.2;
+    font-weight: 300;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 0.9;
+        transform: translateY(0);
+    }
 }
 
 .cine-button {
@@ -504,31 +577,49 @@ p {
     width: 270px;
     height: 50px;
     color: white;
-    border-radius: 5px;
+    border-radius: 25px;
     border: none;
-    font-size: 15px;
-    text-align: left;
+    font-size: 16px;
+    text-align: center;
     margin-bottom: 400px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(952, 152, 219, 0.6);
+    transition: all 0.4s ease;
+    box-shadow: 0 0 20px rgba(236, 70, 239, 0.4);
     cursor: pointer;
     display: inline-block;
     position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .cine-button:hover {
-    transform: scale(1.07);
-    /*translateX: scale(5px);*/
+    transform: translateY(-3px) scale(1.05);
     box-shadow: 
-    0 0 27px rgb(240, 115, 243),
-    0 0 17px rgb(191, 126, 219),
-    0 0 7px rgb(125, 187, 242);
+        0 0 30px rgba(236, 70, 239, 0.6),
+        0 0 60px rgba(236, 70, 239, 0.4);
     color: white;
-    padding-left: 60px;
+    padding-left: 0;
     font-size: 18px;
-    /*text-align: center;*/
-    /*width: 280px;
-    height: 60px;*/
+}
+
+.cine-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.cine-button:hover::before {
+    left: 100%;
 }
 
 .container {
@@ -712,11 +803,16 @@ p {
 }
 
 .footer {
-    /*background-color: rgba(128, 128, 128, 0.210);*/
     padding: 70px;
     align-items: center;
     text-align: center;
     color: white;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), #2d2b2b);
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .footer ul{
@@ -752,44 +848,11 @@ p {
     padding-bottom: 10px;
 }
 
-.footer-title1 {
+.footer-title1, .footer-title2, .footer-title3, .footer-title4, .footer-title5 {
     background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
     -webkit-background-clip: text;
-    -webkit-text-fil-color: transparent;
-    color:transparent;
+    -webkit-text-fill-color: transparent;
     background-size: 230px;
-}
-
-.footer-title2 {
-    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
-    -webkit-background-clip: text;
-    -webkit-text-fil-color: transparent;
-    color:transparent;
-    background-size: 220px;
-}
-
-.footer-title3 {
-    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
-    -webkit-background-clip: text;
-    -webkit-text-fil-color: transparent;
-    color:transparent;
-    background-size: 170px;
-}
-
-.footer-title4 {
-    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
-    -webkit-background-clip: text;
-    -webkit-text-fil-color: transparent;
-    color:transparent;
-    background-size: 200px;
-}
-
-.footer-title5 {
-    background: linear-gradient(to right, rgb(98, 176, 245), rgb(185, 108, 218), rgb(236, 70, 239));
-    -webkit-background-clip: text;
-    -webkit-text-fil-color: transparent;
-    color:transparent;
-    background-size: 250px;
 }
 
 .about-us-container, .privacy-policy, .help-center, .terms-of-service {
