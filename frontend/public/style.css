@@ -1138,7 +1138,7 @@ button:hover{
     max-width: 400px;
 }
 
-#start-now-button {
+/*#start-now-button {
     border-radius: 10px;
     width: 200px;
     height: 55px;
@@ -1149,7 +1149,7 @@ button:hover{
     color: rgb(234, 141, 234);
     background-color: white;
 }
-
+*/
 .start-now-div {
     text-align: center;
     justify-content: center;
@@ -1166,23 +1166,70 @@ button:hover{
 }
 
 .rec-container {
-    margin: auto;
-    padding: 20px;
-    background-color: #2e2e2e;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1a0f2e 0%, #2d1b3b 100%);
+    position: relative;
 }
 
 .recommendations {
-    justify-content: center;
+    background: rgba(98, 54, 120, 0.85);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 25px 40px;
     text-align: center;
-    align-items: center;
-    font-size: 30px;
+    max-width: 500px;
+    margin: auto;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#movierec {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #e287ff, #b983ff, #f5baff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+}
+
+.recommendations p {
+    color: #f5baff;
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+    font-weight: 400;
+}
+
+#start-now-button {
+    background: linear-gradient(90deg, #e287ff, #b983ff, #f5baff);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 16px 48px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(236, 70, 239, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 18px;
+}
+
+#start-now-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 32px rgba(236, 70, 239, 0.3);
+    background: linear-gradient(90deg, #b983ff, #e287ff, #f5baff);
 }
 
 .genre-container {
     margin: auto;
     padding: 20px;
     display: flex;
-    background-color: #2e2e2e;
 }
 
 .genres1, .genres2 {
@@ -1192,11 +1239,24 @@ button:hover{
 }
 
 .genre-option1, .genre-option2 {
-    border: 2px solid white;
-    padding: 20px;
-    margin-right: 10px;
-    width: 300px;
-    text-align: left;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    color: #f5baff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.genre-option1:hover, .genre-option2:hover {
+    background: rgba(236, 70, 239, 0.2);
+    transform: translateY(-2px);
+}
+
+.genre-option1:has(input:checked), .genre-option2:has(input:checked) {
+    background: rgba(236, 70, 239, 0.2);
 }
 
 .genre-option1 input, .genre-option2 input, .release-year input {
@@ -1205,14 +1265,6 @@ button:hover{
     outline: none;
     box-shadow: none;
     margin-right: 10px;
-}
-
-.genre-option1:hover, .genre-option2:hover, .release-year:hover {
-    background-color: rgb(234, 141, 234);
-}
-
-.genre-option1:has(input:checked), .genre-option2:has(input:checked), .release-year:has(input:checked) {
-    background-color: rgb(234, 141, 234);
 }
 
 .age-container input {
@@ -1443,4 +1495,180 @@ button:hover{
 
 .start-now-div {
     border: 1;
+}
+
+.gradient-border {
+    background: linear-gradient(135deg, #1a0f2e 0%, #2d1b3b 100%);
+    min-height: 100vh;
+    padding: 80px 0;
+    margin-top: 0;
+}
+
+.start-now-div {
+    background: rgba(98, 54, 120, 0.85);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    position: relative; /* Ensure it stays above the background */
+    z-index: 1; /* Ensure it stays above the background */
+}
+
+.start-now-div h3 {
+    color: #f5baff;
+    fon50pxt-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.start-now-div p {
+    color: #e287ff;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.genre-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.genres1, .genres2 {
+    flex: 1;
+}
+
+.genre-option1, .genre-option2 {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    color: #f5baff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.genre-option1:hover, .genre-option2:hover {
+    background: rgba(236, 70, 239, 0.2);
+    transform: translateY(-2px);
+}
+
+.genre-option1:has(input:checked), .genre-option2:has(input:checked) {
+    background: rgba(236, 70, 239, 0.2);
+}
+
+.age-container {
+    margin: 30px 0;
+}
+
+.age-container input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.1);
+    color: #f5baff;
+    font-size: 1.1rem;
+}
+
+.age-container input::placeholder {
+    color: #b983ff;
+}
+
+.release-year-container {
+    margin: 30px 0;
+}
+
+.release-year {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    color: #f5baff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.release-year:hover {
+    background: rgba(236, 70, 239, 0.2);
+    transform: translateY(-2px);
+}
+
+.release-year input {
+    margin-right: 10px;
+}
+
+#get-recommendation-button {
+    background: linear-gradient(90deg, #e287ff, #b983ff, #f5baff);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 16px 48px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(236, 70, 239, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#get-recommendation-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 32px rgba(236, 70, 239, 0.3);
+    background: linear-gradient(90deg, #b983ff, #e287ff, #f5baff);
+}
+
+.overlay {
+    background: rgba(26, 15, 46, 0.95);
+}
+
+.overlay-content {
+    background: rgba(98, 54, 120, 0.95);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #f5baff;
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #f5baff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(236, 70, 239, 0.2);
+    transform: rotate(90deg);
+}
+
+#recommended-movie-name {
+    color: #f5baff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#recommended-movie-description {
+    color: #e287ff;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 20px 0;
 }

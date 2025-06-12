@@ -13,6 +13,11 @@ router.get('/start_now', (req, res) => {
   console.log("start_now route hit");
   res.render('start_now'); 
 });
+
+router.get('/search', (req, res) => {
+  console.log("search route hit");
+  res.render('search'); 
+});
 //removed the admin page route to handle it correctly in the adminRoutes.js file
 
 // Footer
