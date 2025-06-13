@@ -7,7 +7,7 @@ const cors = require('cors');//cross-origin resource sharing
 const path = require('path');
 const homeRoutes = require("./routes/home");
 const loginRoutes = require("./routes/login");
-const contactRoutes = require('./routes/contactRoutes');
+//const contactRoutes = require('./routes/contactRoutes');
 const movieRoutes = require("./routes/movieRoutes");
 const recomRoutes = require("./routes/recommendations");
 const signupRoutes = require("./routes/signup");
@@ -54,7 +54,7 @@ app.use('/api/users', userRoutes);
 //app.use('/api/recommendation', recomRoutes);
 app.use('/', movieRoutes);
 app.use('/api/recommendation/start_now', recommendationRoutes);
-app.use('/api/contact', contactRoutes);
+//app.use('/api/contact', contactRoutes);
 /*
 my routes now are:
 http://localhost:5000/api/users/signup
