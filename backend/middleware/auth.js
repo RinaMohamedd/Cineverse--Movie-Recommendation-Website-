@@ -1,6 +1,19 @@
-const jwt = require('jsonwebtoken');//imports the jsonwwentoken library so we can verify the JWT tokens
+//const jwt = require('jsonwebtoken');//imports the jsonwwentoken library so we can verify the JWT tokens
 
-module.exports = (req, res, next) => {//exports el middleware function so it can be used in the routes
+module.exports = (req, res, next) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ message: 'Unauthorized. Please log in.' });
+    }
+
+    req.user = {
+        userId: req.session.userId,
+        username: req.session.username
+    };
+
+    next();
+};
+
+/*module.exports = (req, res, next) => {//exports el middleware function so it can be used in the routes
     const token = req.header('Authorization')?.replace('Bearer ', '');//reads the authentication header from the incoming request
     if (!token) return res.status(401).json({ message: 'No token, authorization denied' });//if no token el user required eno ye log in
     
@@ -15,5 +28,6 @@ module.exports = (req, res, next) => {//exports el middleware function so it can
         }
         res.status(401).json({ message: 'Token is not valid' });
     }
-};//it checks whetehr the user is logged in or not, that is done by verifying a JWT token sent from the fronend 
+};*/
+//it checks whetehr the user is logged in or not, that is done by verifying a JWT token sent from the fronend 
 //if the user isnt logged in ,the request is blocked and an error message is sent

@@ -10,16 +10,18 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include', //this is important to allow cookies
             body: JSON.stringify({email, password})
         });
 
         const data = await res.json();
 
         if (res.ok) {
+            alert('Login successful!');
             //stores the token in localStorage or cookie
-            localStorage.setItem('token', data.token);
+            //localStorage.setItem('token', data.token);
             
-            // Store notification message with user's name in localStorage
+            //Store notification message with user's name in localStorage
             const welcomeMessage = data.fullname ? 
                 `Welcome back, ${data.fullname}! 🎬` : 
                 'Welcome back! 🎬';

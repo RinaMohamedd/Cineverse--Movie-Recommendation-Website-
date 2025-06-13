@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');//cross-origin resource sharing
 const path = require('path');
+const session = require('express-session');
 const homeRoutes = require("./routes/home");
 const loginRoutes = require("./routes/login");
 
@@ -23,6 +24,25 @@ const uri = process.env.MONGODB_URI;
 app.use(cors());//middleware to allow cross origin requests (frontend-backend communication)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//cors setup to allow frontend to send cookies
+app.use(cors({
+    origin: "http://localhost:5000",
+    credentials: true //allows sending cookies
+}))
+
+//session middleware setup
+app.use(session({
+    secret: 'super-secret-code', //should be changed to some actual code that we'll store in .env
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false, //true only if using https
+        httpOnly: true,
+        sameSite: "lax",
+        maxAge: 1000 * 60 * 60 * 24 * 2 //2 days
+    }
+}));
 
 
 app.set('view engine', 'ejs'); // Set template engine
@@ -57,7 +77,7 @@ app.use('/recommendations', recomRoutes);
 app.use('/api/users', userRoutes);
 //app.use('/api/recommendation', recomRoutes);
 app.use('/', movieRoutes);
-app.use('/api/recommendation/start_now', recommendationRoutes);
+app.use('/api/recommendation', recommendationRoutes);
 app.use("/watchlist", watchlistRoutes);
 /*
 my routes now are:

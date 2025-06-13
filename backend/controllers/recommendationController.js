@@ -25,8 +25,8 @@ const recommendMovie = async (req, res) => {
             const randomIndex = Math.floor(Math.random() * movies.length); //we're picking a random index from the array
             const recommendedMovie = movies[randomIndex]; //using the random index to actually grab one of the movies from the list
 
-            if (req.user) {
-                const user = await User.findById(req.user._id);
+            if (req.session.userId) {
+                const user = await User.findById(req.session.userId);
                 if (user) {
                     user.recommendationHistory.push(recommendedMovie._id);
                     await user.save();
