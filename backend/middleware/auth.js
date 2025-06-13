@@ -6,6 +6,7 @@ module.exports = (req, res, next) => {//exports el middleware function so it can
     
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);//verify token using secret key from .env
+        console.log('DECODED JWT:', decoded);
         req.user = decoded;//add the decoded user info to the request object 3shan tosta5dam f req.user b3d kda
         next();
     } catch (err) {

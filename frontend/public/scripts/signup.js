@@ -22,7 +22,10 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
       const data = await response.json();
 
       if (response.ok) {
-        alert('Signup successful! You can now log in');
+        // Store notification message in localStorage
+        localStorage.setItem('notification', `Welcome to Cineverse, ${fullname}! 🎬`);
+        
+        // Redirect to login page
         window.location.href = '/login';
       } else {
         alert(`Error: ${data.message}`);
