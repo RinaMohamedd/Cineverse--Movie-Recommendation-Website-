@@ -1,3 +1,4 @@
+let currentRecommendedMovie = null;
 document.getElementById("get-recommendation-button").addEventListener("click", async (e) => {
     e.preventDefault();
 
@@ -48,7 +49,7 @@ document.getElementById("get-recommendation-button").addEventListener("click", a
         if (data.success) {
             const movie = data.movie;
             console.log("Recommended Movie:", movie);
-
+             currentRecommendedMovie = movie;
             //update overlay content
             document.getElementById("recommended-movie-name").textContent = movie.name || "No name given";
             document.getElementById("recommended-movie-img").src = movie.image || "";
@@ -65,6 +66,14 @@ document.getElementById("get-recommendation-button").addEventListener("click", a
             : "";
 
             document.getElementById("movie-overlay").style.display = "flex";
+
+            const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
+            if (localStorage.getItem("token")) {
+                addToWatchlistBtn.style.display = "block";
+            } else {
+                addToWatchlistBtn.style.display = "none";
+            }
+
         } else {
             console.log(data.message || "Failed to get recommendation");
         }
@@ -80,4 +89,28 @@ document.querySelector(".close-btn").addEventListener("click", () => {
     document.getElementById("recommended-movie-description").textContent = "";
     document.getElementById("trailer-container").innerHTML = "";
     document.getElementById("recommendation-form").reset();
+    document.getElementById("add-to-watchlist-btn").style.display = "none";
+});
+
+document.getElementById("add-to-watchlist-btn").addEventListener("click", async () => {
+    if (!currentRecommendedMovie) return;
+    const token = localStorage.getItem("token");
+    try {
+        const response = await fetch('/api/watchlist/add', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ movieId: currentRecommendedMovie._id || currentRecommendedMovie.id })
+        });
+        const result = await response.json();
+        if (result.success) {
+            alert("Movie added to your watchlist!");
+        } else {
+            alert(result.message || "Failed to add movie.");
+        }
+    } catch (err) {
+        alert("Error adding movie to watchlist.");
+    }
 });

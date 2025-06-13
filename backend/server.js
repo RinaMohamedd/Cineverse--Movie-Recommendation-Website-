@@ -30,6 +30,10 @@ app.set('view engine', 'ejs'); // Set template engine
 app.set('views', path.join(__dirname, '../frontend/pages'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
 //middleware to parse JSON files and it's important for APIs which let's you use req.body
 
 app.use((req, res, next) => {
@@ -44,7 +48,7 @@ app.use((req, res, next) => {
 
 //this gets all the different routes we created so they could be used on the app
 app.use("/", homeRoutes);
-app.use("/watchlist", watchlistRoutes);
+app.use("/api/watchlist", watchlistRoutes);
 app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
 app.use('/admin', adminRoutes);
@@ -54,7 +58,7 @@ app.use('/api/users', userRoutes);
 //app.use('/api/recommendation', recomRoutes);
 app.use('/', movieRoutes);
 app.use('/api/recommendation/start_now', recommendationRoutes);
-//app.use('/api/contact', contactRoutes);
+app.use("/watchlist", watchlistRoutes);
 /*
 my routes now are:
 http://localhost:5000/api/users/signup

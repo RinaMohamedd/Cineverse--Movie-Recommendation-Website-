@@ -124,7 +124,7 @@ const addToWatchlist = async (req, res) => {
 
 const getWatchlist = async (req, res) => {
     try {
-        const user = await User.findById(req.user.userId).populate('whatchlist');//.populate('watchlist')di 3shan a get full ovie details not just IDs
+        const user = await User.findById(req.user.userId).populate('watchlist');//.populate('watchlist')di 3shan a get full ovie details not just IDs
         res.json(user.watchlist);//sends the watchlist (an array of movies) as a JSON response
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });

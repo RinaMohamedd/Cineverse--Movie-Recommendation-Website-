@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const userSchema = new mongoose.Schema({
     fullname: {
         type: String,
@@ -52,6 +51,7 @@ const userSchema = new mongoose.Schema({
         }
     ]
 }, { timestamps: true }); //this line automatically adds two fields to the schema which are createdAt and updatedAt
+
 
 //this line is how we turn the schema into a usable model so you can require it in other files
 module.exports = mongoose.model('user', userSchema);
