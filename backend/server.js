@@ -7,7 +7,6 @@ const cors = require('cors');//cross-origin resource sharing
 const path = require('path');
 const homeRoutes = require("./routes/home");
 const loginRoutes = require("./routes/login");
-//const contactRoutes = require('./routes/contactRoutes');
 const movieRoutes = require("./routes/movieRoutes");
 const recomRoutes = require("./routes/recommendations");
 const signupRoutes = require("./routes/signup");
@@ -54,7 +53,7 @@ app.use('/api/users', userRoutes);
 //app.use('/api/recommendation', recomRoutes);
 app.use('/', movieRoutes);
 app.use('/api/recommendation/start_now', recommendationRoutes);
-//app.use('/api/contact', contactRoutes);
+
 /*
 my routes now are:
 http://localhost:5000/api/users/signup
@@ -63,12 +62,12 @@ http://localhost:5000/api/recommendation/recommendations
 http://localhost:5000/api/movies/
 */
 
-app.listen(process.env.PORT, () => {
+/*app.listen(process.env.PORT, () => {
     console.log(`Server is on http://localhost:${process.env.PORT}`);
-});
+});*/
 
 //connecting to mongodb
-/*mongoose.connect(uri)
+mongoose.connect(uri)
 .then(() => { 
     console.log('MongoDB Connected')
     app.listen(process.env.PORT, () => {
@@ -76,7 +75,7 @@ app.listen(process.env.PORT, () => {
     });
 })
 .catch((err) => console.error('MongoDB Connection Error: ', err));
-//app.use(express.static('public')); */
+//app.use(express.static('public'));
 
 /*app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');*/

@@ -27,23 +27,23 @@ try {
     await newUser.save();
 
     //create email verification token
-    const token = jwt.sign(
+    /*const token = jwt.sign(
         { userId: newUser._id },
         process.env.EMAIL_SECRET, // create this in your .env
         { expiresIn: '1d' }
-    );
+    );*/
 
     //set up email transporter
-    const transporter = nodemailer.createTransport({
+    /*const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
         }
-    });
+    });*/
 
     //email content
-    const mailOptions = {
+    /*const mailOptions = {
         from: process.env.EMAIL_USER,
         to: newUser.email,
         subject: 'Verify Your Email',
@@ -51,10 +51,10 @@ try {
             `<h2>Hello ${newUser.fullname}!</h2>
             <p>Click the link below to verify your email:</p>
             <a href="http://localhost:5000/auth/verify/${token}">Verify Email</a>`
-    };
+    };*/
 
     //send it
-    await transporter.sendMail(mailOptions);
+    //await transporter.sendMail(mailOptions);
 
     //this is a success response
     res.status(201).json({message: 'Signup successful. Please verify your email!'});

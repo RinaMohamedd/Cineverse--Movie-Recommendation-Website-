@@ -22,27 +22,27 @@ router.get('/search', (req, res) => {
 
 // Footer
 router.get('/help_center', (req, res) => {
-  console.log("Footer route hit");
+  console.log("Footer route hit (help_center)");
   res.render('help_center'); 
 });
 
 router.get('/about_us', (req, res) => {
-  console.log("Footer route hit");
+  console.log("Footer route hit (about us)");
   res.render('about_us'); 
 });
 
 router.get('/contact_us', (req, res) => {
-  console.log("Footer route hit");
+  console.log("Footer route hit (contact us)");
   res.render('contact_us'); 
 });
 
 router.get('/privacy_policy', (req, res) => {
-  console.log("Footer route hit");
+  console.log("Footer route hit (privacy policy)");
   res.render('privacy_policy'); 
 });
 
 router.get('/terms_of_service', (req, res) => {
-  console.log("Footer route hit");
+  console.log("Footer route hit (terms of service");
   res.render('terms_of_service'); 
 });
 
