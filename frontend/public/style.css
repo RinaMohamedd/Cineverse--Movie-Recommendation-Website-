@@ -326,7 +326,7 @@ body.dark-theme .profile-container a {
 
 .footer-container {
     padding-top: 30px;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
+    background: transparent;
     margin-top: auto;
     position: relative;
     z-index: 2;
@@ -340,7 +340,6 @@ body.dark-theme .profile-container a {
     align-items: center;
     object-fit: cover; 
     justify-content: flex-end;
-    position: relative;
 }
 
 .profile-container a {
@@ -863,10 +862,10 @@ body.dark-theme .cine-desc {
     background: linear-gradient(to bottom, 
         transparent 0%,
         transparent 20%,
-        rgba(0, 0, 0, 0.2) 40%,
-        rgba(0, 0, 0, 0.5) 60%,
+        rgba(0, 0, 0, 0.7) 70%,
         rgba(0, 0, 0, 0.8) 80%,
-        #000000 90%
+        rgba(0, 0, 0, 0.9) 90%,
+        #000000 100%
     );
     color: white;
 }
@@ -1161,20 +1160,6 @@ button:hover{
     color:transparent;
 }
 
-/*.recommendBtn{
-    padding: 20px;
-    font-size: 16px;
-    margin: 20px;
-    border: none;
-    border-radius: 5px;
-    background-color:purple;
-    color: #fff;
-    cursor: pointer;
-}*/
-
-/*.recommendBtn:hover{
-    background-color:lightpink;
-}*/
 
 .recommendation {
     background-color: #2e2e2e;
@@ -1231,12 +1216,12 @@ button:hover{
     align-items: center;
     justify-content: center;
     padding: 80px 0;
-    background: linear-gradient(135deg, #1a0f2e 0%, #2d1b3b 100%);
+    background: transparent;
     position: relative;
 }
 
 .recommendations {
-    background: rgba(98, 54, 120, 0.85);
+    background: transparent;
     border-radius: 24px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(8px);
@@ -1249,6 +1234,19 @@ button:hover{
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.recommendations-body {
+    background-image: url(../images/background8.jpg);
+    background-size: 140% 110%;
+    animation: gradientFlow 14s ease infinite;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: background-image 0.5s ease-in-out;
+}
+
+
+
 #movierec {
     font-size: 2.8rem;
     font-weight: 800;
@@ -1259,11 +1257,25 @@ button:hover{
     letter-spacing: 2px;
 }
 
+.recommendations-body.active #movierec {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #6d2b69, #8d198b, #cb2ca1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+}
+
 .recommendations p {
-    color: #f5baff;
+    color: white;
     font-size: 1.2rem;
     margin-bottom: 18px;
     font-weight: 400;
+}
+
+.recommendations-body.active p {
+    color: black;
 }
 
 #start-now-button {
@@ -1553,44 +1565,6 @@ button:hover{
     border-radius: 50%;
 }
 
-/* Notification Popup Styles */
-.notification-popup {
-    position: absolute;
-    top: 100%;
-    right: -33px; /* Adjusted to better align with bell icon */
-    background: rgba(98, 54, 120, 0.95);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-    max-width: 300px;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.notification-popup.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.notification-popup::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: 100px; /* Adjusted to point to bell icon */
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid rgba(98, 54, 120, 0.95);
-}
-
 .start-now-div {
     border: 1;
 }
@@ -1612,8 +1586,8 @@ button:hover{
     max-width: 800px;
     margin: 0 auto;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    position: relative; /* Ensure it stays above the background */
-    z-index: 1; /* Ensure it stays above the background */
+    position: relative; 
+    z-index: 1; 
 }
 
 .start-now-div h3 {
@@ -1770,3 +1744,5 @@ button:hover{
     line-height: 1.6;
     margin: 20px 0;
 }
+
+
