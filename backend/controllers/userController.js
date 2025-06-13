@@ -1,6 +1,6 @@
 const User = require('../models/user'); //import user model
 const bcrypt = require('bcrypt'); //for hashing passwords
-const jwt = require('jsonwebtoken'); //for making tokens for users that logged in before
+//const jwt = require('jsonwebtoken'); //for making tokens for users that logged in before
 const nodemailer = require('nodemailer');
 
 //for users that are registering for the first time
@@ -76,23 +76,30 @@ const loginUser = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({message: 'Invalid password'});
 
-        const token = jwt.sign(
-            {userId: user._id, isAdmin: user.isAdmin},
-            process.env.JWT_SECRET,
-            {expiresIn: '1h'}
-        );
+        //in case it was a match we'll move on to creating the token for that user
+        /*const token = jwt.sign(
+            {userId: user._id, isAdmin: user.isAdmin}, //stores id and admin info (whether it's an admin user or not)
+            process.env.JWT_SECRET, //uses a secret key from our .env file
+            {expiresIn: '1h'} //will be removed after 1h meaning the user will be required to login again
+        );*/
 
-        // Send response with user data
-        res.status(200).json({
-            message: 'Login successful',
-            userId: user._id,
-            isAdmin: user.isAdmin,
-            token,
-            fullname: user.fullname || 'User' // Fallback to 'User' if fullname is not set
-        });
-    } catch (err) {
+        //session
+        req.session.userId = user._id;
+        req.session.username = user.username;
+
+        //this returns the token plus basic user info to the frontend
+        res.status(200).json({message: 'Login successful', userId: user._id, isAdmin: user.isAdmin/*, token*/});
+    } catch (err) { //server error
         res.status(500).json({message: 'Server error. Please try again later', error: err.message});
     }
+};
+
+const logoutUser = async (req, res) => {
+    req.session.destroy((err) => {
+        if (err) return res.status(500).json({message: 'Logout failed'});
+        res.clearCookie('connect.sid');
+        res.json({message: 'Logged out'});
+    });
 };
 
 
@@ -131,4 +138,15 @@ const getWatchlist = async (req, res) => {
     }
 };//the user needs to be able to view their saved movies at anytime, so that's what this functtion does
 
-module.exports = {signupUser, loginUser, getProfile, addToWatchlist, getWatchlist};
+const checkSession = (req, res) => {
+    if (req.session.userId) {
+        res.json({
+            loggedIn: true,
+            username: req.session.username
+        });
+    } else {
+        res.json({loggedIn: false});
+    }
+};
+
+module.exports = {signupUser, loginUser, logoutUser, getProfile, addToWatchlist, getWatchlist, checkSession};

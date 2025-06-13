@@ -151,6 +151,11 @@ p {
     background: transparent !important;
 }
 
+.auth-button {
+    margin-right: 25px;
+    border-radius: 12px;
+}
+
 
 body:not(.dark-theme) .menu-list-item a,
 body:not(.dark-theme) #profile,

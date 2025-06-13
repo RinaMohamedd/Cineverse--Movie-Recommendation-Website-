@@ -2,12 +2,6 @@ let currentRecommendedMovie = null;
 document.getElementById("get-recommendation-button").addEventListener("click", async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
-    if (!token) {
-        alert("You need to be logged in to get a movie recommendation");
-        return;
-    }
-
     const genreInputs = document.querySelectorAll('input[name="genre"]:checked');
     const selectedGenres = Array.from(genreInputs).map(input => input.value);
 
@@ -39,8 +33,8 @@ document.getElementById("get-recommendation-button").addEventListener("click", a
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
             },
+            credentials: 'include', //this sends the session cookie
             body: JSON.stringify(preferences)
         });
 
@@ -68,14 +62,12 @@ document.getElementById("get-recommendation-button").addEventListener("click", a
             document.getElementById("movie-overlay").style.display = "flex";
 
             const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
-            if (localStorage.getItem("token")) {
-                addToWatchlistBtn.style.display = "block";
-            } else {
-                addToWatchlistBtn.style.display = "none";
-            }
+            addToWatchlistBtn.style.display = "block";
 
         } else {
-            console.log(data.message || "Failed to get recommendation");
+            alert(data.message || "You need to be logged in to get a movie recommendation.");
+            //console.log(data.message || "Failed to get recommendation");
+            window.location.href = "/login";
         }
     } catch (error) {
         console.error("Error fetching recommendation", error)
@@ -94,14 +86,13 @@ document.querySelector(".close-btn").addEventListener("click", () => {
 
 document.getElementById("add-to-watchlist-btn").addEventListener("click", async () => {
     if (!currentRecommendedMovie) return;
-    const token = localStorage.getItem("token");
     try {
         const response = await fetch('/api/watchlist/add', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
             },
+            credentials: "include",
             body: JSON.stringify({ movieId: currentRecommendedMovie._id || currentRecommendedMovie.id })
         });
         const result = await response.json();
@@ -112,5 +103,23 @@ document.getElementById("add-to-watchlist-btn").addEventListener("click", async 
         }
     } catch (err) {
         alert("Error adding movie to watchlist.");
+    }
+});
+
+window.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const response = await fetch("/api/users/check-session", {
+            method: "GET",
+            credentials: "include"
+        });
+        const data = await response.json();
+
+        if (!data.loggedIn) {
+            alert("You need to be logged in to access the recommendation page!");
+            window.location.href = "/login";
+        }
+    } catch (err) {
+        console.error("Error checking session:", err);
+        alert("Something went wrong. Try again later");
     }
 });
