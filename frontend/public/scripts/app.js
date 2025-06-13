@@ -41,7 +41,7 @@ arrows.forEach((arrow, i) => {
   
 const ball = document.querySelector(".toggle-ball");
 const items = document.querySelectorAll(
-  ".container,.movie-list-title,.navbar-container,.sidebar,.left-menu-icon,.toggle,#profile"
+  ".container,.movie-list-title,.navbar-container,.sidebar,.left-menu-icon,.toggle,.section1,.footer,#profile"
 );
 
 window.addEventListener("load", () => {
@@ -49,10 +49,12 @@ window.addEventListener("load", () => {
     document.body.classList.add("dark-theme");
     ball.classList.add("active");
     items.forEach((item) => item.classList.add("active"));
+    document.querySelector('.home-body').style.backgroundImage = "url(../images/background8.jpg)";
   } else {
     document.body.classList.remove("dark-theme");
     ball.classList.remove("active");
     items.forEach((item) => item.classList.remove("active"));
+    document.querySelector('.home-body').style.backgroundImage = "url(../images/background9.jpg)";
   }
 });
 
@@ -60,10 +62,15 @@ ball.addEventListener("click", () => {
   document.body.classList.toggle("dark-theme");
   ball.classList.toggle("active");
   items.forEach((item) => item.classList.toggle("active"));
+  
+  // Change background based on theme
+  const homeBody = document.querySelector('.home-body');
   if (document.body.classList.contains("dark-theme")) {
     localStorage.setItem("theme", "dark");
+    homeBody.style.backgroundImage = "url(../images/background8.jpg)";
   } else {
     localStorage.setItem("theme", "light");
+    homeBody.style.backgroundImage = "url(../images/background9.jpg)";
   }
 });
 

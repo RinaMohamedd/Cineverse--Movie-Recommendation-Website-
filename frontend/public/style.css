@@ -67,11 +67,12 @@ body {
     background-image: url(../images/background8.jpg);
     background-size: 140% 110%;
     animation: gradientFlow 14s ease infinite;
-    min-height: 100vh;
+    
     position: relative;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    
+    transition: background-image 0.5s ease-in-out;
 }
 
 /*.home-body:active {
@@ -128,29 +129,15 @@ p {
 .navbar {
     width: 100%;
     height: 50px;
-    /*padding: 0 50px;*/
     display: flex;
-    /*background: linear-gradient(to left, rgb(150, 200, 244), rgb(196, 146, 218), rgb(236, 139, 238));*/
-    /*background-color: rgb(244, 165, 247);*/
-    /*box-shadow: 0px 5px 20px rgba(224, 210, 227, 0.7);*/
     top: 0;
     left: 0;
     z-index: 999;
     position: fixed;
-    /*box-sizing: border-box;*/
-    /*border-radius: 20px;*/
     justify-content: center;
     align-items: center;
-    /*left: 50%;*/
-    /*transform: translateX(-50%);*/
     transition: top 0.3s ease-in-out;
-}
-
-.navbar-container.active, 
-.navbar-container.active .menu-list-item, 
-.navbar-container.active .menu-list-item a, .navbar-container.active #profile, .navbar-container.active .notification-icon
-{
-    color: black;
+    background: transparent !important;
 }
 
 .navbar-container {
@@ -161,6 +148,31 @@ p {
     height: 100%;
     color: white;
     font-family: "Goudy Bookletter 1911", sans-serif;
+    background: transparent !important;
+}
+
+
+body:not(.dark-theme) .menu-list-item a,
+body:not(.dark-theme) #profile,
+body:not(.dark-theme) .notification-icon,
+body:not(.dark-theme) .menu-list-item,
+body:not(.dark-theme) .logo-container,
+body:not(.dark-theme) .profile-container a {
+    color: black !important;
+}
+
+/* Dark mode styles */
+body.dark-theme .navbar-container {
+    background-color: transparent !important;
+}
+
+body.dark-theme .menu-list-item a,
+body.dark-theme #profile,
+body.dark-theme .notification-icon,
+body.dark-theme .menu-list-item,
+body.dark-theme .logo-container,
+body.dark-theme .profile-container a {
+    color: white !important;
 }
 
 .logo-container {
@@ -178,7 +190,7 @@ p {
   top: 0;
   left: 0;
   background: linear-gradient(to bottom, #281147, #cc67d3);
-  color: white;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -313,7 +325,7 @@ p {
 }
 
 .footer-container {
-    padding-top: 20px;
+    padding-top: 30px;
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
     margin-top: auto;
     position: relative;
@@ -430,23 +442,27 @@ p {
 .toggle {
     width: 40px;
     height:20px;
-    background-color: white;
+    background-color: black;
     border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     position: relative;
-    color: #151515;
+    
 }
 
-.toggle-icon {
+.toggle-icon-light {
     color: #281147;
+}
+
+.toggle-icon-dark {
+    color: pink;
 }
 
 .toggle-ball {
     width: 18px;
     height: 18px;
-    background-color: #281147;
+    background-color: pink;
     position: absolute;
     right: 1px;
     border-radius: 50%;
@@ -549,7 +565,7 @@ p {
 }
 
 .cine-desc {
-    background-color: white;
+    background-color: black;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 42px;
@@ -559,6 +575,13 @@ p {
     font-weight: 300;
     opacity: 0.9;
     animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+
+body.dark-theme .cine-desc {
+    background-color: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 @keyframes fadeInUp {
@@ -794,25 +817,57 @@ p {
 }
 
 .toggle.active{
-    background-color: black;
+    background-color: white;
+}
+
+.toggle-icon-dark.active {
+    color: white;
+}
+
+.toggle-icon-light.active {
+    color: #281147;
 }
 
 .toggle-ball.active{
-    background-color: white;
+    background-color: #281147;
     transform: translate(-20px);
+}
+
+.cine-desc.active{
+    color: white;
 }
 
 .footer {
     padding: 70px;
     align-items: center;
     text-align: center;
-    color: white;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), #2d2b2b);
+    color: black;
+    background: linear-gradient(to bottom, 
+        transparent 0%,
+        transparent 20%,
+        rgba(255, 255, 255, 0.7) 70%,
+        rgba(255, 255, 255, 0.8) 80%,
+        rgba(255, 255, 255, 0.9) 90%,
+        #ffffff 100%
+    );
     position: relative;
     z-index: 2;
     margin: 0;
+    margin-top: auto;
     width: 100%;
     box-sizing: border-box;
+}
+
+.footer.active {
+    background: linear-gradient(to bottom, 
+        transparent 0%,
+        transparent 20%,
+        rgba(0, 0, 0, 0.2) 40%,
+        rgba(0, 0, 0, 0.5) 60%,
+        rgba(0, 0, 0, 0.8) 80%,
+        #000000 90%
+    );
+    color: white;
 }
 
 .footer ul{
@@ -830,10 +885,14 @@ p {
 
 .footer ul a {
     text-decoration: none;
-    color: white;
+    color: black;
     transition: color 0.3s ease;
     transition: all 0.3s ease;
     display: inline-block;
+}
+
+.footer.active ul a {
+    color: white;
 }
 
 .footer ul a:hover {
@@ -1471,7 +1530,7 @@ button:hover{
 
 .notification-icon {
     font-size: 19px;          
-    color: #fff;
+    color: white;
     margin-right: 25px;         
     cursor: pointer;
     position: relative;
