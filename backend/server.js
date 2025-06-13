@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: "http://localhost:5000",
     credentials: true //allows sending cookies
-}))
+}));
 
 //session middleware setup
 app.use(session({
@@ -73,6 +73,7 @@ app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
 app.use('/admin', adminRoutes);
 app.use('/recommendations', recomRoutes);
+app.use('/api/movies', movieRoutes);
 //routes setup
 app.use('/api/users', userRoutes);
 //app.use('/api/recommendation', recomRoutes);

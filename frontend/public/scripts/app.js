@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
 //---------------------------------------------
 
 
@@ -470,10 +471,16 @@ function displayMovies(movies) {
 }
 
 // Event listener for search input
-searchInput.addEventListener("input", (e) => {
+searchInput.addEventListener("input", async (e) => {
     const searchValue = e.target.value.toLowerCase();
-    const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(searchValue));
-    displayMovies(filteredMovies);
+    try {
+        const res = await fetch(`/api/movies/search?q=${encodeURIComponent(searchValue)}`);
+        const data = await res.json();
+        displayMovies(data);
+    } catch (err) {
+        console.error("Search error:", err);
+        movieCardsContainer.innerHTML = "<p>Failed to fetch search results.</p>";
+    }
 });
 //-----------------------------------------------------------------------------------------------------------
 

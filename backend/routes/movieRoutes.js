@@ -1,13 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');//authentication middleware bey protect certain routes
+const movieController = require("../controllers/movieController");
 const {createMovie, deleteMovie, updateMovie} = require('../controllers/movieController');
 //const admin = require('../middleware/admin');
-
+router.get("/search", movieController.searchMovies);
 router.post('/admin/movies/add', createMovie);
 router.delete('/admin/movies/:id', deleteMovie);
 //router.post('/admin/movies/update/:id', updateMovie);
 router.put('/admin/movies/:id', updateMovie);
+
+
+  
+         
+
 
 module.exports = router;
 
