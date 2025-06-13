@@ -41,7 +41,7 @@ arrows.forEach((arrow, i) => {
   
 const ball = document.querySelector(".toggle-ball");
 const items = document.querySelectorAll(
-  ".container,.movie-list-title,.navbar-container,.sidebar,.left-menu-icon,.toggle,.section1,.footer,recommendations-body,search-body,#profile"
+  ".container,.movie-list-title,.navbar-container,.sidebar,.left-menu-icon,.toggle,.section1,.footer,recommendations-body,search-body,.login-body,#profile"
 );
 
 const recommendationsBody = document.querySelector('.recommendations-body');
@@ -51,13 +51,13 @@ window.addEventListener("load", () => {
     document.body.classList.add("dark-theme");
     ball.classList.add("active");
     items.forEach((item) => item.classList.add("active"));
-    document.querySelector('.home-body, .recommendations-body, .search-body').style.backgroundImage = "url(../images/background8.jpg)";
+    document.querySelector('.home-body, .recommendations-body, .search-body,.login-body').style.backgroundImage = "url(../images/background8.jpg)";
     if (recommendationsBody) recommendationsBody.classList.remove("active");
   } else {
     document.body.classList.remove("dark-theme");
     ball.classList.remove("active");
     items.forEach((item) => item.classList.remove("active"));
-    document.querySelector('.home-body, .recommendations-body, .search-body').style.backgroundImage = "url(../images/background9.jpg)";
+    document.querySelector('.home-body, .recommendations-body, .search-body,.login-body').style.backgroundImage = "url(../images/background9.jpg)";
     if (recommendationsBody) recommendationsBody.classList.add("active");
   }
 });
@@ -66,7 +66,7 @@ ball.addEventListener("click", () => {
   document.body.classList.toggle("dark-theme");
   ball.classList.toggle("active");
   items.forEach((item) => item.classList.toggle("active"));
-  const homeBody = document.querySelector('.home-body, .recommendations-body, .search-body');
+  const homeBody = document.querySelector('.home-body, .recommendations-body, .search-body,.login-body');
   if (document.body.classList.contains("dark-theme")) {
     localStorage.setItem("theme", "dark");
     homeBody.style.backgroundImage = "url(../images/background8.jpg)";
