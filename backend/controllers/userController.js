@@ -138,12 +138,22 @@ const getWatchlist = async (req, res) => {
     }
 };//the user needs to be able to view their saved movies at anytime, so that's what this functtion does
 
-const checkSession = (req, res) => {
-    if (req.session.userId) {
-        res.json({
-            loggedIn: true,
-            username: req.session.username
-        });
+const checkSession = async (req, res) => {
+    if (req.session && req.session.userId) {
+        try {
+            const user = await User.findById(req.session.userId).select("username");
+            if (!user) {
+                return res.json({loggedIn: false});
+            }
+
+            res.json({
+                loggedIn: true,
+                username: user.username,
+            });
+        } catch (err) {
+            console.error("Error fetching user in checkSession:", err);
+            res.status(500).json({loggedIn: false});
+        }
     } else {
         res.json({loggedIn: false});
     }

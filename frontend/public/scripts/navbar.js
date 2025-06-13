@@ -6,6 +6,8 @@ window.addEventListener("DOMContentLoaded", async () => {
         });
         const data = await res.json();
 
+        console.log("Session data", data);
+
         const profileText = document.querySelector(".profile-text a");
         const authBtn = document.getElementById("auth-btn");
 
