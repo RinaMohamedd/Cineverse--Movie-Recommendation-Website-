@@ -14,31 +14,34 @@
     <%- include('partials/navbar.ejs') %>
 
     <!-- Search bar -->
-<div class="search-wrapper">
-    <label for="search">Search:</label>
-    <input type="search" id="search">
-
-    <!-- Movie Cards Container -->
-<div class="movie-cards" data-user-cards-container>
-    <template data-user-template>
-        <div class="card">
-            <img src="" alt="Movie Poster" data-img>
-            <div class="card-content">
-                <h2 data-header></h2>
-                <p data-year></p>
-                <p data-genre></p>
-            </div>
+    <div class="search-wrapper">
+        <div class="search-container">
+            <label for="search" id="search-label">Search:</label>
+            <input type="search" id="search">
         </div>
-    </template>
-    
+        
+        <!-- Movie Cards Container -->
+        <div class="movie-cards" data-user-cards-container>
+            <template data-user-template>
+                <div class="card">
+                    <img src="" alt="Movie Poster" data-img>
+                    <div class="card-content">
+                        <h2 data-header></h2>
+                        <p data-year></p>
+                        <p data-genre></p>
+                        <div class="add-to-watchlist">
+                            <button id="add-to-watchlist-btn">Add to Watchlist</button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
 
-</div>
-</div>
+    <!--footer-->
+    <%- include('partials/footer.ejs') %>
 
-<!--footer-->
-<%- include('partials/footer.ejs') %>
-
-<script src="/scripts/app.js"></script>
+    <script src="/scripts/app.js"></script>
 
 </body>
 </html>
