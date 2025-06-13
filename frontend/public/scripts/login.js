@@ -16,9 +16,14 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         const data = await res.json();
 
         if (res.ok) {
-            alert('Login successful!');
             //stores the token in localStorage or cookie
             localStorage.setItem('token', data.token);
+            
+            // Store notification message with user's name in localStorage
+            const welcomeMessage = data.fullname ? 
+                `Welcome back, ${data.fullname}! 🎬` : 
+                'Welcome back! 🎬';
+            localStorage.setItem('notification', welcomeMessage);
 
             //check isAdmin flag from response data
             if (data.isAdmin == true) {

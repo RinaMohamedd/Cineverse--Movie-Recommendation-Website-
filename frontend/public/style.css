@@ -328,6 +328,7 @@ p {
     align-items: center;
     object-fit: cover; 
     justify-content: flex-end;
+    position: relative;
 }
 
 .profile-container a {
@@ -1491,6 +1492,44 @@ button:hover{
     height: 8px;
     background: rgb(255, 0, 225);
     border-radius: 50%;
+}
+
+/* Notification Popup Styles */
+.notification-popup {
+    position: absolute;
+    top: 100%;
+    right: -33px; /* Adjusted to better align with bell icon */
+    background: rgba(98, 54, 120, 0.95);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    max-width: 300px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.notification-popup.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.notification-popup::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 100px; /* Adjusted to point to bell icon */
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid rgba(98, 54, 120, 0.95);
 }
 
 .start-now-div {

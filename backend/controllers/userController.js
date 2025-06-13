@@ -65,34 +65,32 @@ try {
 
 
 //for users that are already registered and what to login
-const loginUser = async (req, res) => { //if you use async you can then use await() inside this function
-    //read login form data
+const loginUser = async (req, res) => {
     const {email, password} = req.body;
 
     try {
-        //checks if the user exists in the database by email and throws an error if they don't
-        const user = await User.findOne({email});
+        // Find user and explicitly select the fields we need
+        const user = await User.findOne({email}).select('_id email password fullname isAdmin');
         if (!user) return res.status(400).json({message: 'User not found'});
 
-        //check if user is verified
-        /*if (!user.verified) {
-            return res.status(401).json({ message: 'Please verify your email before logging in.' });
-        }*/
-
-        //in case of existance then we'll compare the password entered with the saved one, throw an error if it's not a match
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({message: 'Invalid password'});
 
-        //in case it was a match we'll move on to creating the token for that user
         const token = jwt.sign(
-            {userId: user._id, isAdmin: user.isAdmin}, //stores id and admin info (whether it's an admin user or not)
-            process.env.JWT_SECRET, //uses a secret key from our .env file
-            {expiresIn: '1h'} //will be removed after 1h meaning the user will be required to login again
+            {userId: user._id, isAdmin: user.isAdmin},
+            process.env.JWT_SECRET,
+            {expiresIn: '1h'}
         );
 
-        //this returns the token plus basic user info to the frontend
-        res.status(200).json({message: 'Login successful', userId: user._id, isAdmin: user.isAdmin, token});
-    } catch (err) { //server error
+        // Send response with user data
+        res.status(200).json({
+            message: 'Login successful',
+            userId: user._id,
+            isAdmin: user.isAdmin,
+            token,
+            fullname: user.fullname || 'User' // Fallback to 'User' if fullname is not set
+        });
+    } catch (err) {
         res.status(500).json({message: 'Server error. Please try again later', error: err.message});
     }
 };
