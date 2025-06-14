@@ -1,20 +1,27 @@
 const Movie = require('../models/movie');
 const User = require('../models/user');
 const Review = require('../models/review');
+const UserActivity = require('../models/userActivity');
 
 const getAdmin = async (req, res) => {
     try {
         //get the count of users, movies, and reviews
-        const [userCount, movieCount, reviewCount] = await Promise.all([
+        const [userCount, movieCount, reviewCount, recentActivities] = await Promise.all([
             User.countDocuments(),
             Movie.countDocuments(),
-            Review.countDocuments()
+            Review.countDocuments(),
+            UserActivity.find()
+                .populate('user', 'fullname email')
+                .sort({ timestamp: -1 })
+                .limit(5)
         ]);
-        //render the admin page with the counts
+
+        //render the admin page with the counts and recent activities
         res.render('admin', {
             userCount,
             movieCount,
-            reviewCount
+            reviewCount,
+            recentActivities: recentActivities || [] // Ensure recentActivities is always defined
         });
     } catch (err) {
         console.error('Error rendering admin page:', err);
@@ -106,10 +113,28 @@ const deleteUser = async (req, res) => {
     }
 };
 
+// Get recent activities
+const getRecentActivities = async (req, res) => {
+    try {
+        const activities = await UserActivity.find()
+            .populate('user', 'fullname email')
+            .sort({ timestamp: -1 })
+            .limit(10);
+        res.status(200).json(activities);
+    } catch (err) {
+        console.error('Error in getRecentActivities:', err);
+        res.status(500).json({ 
+            message: 'Error fetching recent activities', 
+            error: err.message 
+        });
+    }
+};
+
 module.exports = {
     getAdmin,
     getAllUsers,
     getUserById,
     updateUser,
-    deleteUser
+    deleteUser,
+    getRecentActivities
 }; 

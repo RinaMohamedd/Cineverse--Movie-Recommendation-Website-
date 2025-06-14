@@ -45,23 +45,27 @@
         <tr>
           <th>User</th>
           <th>Email</th>
-          <th>Joined</th>
           <th>Action</th>
+          <th>Details</th>
+          <th>Time</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Jane Doe</td>
-          <td>jane@example.com</td>
-          <td>2025-06-01</td>
-          <td>Rated Movie</td>
-        </tr>
-        <tr>
-          <td>John Smith</td>
-          <td>john@example.com</td>
-          <td>2025-06-02</td>
-          <td>Added to Watchlist</td>
-        </tr>
+        <% if (typeof recentActivities !== 'undefined' && recentActivities.length > 0) { %>
+          <% recentActivities.forEach(activity => { %>
+            <tr>
+              <td><%= activity.user ? activity.user.fullname : 'Unknown User' %></td>
+              <td><%= activity.user ? activity.user.email : 'N/A' %></td>
+              <td><%= activity.action ? activity.action.replace('_', ' ') : 'Unknown Action' %></td>
+              <td><%= activity.details || 'No details' %></td>
+              <td><%= activity.timestamp ? new Date(activity.timestamp).toLocaleString() : 'N/A' %></td>
+            </tr>
+          <% }); %>
+        <% } else { %>
+          <tr>
+            <td colspan="5" style="text-align: center;">No recent activities</td>
+          </tr>
+        <% } %>
       </tbody>
     </table>
   </div>
