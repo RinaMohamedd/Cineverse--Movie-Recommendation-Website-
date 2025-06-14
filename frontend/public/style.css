@@ -1624,6 +1624,7 @@ body:not(.dark-theme) #search-label {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    overflow-y: auto;
 }
 
 .overlay-content {
@@ -1632,14 +1633,20 @@ body:not(.dark-theme) #search-label {
     border-radius: 24px;
     padding: 40px;
     max-width: 600px;
+    width: 90%;
     margin: 40px auto;
     border: 1px solid rgba(255, 255, 255, 0.18);
     color: #f5baff;
     text-align: center;
     position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .close-btn {
+    position: sticky;
+    top: 10px;
+    right: 10px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.18);
     color: #f5baff;
@@ -1651,6 +1658,8 @@ body:not(.dark-theme) #search-label {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    float: right;
+    margin-bottom: 20px;
 }
 
 .close-btn:hover {
