@@ -57,17 +57,33 @@ app.use('/api/users', userRoutes);
 app.use('/api/movies', movieRoutes);
 app.use('/api/watchlist', watchlistRoutes);
 app.use('/api/recommendation', recommendationRoutes);
+app.use("/watchlist", watchlistRoutes);
+/*
+my routes now are:
+http://localhost:5000/api/users/signup
+http://localhost:5000/api/users/login
+http://localhost:5000/api/recommendation/recommendations
+http://localhost:5000/api/movies/
+*/
 
-// Admin routes - Put these before other page routes
-app.use('/admin', adminRoutes);
+/*app.listen(process.env.PORT, () => {
+    console.log(`Server is on http://localhost:${process.env.PORT}`);
+});*/
 
-// Page Routes
-app.use('/login', loginRoutes);
-app.use('/signup', signupRoutes);
-app.use('/recommendations', recomRoutes);
-app.use('/watchlist', watchlistRoutes);
-app.use('/profile', profileRoutes);
-app.use('/', homeRoutes);
+// MongoDB connection and server start
+mongoose.connect(uri)
+.then(() => { 
+    console.log('MongoDB Connected')
+    app.listen(process.env.PORT, '0.0.0.0', () => {
+    console.log(`Server is on http://localhost:${process.env.PORT}`);
+    });
+})
+.catch((err) => console.error('MongoDB Connection Error: ', err));
+//app.use(express.static('public')); 
+
+/*app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');*/
+>>>>>>> Stashed changes
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -3,12 +3,7 @@ const router = express.Router();
 const authMiddleware = require('../middleware/auth');
 const User = require('../models/user');
 
-/*router.get('/profile', authMiddleware, (req, res) => {
-    const username = req.session.user.username;
-    res.render('profile', {username}); //passing username to EJS
-});*/
-
-router.get('/profile', async (req, res) => {
+router.get('/profile', authMiddleware, async (req, res) => {
   console.log('Profile page loaded');
   console.log('Session user:', req.session.user);
 
@@ -26,8 +21,9 @@ router.get('/profile', async (req, res) => {
     }
 
     res.render('profile', {
+        fullname: user.fullname || "Unknown",
         username: user.username,
-        email: user.email || "no email",
+        email: user.email || "No email",
     });
     console.log("Profile req.session:", req.session);
   } catch (err) {

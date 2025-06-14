@@ -1,48 +1,64 @@
-.profile.container {
-    text-align: center;
-    padding: 4rem 1 rem;
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
 }
 
-.profile-container h1 {
+.profile-page-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* this centers children horizontally */
+    gap: 20px; /* gives space between elements */
+    padding: 50px 20px;
+}
+
+.profile-page-container h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: #dc6ecf;
 }
 
-.profile-card {
+.profile-page-card {
+    text-align: center;
     background-color: #1e1e1e;
-    padding: 2rem;
-    margin: 2rem auto;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    padding: 20px 30px;
+    margin-top: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     transition: transform 0.3s ease;
 }
 
-.profile-card:hover {
-    transform: translateY(_5px);
+.profile-page-p {
+    color: white;
+    font-size: 20px;
+}
+.profile-page-card:hover {
+    transform: translateY(-5px);
 }
 
-.profile-pic {
+.profile-page-pic {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #dc6ecf;
-    margin-bottom: 1rem;
+    margin-bottom: 15px;
 }
 
-.profile.card p {
-    font-size: 1.1rem;
+.profile-page-card p {
+    font-size: 20px;
     margin: 0.5rem 0;
-    color: white;
+    color:  white;
 }
 
-.profile-card strong {
+.profile-page-card strong {
     color: #dc6ecf;
 }
 
-.profile-card i {
+.profile-page-card i {
     margin-right: 8px;
     color: #dc6ecf;
 }
