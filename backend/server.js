@@ -22,7 +22,7 @@ const profileRoutes = require("./routes/profile");
 const uri = process.env.MONGODB_URI;
 
 //app.use(bodyParser.urlencoded({ extended: true }));//parses incoming requests m3 el url encoded payload
-app.use(cors());//middleware to allow cross origin requests (frontend-backend communication)
+//app.use(cors());//middleware to allow cross origin requests (frontend-backend communication)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -74,11 +74,8 @@ app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
 app.use('/admin', adminRoutes);
 app.use('/recommendations', recomRoutes);
-<<<<<<< Updated upstream
 app.use('/api/movies', movieRoutes);
-=======
 app.use('/', profileRoutes);
->>>>>>> Stashed changes
 //routes setup
 app.use('/api/users', userRoutes);
 //app.use('/api/recommendation', recomRoutes);
