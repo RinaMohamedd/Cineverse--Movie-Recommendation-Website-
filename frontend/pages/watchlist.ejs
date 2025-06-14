@@ -10,31 +10,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <title>Cineverse - Watchlist</title>
 </head>
-<body>
+<body class="watchlist-body">
     <!--navigation bar-->
     <%- include('partials/navbar.ejs') %>
     
       <!--section 1-->
-      <div class="container">
+      <div class="watchlist-container">
         <div class="content-container">
-            <div class="featured-content">
-            <img class="featured-title" src="C:\Users\ok\Desktop\Cineverse--Movie-Recommendation-Website--main (1)\images\featured-title-1.png" alt="">
-            </div>
             <!--movie list 1-->
             <div class="movie-list-container">
                 <h1 class="movie-list-title"> Your Cinematic Journey</h1>
                 <div class="movie-list-wrapper">
                     <div class="movie-list-watchlist">
-                        
                     </div>
                     
                 </div>
             </div>
-                           
-
+        </div>          
+    </div>
     <!-- footer -->
     <%- include('partials/footer.ejs') %>
-</div>
+
 
     <script src="/scripts/navbar.js"></script>
     <script src="/scripts/app.js"></script>

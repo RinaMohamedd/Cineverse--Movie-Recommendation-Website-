@@ -10,7 +10,7 @@
     <title>Cineverse - Help Center</title>
 </head>
 
-<body>
+<body class="footer-body">
     <!--navigation bar-->
     <%- include('partials/navbar.ejs') %>
 
@@ -62,7 +62,9 @@
     </div>
 
     <!--footer-->
-    <%- include('partials/footer.ejs') %>
+    <div class="footer-container">
+        <%- include('partials/footer-footer.ejs') %>
+    </div>
 
     <script src="/scripts/navbar.js"></script>
     <script src="/scripts/app.js"></script>
