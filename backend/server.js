@@ -45,6 +45,7 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../frontend/pages'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 app.use((req, res, next) => {
     res.locals.user = req.user;
@@ -64,20 +65,22 @@ app.use('/api/watchlist', watchlistRoutes);
 app.use('/api/recommendation', recommendationRoutes);
 app.use("/watchlist", watchlistRoutes);*/
 //this gets all the different routes we created so they could be used on the app
-app.use("/", homeRoutes);
 app.use("/api/watchlist", watchlistRoutes);
+app.use('/api/movies', movieRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/recommendation', recommendationRoutes);
+
+app.use("/", homeRoutes);
+app.use('/', profileRoutes);
+app.use('/', movieRoutes);
+
 app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
 app.use('/admin', adminRoutes);
 app.use('/recommendations', recomRoutes);
-app.use('/api/movies', movieRoutes);
-app.use('/', profileRoutes);
-//routes setup
-app.use('/api/users', userRoutes);
-//app.use('/api/recommendation', recomRoutes);
-app.use('/', movieRoutes);
-app.use('/api/recommendation', recommendationRoutes);
 app.use("/watchlist", watchlistRoutes);
+//app.use('/api/recommendation', recomRoutes);
+
 
 /*
 my routes now are:
@@ -108,5 +111,5 @@ app.set('views', __dirname + '/views');*/
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).json({message: 'Something broke!'});
+    res.status(500).json({message: 'Something broke!', error: err.message});
 });

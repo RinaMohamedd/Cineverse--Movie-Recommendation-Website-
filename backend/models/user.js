@@ -49,7 +49,12 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'movie',
         }
-    ]
+    ],
+
+    profilePic: {
+        type: String,
+        default: '/images/profile1.jpg'
+    }
 }, { timestamps: true }); //this line automatically adds two fields to the schema which are createdAt and updatedAt
 
 
