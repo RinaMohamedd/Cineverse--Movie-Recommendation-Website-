@@ -76,4 +76,13 @@ const deleteMovie = async (req, res) => {
     }
 };
 
-module.exports = {createMovie, getMovies, getMovieById, updateMovie, deleteMovie};
+const searchMovies = async (req, res) => {
+    try {
+        const searchTerm = req.query.q || "";
+        const movies = await Movie.find({ name: { $regex: searchTerm, $options: "i" } });
+        res.json(movies);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+module.exports = {createMovie, getMovies, getMovieById, updateMovie, deleteMovie,searchMovies};

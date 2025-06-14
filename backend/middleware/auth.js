@@ -1,13 +1,13 @@
 //const jwt = require('jsonwebtoken');//imports the jsonwwentoken library so we can verify the JWT tokens
 
 module.exports = (req, res, next) => {
-    if (!req.session.userId) {
+    if (!req.session.user || !req.session.user.id) {
         return res.status(401).json({ message: 'Unauthorized. Please log in.' });
     }
 
     req.user = {
-        userId: req.session.userId,
-        username: req.session.username
+        userId: req.session.user.id,
+        username: req.session.user.username
     };
 
     next();

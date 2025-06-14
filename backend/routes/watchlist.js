@@ -6,7 +6,7 @@ const User = require('../models/user');
 const Movie = require('../models/movie'); 
 router.post('/add', authenticate, async (req, res) => {
     console.log('WATCHLIST ADD ROUTE HIT!');
-    const userId = req.user.userId;
+    const userId = req.user.user.id;
     const { movieId } = req.body;
      
     try {

@@ -181,6 +181,59 @@
   <!-- User Management -->
   <div id="users" class="section" style="display: none;">
     <h1>User Management</h1>
+    <div class="user-management-container">
+      <!-- User List Table -->
+      <div class="user-list">
+        <h2>All Users</h2>
+        <div class="table-container">
+          <table id="users-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th>Joined</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body">
+              <!-- Users will be populated here dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Edit User Form -->
+      <div id="edit-user-form" class="edit-form" style="display: none;">
+        <h2>Edit User</h2>
+        <form id="update-user-form">
+          <input type="hidden" id="edit-user-id">
+          <div class="form-group">
+            <label for="edit-fullname">Full Name</label>
+            <input type="text" id="edit-fullname" name="fullname" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-username">Username</label>
+            <input type="text" id="edit-username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-email">Email</label>
+            <input type="email" id="edit-email" name="email" required>
+          </div>
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="edit-isAdmin" name="isAdmin">
+              Admin Status
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="admin-buttons">Save Changes</button>
+            <button type="button" class="admin-buttons cancel-btn" onclick="hideEditForm()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <!-- Analytics -->

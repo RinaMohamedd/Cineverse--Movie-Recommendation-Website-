@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Cineverse - Profile</title>
+</head>
+
+<body>
+    <!--navigation bar-->
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="profile-page">
+      <div class="profile-page-container">
+          <h1>Welcome, <%= fullname %> 🎉</h1>
+          <p class="profile-page-p">This is your profile page!</p>
+
+          <div class="profile-page-card">
+              <img src="/images/profile1.jpg" alt="Profile Picture" class="profile-page-pic">
+              <p><strong>Full Name:</strong> <%= fullname %></p>
+              <p><strong>Username:</strong> <%= username %></p>
+              <p><strong>Email:</strong> <%= email %></p>
+          </div>
+      </div>
+   </div>
+
+
+    <!--footer-->
+    <%- include('partials/footer.ejs') %>
+
+    <script src="/scripts/navbar.js"></script>
+    <script src="/scripts/app.js"></script>
+    
+</body>
+</html>
