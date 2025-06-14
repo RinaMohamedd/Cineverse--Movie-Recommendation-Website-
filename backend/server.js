@@ -45,7 +45,7 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../frontend/pages'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
-app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '../frontend/public/uploads')));
 
 app.use((req, res, next) => {
     res.locals.user = req.user;
