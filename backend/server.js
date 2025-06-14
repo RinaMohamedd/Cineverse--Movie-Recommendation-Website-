@@ -16,6 +16,7 @@ const userRoutes = require("./routes/userRoutes");
 const watchlistRoutes = require("./routes/watchlist");
 const recommendationRoutes = require('./routes/recommendationRoutes');
 const adminRoutes = require('./routes/adminRoutes');//adding the admin routes
+const profileRoutes = require("./routes/profile");
 //const bodyParser = require('body-parser');
 //const adminRoutes = require('./routes/admin');
 const uri = process.env.MONGODB_URI;
@@ -73,7 +74,11 @@ app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
 app.use('/admin', adminRoutes);
 app.use('/recommendations', recomRoutes);
+<<<<<<< Updated upstream
 app.use('/api/movies', movieRoutes);
+=======
+app.use('/', profileRoutes);
+>>>>>>> Stashed changes
 //routes setup
 app.use('/api/users', userRoutes);
 //app.use('/api/recommendation', recomRoutes);

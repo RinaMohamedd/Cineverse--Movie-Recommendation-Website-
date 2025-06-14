@@ -26,12 +26,6 @@ try {
     });
     await newUser.save();
 
-    //create email verification token
-    /*const token = jwt.sign(
-        { userId: newUser._id },
-        process.env.EMAIL_SECRET, // create this in your .env
-        { expiresIn: '1d' }
-    );*/
 
     //set up email transporter
     /*const transporter = nodemailer.createTransport({
@@ -70,25 +64,23 @@ const loginUser = async (req, res) => {
 
     try {
         // Find user and explicitly select the fields we need
-        const user = await User.findOne({email}).select('_id email password fullname isAdmin');
+        const user = await User.findOne({email}).select('_id email password fullname isAdmin username');
         if (!user) return res.status(400).json({message: 'User not found'});
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({message: 'Invalid password'});
 
-        //in case it was a match we'll move on to creating the token for that user
-        /*const token = jwt.sign(
-            {userId: user._id, isAdmin: user.isAdmin}, //stores id and admin info (whether it's an admin user or not)
-            process.env.JWT_SECRET, //uses a secret key from our .env file
-            {expiresIn: '1h'} //will be removed after 1h meaning the user will be required to login again
-        );*/
+        console.log("Found user:", user);
+        console.log("Storing session:", user._id, user.username);
 
         //session
-        req.session.userId = user._id;
-        req.session.username = user.username;
+        req.session.user = {
+            id: user._id,
+            username: user.username
+        };
 
         //this returns the token plus basic user info to the frontend
-        res.status(200).json({message: 'Login successful', userId: user._id, isAdmin: user.isAdmin/*, token*/});
+        res.status(200).json({message: 'Login successful', userId: user._id, isAdmin: user.isAdmin});
     } catch (err) { //server error
         res.status(500).json({message: 'Server error. Please try again later', error: err.message});
     }
@@ -105,7 +97,7 @@ const logoutUser = async (req, res) => {
 
 const getProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.user.userId).select('-password');//this fetches all the fields except the password
+        const user = await User.findById(req.user.user.id).select('-password');//this fetches all the fields except the password
         res.json(user);//sends the user data as a JSON response
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });//lw an error occurd send server error(500) and the error details
@@ -116,7 +108,7 @@ const getProfile = async (req, res) => {
 const addToWatchlist = async (req, res) => {
     const { movieId } = req.body;
     try {
-        const user = await User.findById(req.user.userId);//find the user usinf the ID
+        const user = await User.findById(req.user.user.id);//find the user usinf the ID
         if (!user) return res.status(404).json({ message: 'User not found' });//if user not found send 404 error
         if (!user.watchlist.includes(movieId)) {//adds the movie to the list if it isnt already there in order to pervent duplicatess
             user.watchlist.push(movieId);
@@ -131,7 +123,7 @@ const addToWatchlist = async (req, res) => {
 
 const getWatchlist = async (req, res) => {
     try {
-        const user = await User.findById(req.user.userId).populate('watchlist');//.populate('watchlist')di 3shan a get full ovie details not just IDs
+        const user = await User.findById(req.user.user.id).populate('watchlist');//.populate('watchlist')di 3shan a get full ovie details not just IDs
         res.json(user.watchlist);//sends the watchlist (an array of movies) as a JSON response
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });
@@ -139,9 +131,9 @@ const getWatchlist = async (req, res) => {
 };//the user needs to be able to view their saved movies at anytime, so that's what this functtion does
 
 const checkSession = async (req, res) => {
-    if (req.session && req.session.userId) {
+    if (req.session && req.session.user.id) {
         try {
-            const user = await User.findById(req.session.userId).select("username");
+            const user = await User.findById(req.session.user.id).select("username");
             if (!user) {
                 return res.json({loggedIn: false});
             }

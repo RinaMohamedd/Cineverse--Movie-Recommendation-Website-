@@ -24,6 +24,7 @@ window.addEventListener("DOMContentLoaded", async () => {
                 window.location.href = "/login";
             };
         } else {
+            //alert("You need to be logged in to view your profile");
             profileText.textContent = "Profile";
             profileText.href = "/login";
 
@@ -34,5 +35,6 @@ window.addEventListener("DOMContentLoaded", async () => {
         }
     } catch (err) {
         console.error("Session check failed:", err);
+        alert("Something went wrong. Please try again later.");
     }
 });
