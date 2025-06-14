@@ -465,6 +465,37 @@ function displayMovies(movies) {
       movieCard.querySelector("[data-img]").src = movie.img;
       movieCard.querySelector("[data-img]").alt = movie.name;
       
+      // Add movie name as identifier
+      movieCard.dataset.movieName = movie.name;
+
+      // Add click event listener to the watchlist button
+      const watchlistBtn = movieCard.querySelector("#add-to-watchlist-btn");
+      watchlistBtn.addEventListener("click", async (e) => {
+          e.stopPropagation(); // Prevent card click event
+          try {
+              const response = await fetch('/api/watchlist/add', {
+                  method: 'POST',
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  credentials: "include",
+                  body: JSON.stringify({ movieName: movie.name })
+              });
+              const result = await response.json();
+              if (result.success) {
+                  alert("Movie added to your watchlist!");
+              } else {
+                  if (result.message === "User not found.") {
+                      window.location.href = "/login";
+                  } else {
+                      alert(result.message || "Failed to add movie.");
+                  }
+              }
+          } catch (err) {
+              console.error("Error adding to watchlist:", err);
+              alert("Error adding movie to watchlist.");
+          }
+      });
 
       movieCardsContainer.appendChild(movieCard);
   });

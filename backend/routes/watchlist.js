@@ -4,15 +4,23 @@ const mongoose = require('mongoose');
 const authenticate = require('../middleware/auth');
 const User = require('../models/user');
 const Movie = require('../models/movie'); 
+
 router.post('/add', authenticate, async (req, res) => {
     console.log('WATCHLIST ADD ROUTE HIT!');
-    const userId = req.user.user.id;
-    const { movieId } = req.body;
+    const userId = req.user.userId;
+    const { movieName } = req.body;
      
     try {
-        if (!movieId || !mongoose.Types.ObjectId.isValid(movieId)) {
-            console.error('Invalid or missing movieId');
-            return res.status(400).json({ success: false, message: "Invalid or missing movieId." });
+        if (!movieName) {
+            console.error('Missing movieName');
+            return res.status(400).json({ success: false, message: "Missing movie name." });
+        }
+
+        // Find the movie by name
+        const movie = await Movie.findOne({ name: movieName });
+        if (!movie) {
+            console.error('Movie not found:', movieName);
+            return res.status(404).json({ success: false, message: "Movie not found." });
         }
 
         const user = await User.findById(userId);
@@ -21,9 +29,9 @@ router.post('/add', authenticate, async (req, res) => {
             return res.status(404).json({ success: false, message: "User not found." });
         }
 
-        // Use .some() for ObjectId comparison
-        if (!user.watchlist.some(id => id.equals(movieId))) {
-            user.watchlist.push(movieId);
+        // Check if movie is already in watchlist using ObjectId comparison
+        if (!user.watchlist.some(id => id.equals(movie._id))) {
+            user.watchlist.push(movie._id);
             await user.save();
             console.log('Movie added to watchlist.');
         } else {
