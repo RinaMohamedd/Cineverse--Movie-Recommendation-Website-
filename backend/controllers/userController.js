@@ -161,4 +161,30 @@ const checkSession = async (req, res) => {
     }
 };
 
-module.exports = {signupUser, loginUser, logoutUser, getProfile, addToWatchlist, getWatchlist, checkSession};
+const changePassword = async (req, res) => {
+    try {
+        const userId = req.session.user.id;
+        const {oldPassword, newPassword} = req.body;
+
+        const user = await User.findById(userId);
+        if (!user) {
+          return res.status(401).json({ message: 'User not found' });
+        }
+
+        const isMatch = await bcrypt.compare(oldPassword, user.password);
+        if (!isMatch) {
+            return res.status(400).json({message: 'Old password is incorrect'});
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        user.password = hashedPassword;
+        await user.save();
+        
+        res.status(200).json({message: 'Password updated successfully'});
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({message: 'Server error'});
+    }
+};
+
+module.exports = {signupUser, loginUser, logoutUser, getProfile, addToWatchlist, getWatchlist, checkSession, changePassword};

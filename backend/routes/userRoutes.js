@@ -1,9 +1,11 @@
 const express = require('express'); //import express
 const router = express.Router(); //it's like a miniapp to handle routes
-const {signupUser, loginUser, logoutUser, getProfile, addToWatchlist, getWatchlist, checkSession} = require('../controllers/userController'); //import the functions that handle signup,login,profile,and watchlist from the controller
+const {signupUser, loginUser, logoutUser, getProfile, addToWatchlist, getWatchlist, checkSession, changePassword} = require('../controllers/userController'); //import the functions that handle signup,login,profile,and watchlist from the controller
 const authMiddleware = require('../middleware/auth');
 
 router.get('/check-session', checkSession);
+
+router.post('/change-password', changePassword); //may need auth middleware I'm not sure yet
 
 //we define routes using router.METHOD(PATH, HANDLER)
 //method: post, path: /signup, handler: signupUser

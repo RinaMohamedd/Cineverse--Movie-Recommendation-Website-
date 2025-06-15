@@ -1,3 +1,16 @@
+@media (max-width: 500px) {
+  .profile-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-btns button,
+  .profile-btns form {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 .profile-page {
     display: flex;
     flex-direction: column;
@@ -81,4 +94,62 @@
     padding: 30px;
     border-radius: 10px;
     color: white;
+}
+
+.upload-modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.upload-modal-content input {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.upload-modal-content input::placeholder {
+    color: #aaa;
+}
+
+.upload-modal-content button[type="submit"] {
+    background-color: #dc6ecf;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-modal-content button[type="submit"]:hover {
+    background-color: #bb5bae;
+}
+
+.profile-page-card button,
+.upload-modal-content button,
+#toggle-password-form {
+    background-color: #dc6ecf;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px 5px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+.profile-page-card button:hover,
+.upload-modal-content button:hover,
+#toggle-password-form:hover {
+    background-color: #bb5bae;
+    transform: translateY(-2px);
 }
