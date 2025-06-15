@@ -469,7 +469,7 @@ function displayMovies(movies) {
       movieCard.dataset.movieName = movie.name;
 
       // Add click event listener to the watchlist button
-      const watchlistBtn = movieCard.querySelector("#add-to-watchlist-btn");
+      const watchlistBtn = movieCard.querySelector(".add-to-watchlist-btn");
       watchlistBtn.addEventListener("click", async (e) => {
           e.stopPropagation(); // Prevent card click event
           try {

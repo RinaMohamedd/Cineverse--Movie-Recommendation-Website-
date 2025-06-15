@@ -97,6 +97,9 @@ const logoutUser = async (req, res) => {
 
 const getProfile = async (req, res) => {
     try {
+        if (!req.session.user || !req.session.user.id) {
+        return res.status(401).json({ message: 'Not logged in' });
+    }
         const user = await User.findById(req.user.user.id).select('-password');//this fetches all the fields except the password
         res.json(user);//sends the user data as a JSON response
     } catch (err) {
@@ -106,6 +109,9 @@ const getProfile = async (req, res) => {
 
 
 const addToWatchlist = async (req, res) => {
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).json({ message: 'Not logged in' });
+    }
     const { movieId } = req.body;
     try {
         const user = await User.findById(req.user.user.id);//find the user usinf the ID
@@ -122,6 +128,9 @@ const addToWatchlist = async (req, res) => {
 
 
 const getWatchlist = async (req, res) => {
+     if (!req.session.user || !req.session.user.id) {
+        return res.status(401).json({ message: 'Not logged in' });
+    }
     try {
         const user = await User.findById(req.user.user.id).populate('watchlist');//.populate('watchlist')di 3shan a get full ovie details not just IDs
         res.json(user.watchlist);//sends the watchlist (an array of movies) as a JSON response
@@ -131,7 +140,7 @@ const getWatchlist = async (req, res) => {
 };//the user needs to be able to view their saved movies at anytime, so that's what this functtion does
 
 const checkSession = async (req, res) => {
-    if (req.session && req.session.user.id) {
+    if (req.session && req.session.user && req.session.user.id) {
         try {
             const user = await User.findById(req.session.user.id).select("username");
             if (!user) {

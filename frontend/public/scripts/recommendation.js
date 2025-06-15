@@ -61,7 +61,7 @@ document.getElementById("get-recommendation-button").addEventListener("click", a
 
             document.getElementById("movie-overlay").style.display = "flex";
 
-            const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
+            const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn-overlay");
             addToWatchlistBtn.style.display = "block";
 
         } else {
@@ -81,10 +81,10 @@ document.querySelector(".close-btn").addEventListener("click", () => {
     document.getElementById("recommended-movie-description").textContent = "";
     document.getElementById("trailer-container").innerHTML = "";
     document.getElementById("recommendation-form").reset();
-    document.getElementById("add-to-watchlist-btn").style.display = "none";
+    document.getElementById("add-to-watchlist-btn-overlay").style.display = "none";
 });
 
-document.getElementById("add-to-watchlist-btn").addEventListener("click", async () => {
+document.getElementById("add-to-watchlist-btn-overlay").addEventListener("click", async () => {
     if (!currentRecommendedMovie) return;
     try {
         const response = await fetch('/api/watchlist/add', {

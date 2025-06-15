@@ -24,7 +24,7 @@ const recommendMovie = async (req, res) => {
          if (movies.length > 0) {
             const randomIndex = Math.floor(Math.random() * movies.length); //we're picking a random index from the array
             const recommendedMovie = movies[randomIndex]; //using the random index to actually grab one of the movies from the list
-
+            
             if (req.session.user?.id) {
                 const user = await User.findById(req.session.user.id);
                 if (user) {
