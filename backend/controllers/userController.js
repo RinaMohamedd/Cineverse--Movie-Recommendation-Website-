@@ -132,7 +132,7 @@ const getProfile = async (req, res) => {
         if (!req.session.user || !req.session.user.id) {
         return res.status(401).json({ message: 'Not logged in' });
     }
-        const user = await User.findById(req.user.user.id).select('-password');//this fetches all the fields except the password
+        const user = await User.findById(req.session.user.id).select('-password');//this fetches all the fields except the password
         res.json(user);//sends the user data as a JSON response
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });//lw an error occurd send server error(500) and the error details
@@ -146,7 +146,7 @@ const addToWatchlist = async (req, res) => {
     }
     const { movieId } = req.body;
     try {
-        const user = await User.findById(req.user.user.id);//find the user usinf the ID
+        const user = await User.findById(req.session.user.id);//find the user usinf the ID
         if (!user) return res.status(404).json({ message: 'User not found' });//if user not found send 404 error
         if (!user.watchlist.includes(movieId)) {//adds the movie to the list if it isnt already there in order to pervent duplicatess
             user.watchlist.push(movieId);
@@ -164,7 +164,7 @@ const getWatchlist = async (req, res) => {
         return res.status(401).json({ message: 'Not logged in' });
     }
     try {
-        const user = await User.findById(req.user.user.id).populate('watchlist');//.populate('watchlist')di 3shan a get full ovie details not just IDs
+        const user = await User.findById(req.session.user.id).populate('watchlist');//.populate('watchlist')di 3shan a get full ovie details not just IDs
         res.json(user.watchlist);//sends the watchlist (an array of movies) as a JSON response
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });
