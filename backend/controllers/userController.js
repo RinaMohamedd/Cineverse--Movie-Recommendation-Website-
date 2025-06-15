@@ -3,64 +3,96 @@ const bcrypt = require('bcrypt'); //for hashing passwords
 //const jwt = require('jsonwebtoken'); //for making tokens for users that logged in before
 const nodemailer = require('nodemailer');
 
+// Validation functions
+const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+};
+
+const validatePassword = (password) => {
+    // Accept any non-empty password
+    return typeof password === 'string' && password.length > 0;
+};
+
+const validateUsername = (username) => {
+    // 3-20 characters, alphanumeric and underscore only
+    const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+    return usernameRegex.test(username);
+};
+
+const validateFullname = (fullname) => {
+    // 2-50 characters, letters and spaces only
+    const fullnameRegex = /^[a-zA-Z\s]{2,50}$/;
+    return fullnameRegex.test(fullname);
+};
+
 //for users that are registering for the first time
 const signupUser = async (req, res) => {
-    //this reads what the user typed in the signup form
-    const {fullname, username, email, password} = req.body; //grab from inputs
+    const {fullname, username, email, password} = req.body;
 
-try {
-    //check if the email is already in use, if yes then throw an error
-    const existingUser = await User.findOne({email});
-    if (existingUser) return res.status(400).json({message: 'User already exists'});
+    // Input validation
+    if (!fullname || !username || !email || !password) {
+        return res.status(400).json({message: 'All fields are required'});
+    }
 
-    //encryps the password before saving it, 10 is the encryption level
-    const hashedPassword = await bcrypt.hash(password, 10);
+    if (!validateEmail(email)) {
+        return res.status(400).json({message: 'Invalid email format'});
+    }
 
-    //now we're creating a new user and saving it to the database
-    const newUser = new User({
-        fullname,
-        username, 
-        email, 
-        password: hashedPassword,
-        verified: false
-    });
-    await newUser.save();
+    if (!validateUsername(username)) {
+        return res.status(400).json({
+            message: 'Username must be 3-20 characters long and contain only letters, numbers, and underscores'
+        });
+    }
 
+    if (!validateFullname(fullname)) {
+        return res.status(400).json({
+            message: 'Full name must be 2-50 characters long and contain only letters and spaces'
+        });
+    }
 
-    //set up email transporter
-    /*const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        }
-    });*/
+    try {
+        //check if the email is already in use, if yes then throw an error
+        const existingUser = await User.findOne({email});
+        if (existingUser) return res.status(400).json({message: 'User already exists'});
 
-    //email content
-    /*const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: newUser.email,
-        subject: 'Verify Your Email',
-        html: 
-            `<h2>Hello ${newUser.fullname}!</h2>
-            <p>Click the link below to verify your email:</p>
-            <a href="http://localhost:5000/auth/verify/${token}">Verify Email</a>`
-    };*/
+        //check if username is already taken
+        const existingUsername = await User.findOne({username});
+        if (existingUsername) return res.status(400).json({message: 'Username already taken'});
 
-    //send it
-    //await transporter.sendMail(mailOptions);
+        //encryps the password before saving it, 10 is the encryption level
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-    //this is a success response
-    res.status(201).json({message: 'Signup successful. Please verify your email!'});
-   } catch (err) { //this error means it wasn't a client error so it must've been a server error
-    res.status(500).json({message: 'Server error', error: err.message});
-   }
+        //now we're creating a new user and saving it to the database
+        const newUser = new User({
+            fullname,
+            username, 
+            email, 
+            password: hashedPassword,
+            verified: false
+        });
+        await newUser.save();
+
+        //this is a success response
+        res.status(201).json({message: 'Signup successful. Please verify your email!'});
+    } catch (err) {
+        res.status(500).json({message: 'Server error', error: err.message});
+    }
 };
 
 
 //for users that are already registered and what to login
 const loginUser = async (req, res) => {
     const {email, password} = req.body;
+
+    // Input validation
+    if (!email || !password) {
+        return res.status(400).json({message: 'Email and password are required'});
+    }
+
+    if (!validateEmail(email)) {
+        return res.status(400).json({message: 'Invalid email format'});
+    }
 
     try {
         // Find user and explicitly select the fields we need
@@ -81,7 +113,7 @@ const loginUser = async (req, res) => {
 
         //this returns the token plus basic user info to the frontend
         res.status(200).json({message: 'Login successful', userId: user._id, isAdmin: user.isAdmin});
-    } catch (err) { //server error
+    } catch (err) {
         res.status(500).json({message: 'Server error. Please try again later', error: err.message});
     }
 };
@@ -166,9 +198,14 @@ const changePassword = async (req, res) => {
         const userId = req.session.user.id;
         const {oldPassword, newPassword} = req.body;
 
+        // Input validation
+        if (!oldPassword || !newPassword) {
+            return res.status(400).json({message: 'Both old and new passwords are required'});
+        }
+
         const user = await User.findById(userId);
         if (!user) {
-          return res.status(401).json({ message: 'User not found' });
+            return res.status(401).json({message: 'User not found'});
         }
 
         const isMatch = await bcrypt.compare(oldPassword, user.password);

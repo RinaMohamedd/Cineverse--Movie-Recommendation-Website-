@@ -3,6 +3,22 @@ const User = require('../models/user');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 
+// Validation functions
+const validateName = (name) => {
+    // 2-50 characters, letters and spaces only
+    const nameRegex = /^[a-zA-Z\s]{2,50}$/;
+    return nameRegex.test(name);
+};
+
+const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+};
+
+const validateMessage = (message) => {
+    return typeof message === 'string' && message.length >= 1 && message.length <= 1000;
+};
+
 const verifyEmail = async (req, res) => {
   const { token } = req.params;
 
@@ -44,6 +60,27 @@ const transporter = nodemailer.createTransport({
 
 const contact = async (req, res) => {
     const { name, email, message } = req.body;
+
+    // Input validation
+    if (!name || !email || !message) {
+        return res.status(400).json({message: 'All fields are required'});
+    }
+
+    if (!validateName(name)) {
+        return res.status(400).json({
+            message: 'Name must be 2-50 characters long and contain only letters and spaces'
+        });
+    }
+
+    if (!validateEmail(email)) {
+        return res.status(400).json({message: 'Invalid email format'});
+    }
+
+    if (!validateMessage(message)) {
+        return res.status(400).json({
+            message: 'Message must be between 10 and 1000 characters'
+        });
+    }
 
     // Log the incoming request
     console.log('Contact form submission received:', { name, email, message });
