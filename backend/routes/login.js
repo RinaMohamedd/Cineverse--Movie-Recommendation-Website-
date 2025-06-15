@@ -7,9 +7,4 @@ router.get('/', (req, res) => {
   res.render('login'); // renders login.ejs
 });
 
-router.get('/admin', (req, res) => {
-  console.log('Admin page loaded');
-  res.render('admin'); // renders admin.ejs
-});
-
 module.exports = router;

@@ -170,13 +170,64 @@ const deleteMovie = async (req, res) => {
     }
 };
 
-const searchMovies = async (req, res) => {
+const getMovieImage = async (req, res) => {
     try {
-        const searchTerm = req.query.q || "";
-        const movies = await Movie.find({ name: { $regex: searchTerm, $options: "i" } });
-        res.json(movies);
+        const movie = await Movie.findById(req.params.id);
+
+        if (!movie || !movie.imageData || !movie.imageType) {
+            return res.status(404).send("Image not found");
+        }
+
+        res.set("Content-Type", movie.imageType);
+        res.send(movie.imageData);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error("Error fetching image:", err);
+        res.status(500).send("Server error");
     }
 };
-module.exports = {createMovie, getMovies, getMovieById, updateMovie, deleteMovie,searchMovies};
+
+const searchMovies = async (req, res) => {
+   try {
+    const query = req.query.q || '';
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10; // movies per page
+    const skip = (page - 1) * limit;
+
+    const filter = query
+      ? { name: { $regex: query, $options: 'i' } }
+      : {};
+
+    const totalMovies = await Movie.countDocuments(filter);
+    const movies = await Movie.find(filter).skip(skip).limit(limit);
+
+    res.json({
+      movies,
+      currentPage: page,
+      totalPages: Math.ceil(totalMovies / limit),
+    });
+  } catch (err) {
+    console.error('Search error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+const getPaginatedMovies = async (reg, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10;
+    const skip = (page - 1) * limit;
+
+    try {
+        const movies = await Movie.find().skip(skip).limit(limit);
+        const total = await Movie.countDocuments();
+        res.json({
+            movies,
+            currentPage: page,
+            totalPages: Math.ceil(total / limit)
+        });
+    } catch (err) {
+        console.error('Pagination error:', err);
+        res.status(500).json({message: 'Server error while paginating movies'}); 
+    }
+};
+
+module.exports = {createMovie, getMovies, getMovieById, updateMovie, deleteMovie,searchMovies, getMovieImage, getPaginatedMovies};

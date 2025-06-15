@@ -103,9 +103,9 @@ app.use('/recommendations', recomRoutes);
 app.use("/watchlist", watchlistRoutes);
 
 //admin page render
-app.get('/admin', adminMiddleware, (req, res) => {
-    res.render('admin'); 
-});
+// app.get('/admin', adminMiddleware, (req, res) => {
+//     res.render('admin'); 
+// });
 
 //app.use('/api/recommendation', recomRoutes);
 
