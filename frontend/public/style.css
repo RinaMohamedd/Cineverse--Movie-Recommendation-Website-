@@ -2235,3 +2235,60 @@ body.footer-body.help-center-body hr {
 body.footer-body.help-center-body.dark-theme hr {
     border-top: 2px solid #fff; 
 }
+
+body.footer-body .toggle-icon-light,
+body.footer-body .toggle-icon-dark {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+body.footer-body .toggle-icon-light {
+    color: #281147 !important;
+}
+
+body.footer-body .toggle-icon-dark {
+    color: pink !important;
+}
+
+body.footer-body.dark-theme .toggle-icon-dark {
+    color: #281147 !important;
+}
+
+/* Footer pages dark mode */
+body.footer-body.dark-theme {
+    background-color: black !important;
+    color: white !important;
+}
+
+body.footer-body.dark-theme .help-center,
+body.footer-body.dark-theme .terms-of-service,
+body.footer-body.dark-theme .privacy-policy,
+body.footer-body.dark-theme .about-us-container,
+body.footer-body.dark-theme .contact {
+    color: white !important;
+}
+
+body.footer-body.dark-theme h1,
+body.footer-body.dark-theme h2,
+body.footer-body.dark-theme h3,
+body.footer-body.dark-theme p,
+body.footer-body.dark-theme li {
+    color: white !important;
+}
+
+body.footer-body.dark-theme a {
+    color: rgb(234, 141, 234) !important;
+}
+
+body.footer-body.dark-theme hr {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Footer links in dark mode */
+body.footer-body.dark-theme .footer ul a {
+    color: white !important;
+}
+
+body.footer-body.dark-theme .footer ul a:hover {
+    color: rgb(234, 141, 234) !important;
+}
