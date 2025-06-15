@@ -4,11 +4,15 @@ const { getAdmin, getAllUsers, getUserById, updateUser, deleteUser } = require('
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 
+// Protect all admin routes with both auth and admin middleware
+router.use(auth);
+router.use(admin);
+
 // Admin page route
 router.get('/', getAdmin);
 
 // User management routes
-router.get('/users', getAllUsers);  // Temporarily removed auth middleware for testing
+router.get('/users', getAllUsers);
 router.get('/users/:id', getUserById);
 router.put('/users/:id', updateUser);
 router.delete('/users/:id', deleteUser);
