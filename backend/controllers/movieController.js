@@ -211,7 +211,7 @@ const searchMovies = async (req, res) => {
   }
 };
 
-const getPaginatedMovies = async (reg, res) => {
+const getPaginatedMovies = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = 10;
     const skip = (page - 1) * limit;
@@ -219,8 +219,15 @@ const getPaginatedMovies = async (reg, res) => {
     try {
         const movies = await Movie.find().skip(skip).limit(limit);
         const total = await Movie.countDocuments();
+        
+        // Transform the movies to include image URLs
+        const moviesWithImages = movies.map(movie => ({
+            ...movie.toObject(),
+            image: `/api/movies/image/${movie._id}`
+        }));
+
         res.json({
-            movies,
+            movies: moviesWithImages,
             currentPage: page,
             totalPages: Math.ceil(total / limit)
         });

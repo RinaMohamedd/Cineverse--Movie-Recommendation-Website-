@@ -391,7 +391,7 @@ function displayMovies(movies) {
       movieCard.querySelector("[data-header]").textContent = movie.name;
       movieCard.querySelector("[data-year]").textContent = movie.year;
       movieCard.querySelector("[data-genre]").textContent = movie.genre;
-      movieCard.querySelector("[data-img]").src = `/api/movies/image/${movie._id}`;
+      movieCard.querySelector("[data-img]").src = movie.image;
       movieCard.querySelector("[data-img]").alt = movie.name;
       
       // Add movie name as identifier
