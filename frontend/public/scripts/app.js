@@ -370,87 +370,16 @@ const movies = [
     description: "Paddington goes on a fun adventure to clear his name after being wrongly accused of theft."
   }
 ];
-//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 
-/*async function getRecommendation(event) {
-  event.preventDefault();
-  const selectedGenres = Array.from(document.querySelectorAll('input[name="genre"]:checked'))
-      .map(checkbox => checkbox.value);
-  const age = parseInt(document.getElementById('age-textbox').value);
-  const releaseYear = document.querySelector('input[name="releaseYear"]:checked')?.value;
-
-  const response = await fetch('http://localhost:5000/api/recommendation', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({selectedGenres, age, releaseYear})
-  });
-
-  const result = await response.json();
-
-  if (result.success) {
-    displayRecommendedMovie(result.movie);
-  } else {
-    alert(result.message);
-  }
-
-  /*const filteredMovies = movies.filter(movie => {
-      const genreMatch = selectedGenres.some(genre => movie.genre.includes(genre));
-
-      let yearMatch = false;
-      if (releaseYear === "any") {
-          yearMatch = true;
-      } else {
-          const currentYear = new Date().getFullYear();
-          const yearDiff = currentYear - movie.year;
-          yearMatch = yearDiff <= parseInt(releaseYear);
-      }
-      const ageMatch = age >= movie.ageRating;
-
-      return genreMatch && yearMatch && ageMatch;
-  });
-
-  if (filteredMovies.length > 0) {
-    const randomIndex = Math.floor(Math.random() * filteredMovies.length);
-    const recommendedMovie = filteredMovies[randomIndex];
-    displayRecommendedMovie(recommendedMovie);
-  } else {
-      alert("No movie found based on your preferences.");
-  }*/
-//}
-
-
-/*function displayRecommendedMovie(movie) {
-  const overlay = document.getElementById('movie-overlay');
-  const movieName = document.getElementById('recommended-movie-name');
-  const movieImg = document.getElementById('recommended-movie-img');
-  const movieDesc = document.getElementById('recommended-movie-description');
-  const videoURL = movie.trailer;
-  const embedURL = videoURL.replace("watch?v=", "embed/");
-  const movieTrailer = document.getElementById('trailer-container').innerHTML =
-  '<iframe width="560" height="315" src="' + embedURL + '" frameborder="0"></iframe>';
-  movieName.textContent = movie.name;
-  movieImg.src = movie.img;
-  movieDesc.textContent = movie.description;
-
-  overlay.style.display = "block";
-  document.getElementById("recommendation-form").reset()
-}*/
-
-/*function closeOverlay() {
-  const overlay = document.getElementById('movie-overlay');
-  overlay.style.display = "none";
-}*/
-
-// Select elements------------------------------------------------------------------------
+// Search Functions-----------------------------------------------------------------------
 const searchInput = document.getElementById("search");
 const movieCardsContainer = document.querySelector(".movie-cards"); // FIXED: Use class selector
 const movieTemplate = document.querySelector("[data-user-template]");
 
 // Ensure script runs after DOM is loaded
-document.addEventListener("DOMContentLoaded", function () {
-    displayMovies(movies);
+document.addEventListener("DOMContentLoaded", () => {
+    fetchMovies(1);
 });
 
 // Function to create movie cards
@@ -462,7 +391,7 @@ function displayMovies(movies) {
       movieCard.querySelector("[data-header]").textContent = movie.name;
       movieCard.querySelector("[data-year]").textContent = movie.year;
       movieCard.querySelector("[data-genre]").textContent = movie.genre;
-      movieCard.querySelector("[data-img]").src = movie.img;
+      movieCard.querySelector("[data-img]").src = `/api/movies/image/${movie._id}`;
       movieCard.querySelector("[data-img]").alt = movie.name;
       
       // Add movie name as identifier
@@ -513,292 +442,70 @@ searchInput.addEventListener("input", async (e) => {
         movieCardsContainer.innerHTML = "<p>Failed to fetch search results.</p>";
     }
 });
-//-----------------------------------------------------------------------------------------------------------
-
-// Display all movies on load--------------------------------------------------------------------------------------------------------
-
-/*displayMovies(movies);*/
-
-/*const movierecommendations = [
-  { title: "Mad Max: Fury Road", genre: "action", year: 2015, mood: "exciting" },
-  { title: "John Wick", genre: "action", year: 2014, mood: "exciting" },
-  { title: "Extraction 2", genre: "action", year: 2023, mood: "exciting" },
-  { title: "The Hangover", genre: "comedy", year: 2009, mood: "funny" },
-  { title: "Superbad", genre: "comedy", year: 2007, mood: "funny" },
-  { title: "Free Guy", genre: "comedy", year: 2021, mood: "funny" },
-  { title: "The Shawshank Redemption", genre: "drama", year: 1994, mood: "emotional" },
-  { title: "Forrest Gump", genre: "drama", year: 1994, mood: "emotional" },
-  { title: "Nomadland", genre: "drama", year: 2021, mood: "emotional" },
-  { title: "Interstellar", genre: "sci-fi", year: 2014, mood: "thought-provoking" },
-  { title: "Blade Runner 2049", genre: "sci-fi", year: 2017, mood: "thought-provoking" },
-  { title: "The Creator", genre: "sci-fi", year: 2023, mood: "thought-provoking" },
-  { title: "Get Out", genre: "horror", year: 2017, mood: "scary" },
-  { title: "A Quiet Place", genre: "horror", year: 2018, mood: "scary" }
-];*/
-
-/*document.getElementById('recommendBtn').addEventListener('click', () => {
-  alert('Button clicked!');
-  recommendMovie();
-});*/
-
-/*function recommendMovie() {
-    const selectedGenre = document.getElementById('genre').value;
-    const selectedYear = document.getElementById('year').value;
-    const selectedMood = document.getElementById('mood').value;
-
-    const filteredMovies = movierecommendations.filter(movierecommendations => {
-        return movierecommendations.genre === selectedGenre &&
-            filterYear(movierecommendations.year, selectedYear) &&
-            movierecommendations.mood === selectedMood;
-    });
-
-    const resultDiv = document.getElementById("recommendation");
-    console.log(filteredMovies);
-
-    if (filteredMovies.length > 0) {
-        const randomMovie = filteredMovies[Math.floor(Math.random() * filteredMovies.length)];
-        resultDiv.innerHTML = `<strong>${randomMovie.title}</strong>`;
-    } else {
-        resultDiv.innerHTML = "No movies found matching your preferences.";
-    }
-}*/
-
-/*function filterYear(movieYear, selectedRange) {
-  if (selectedRange === "2020") return movieYear >= 2020;
-    if (selectedRange === "2010") return movieYear >= 2010 && movieYear <= 2019;
-    if (selectedRange === "2000") return movieYear >= 2000 && movieYear <= 2009;
-    if (selectedRange === "1990") return movieYear < 2000;
-    return false;
-}*/
-//---------------------------------------------------------------------------------------
-
-//will see later why this isn't working-----------------------------------------------------------
-/*window.addEventListener("scroll", function () {
-  let navbar = document.querySelector(".navbar");
-  if (window.scrollY > 50) {
-      navbar.style.backgroundColor = "black";
-      navbar.offsetHeight;
-  } else {
-    navbar.style.background = "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5))";
-  }
-});*/
-
-/*window.addEventListerner("scroll", function () {
-  let navbar = document.querySelector(".navbar");
-  if (window.scrollY > 100) {
-    navbar.style.backgroundColor = "black";
-  } else {
-    navbar.style.background = "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5))";
-  }
-});*/
-
-/*document.addEventListener("DOMContentLoaded", function () {
-  window.addEventListener("scroll", function () {
-      let navbar = document.querySelector(".navbar");
-      console.log("Scroll position:", this.window.scrollY);
-          if (window.scrollY > 100) {
-              navbar.style.background = "black";
-          } else {
-              navbar.style.background = "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5))";
-      }
-  });
-});*/
-
-/*function changeNavbar() {
-  let scrollPosition = window.scrollY; 
-            let maxScroll = document.body.scrollHeight - window.innerHeight; 
-
-            let scrollPercentage = scrollPosition / maxScroll;
-
-            let startColor = [255, 255, 255];
-            let endColor = [0, 0, 0];
-
-            let newColor = startColor.map((start, index) => {
-                let end = endColor[index];
-                return Math.round(start + (end - start) * scrollPercentage);
-            });
-
-            document.getElementById("navbar").style.backgroundColor = `rgb(${newColor[0]}, ${newColor[1]}, ${newColor[2]})`;
-}*/
-//--------------------------------------------------------------------------------------------------------
-
-//Login Validation
-/*const form = document.getElementById('form');
-  const username = document.getElementById('username');
-  const password = document.getElementById('password');
-
-  const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success');
-  }
-
-  const setSuccess = element => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
-  };
-
-  const validateInputs = () => {
-    const usernameValue = username.value.trim();
-    const passwordValue = password.value.trim();
-    let isValid = true;
-
-    if(usernameValue === ''){
-      setError(username, 'Username is required!');
-      isValid = false;
-    } else {
-      setSuccess(username);
-    }
-
-    if(passwordValue === '') {
-      setError(password, 'Password is required!');
-      isValid = false; 
-    } else if (passwordValue.length < 8) {
-      setError(password, 'Password must be at least 8 characters!');
-      isValid = false;
-    } else {
-      setSuccess(password);
-    }
-
-    if (isValid) {
-      window.location.href = "index.html";
-    }
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-  
-      validateInputs();
-    });
-
-  };
-*/
-//--------------------------------------------------------------------------------------------------------
-
-
-
-
-// //recommendation functions----------------------------------------------------------------------------------------
-
-// //1.function to check if the input year matches the movie's year
-// function isYearMatch(movie, inputYear) {
-//   return movie.year >= inputYear;
-// }
-
-// //2.function to check if the user's age is equal to or more than the movie's age rating
-// function isAgeAllowed(movie, userAge) {
-//   return userAge >= movie.ageRating;
-// }
-
-// //3.function to check how many matches we find for the movie genre
-// function genreMatchCount(movie, userGenres) {
-//   /*let count = 0;
-//   for (let genre of movie.genre) {
-//     if (userGenres.includes(genre)) {
-//       count++;
-//     }
-//   }
-//   return count;*/
-//   return movie.genre.filter(genre => userGenres.includes(genre)).length;
-// }
-
-// //4.function to find the best movie recommendation
-// function getBestMovie(movies, inputYear, userAge, userGenres) {
-//   let bestMovie = null;
-//   let maxGenreMatches = 0;
-
-//   for (let movie of movies) {
-//     if (isYearMatch(movie, inputYear) && isAgeAllowed(movie, userAge)) {
-//       let genreMatches = genreMatchCount(movie, userGenres);
-//       if (genreMatches > maxGenreMatches) {
-//         maxGenreMatches = genreMatches;
-//         bestMovie = movie;
-//       }
-//     }
-//   }
-//   return bestMovie;
-// }
-
-// //5.function to show the movie overlay
-// function showOverlay(bestMovie) {
-//   const overlay = document.getElementById('movie-overlay');
-//   const movieName = document.getElementById('recommended-movie-name');
-//   const movieImg = document.getElementById('recommended-movie-img');
-//   const movieDescription = document.getElementById('recommended-movie-description');
-//   movieName.textContent = bestMovie.name;
-//   movieImg.src = bestMovie.img;
-//   movieDescription.textContent = bestMovie.description;
-//   overlay.style.display = 'flex';
-// }
-
-// //6.function to close the overlay
-// function closeOverlay() {
-//   const overlay = document.getElementById('movie-overlay');
-//   overlay.style.display = 'none';
-// }
-
-// //7.function to get recommendation
-// function getRecommendation(event) {
-//   event.preventDefault();
-//   console.log("Form submitted!"); // Debugging line
-
-//   const selectedGenres = [...document.querySelectorAll('#recommendation-form input[type="checkbox"]:checked')].map(cb => cb.parentElement.textContent.trim());
-//   console.log("Selected genres:", selectedGenres); // Debugging line
-
-//   const userAge = parseInt(document.getElementById("age-textbox").value);
-//   console.log("User age:", userAge); // Debugging line
-
-//   const selectedYearOption = document.querySelector('#recommendation-form input[name="releaseYear"]:checked');
-//   console.log("Selected year option:", selectedYearOption ? selectedYearOption.value : "None"); // Debugging line
-
-
-//   let yearLimit = Infinity;
-//   /*if (selectedYearOption) {
-//     const text = selectedYearOption.parentElement.textContent.trim();
-//     if (text.includes("5 years")) yearLimit = new Date().getFullYear() - 5;
-//     else if (text.includes("10 years")) yearLimit = new Date().getFullYear() - 10;
-//     else if (text.includes("25 years")) yearLimit = new Date().getFullYear() - 25;
-//   }*/
-//   if (selectedYearOption) {
-//     const value = selectedYearOption.value;
-//     if (value === "5") yearLimit = new Date().getFullYear() - 5;
-//     else if (value === "10") yearLimit = new Date().getFullYear() - 10;
-//     else if (value === "25") yearLimit = new Date().getFullYear() - 25;
-//     // No need to change yearLimit for "any", as it's already set to Infinity
-//   }
-
-
-//   const bestMovie = getBestMovie(movies, yearLimit, userAge, selectedGenres);
-
-//   if (bestMovie) {
-//     showOverlay(bestMovie);
-//   } else {
-//     alert("No matching movie found. Try adjusting your preferences.");
-//   }
-//   document.getElementById("recommendation-form").reset();
-
-//   /*const resultDiv = document.getElementById("recommendation-result");
-//   if (bestMovie) {
-//     resultDiv.innerHTML = `
-//       <h3>Recommended Movie: ${bestMovie.name}</h3>
-//       <img src="${bestMovie.img}" alt="${bestMovie.name}" style="width:200px;">
-//     `;
-//   } else {
-//     resultDiv.innerHTML = `
-//       <h3>No matching movie found.</h3>
-//       <p>Try adjusting your preferences, like selecting more genres or a different release year range.</p>
-//     `;
-//   }*/
-// }
-// document.getElementById("recommendation-form").addEventListener("submit", getRecommendation);
-//-------------------------------------------------------------------------
     
+//functions to generate the pages with the movies' details
+function closeMovieDetails() {
+  const movieDetailsBox = document.getElementById('movie-modal');
+  movieDetailsBox.style.display = 'none';
+}
+
+async function showMovieDetails(movieTitle) {
+  try {
+    const res = await fetch("/api/movies/search");
+    const data = await res.json();
+    const movie = data.find(m => m.name === movieTitle); // find the movie you want
+
+    if (!movie) {
+      document.getElementById("modal-content").innerHTML = "<p>Movie not found 😢</p>";
+      return;
+    }
+
+    document.getElementById("movie-name").innerText = movie.name;
+    document.getElementById("movie-img").src = `/uploads/${movie.image}`;
+    document.getElementById("movie-genres").innerText = movie.genre.join(", ");
+    document.getElementById("movie-year").innerText = movie.year;
+    document.getElementById("movie-rating").innerText = movie.ageRating;
+    document.getElementById("movie-description").innerText = movie.description;
+    document.getElementById("movie-modal").style.display = "block";
+  } catch (err) {
+    console.error("Error fetching movie details:", err);
+    document.getElementById("modal-content").innerHTML = "<p>Something went wrong 😵</p>";
+  }
+}
+
+let currentPage = 1;
+
+async function fetchMovies(page = 1) {
+  try {
+    const res = await fetch(`/api/movies/search?page=${page}`);
+    const data = await res.json();
+
+    displayMovies(data.movies);
+    //displayMovies(data);
+    updatePaginationButtons(data.currentPage, data.totalPages);
+  } catch (err) {
+    console.error("Error fetching paginated movies:", err);
+  }
+}
+
+document.getElementById("next-btn").addEventListener("click", () => {
+  currentPage++;
+  fetchMovies(currentPage);
+});
+
+document.getElementById("prev-btn").addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    fetchMovies(currentPage);
+  }
+});
+
+function updatePaginationButtons(currentPage, total) {
+  document.getElementById("prev-btn").disabled = currentPage === 1;
+  document.getElementById("next-btn").disabled = currentPage === total;
+}
+//----------------------------------------------------------------------------------------------------------------
+
 //toggle password function
 function togglePassword(fieldId, icon) {
   const input = document.getElementById(fieldId);
@@ -806,28 +513,6 @@ function togglePassword(fieldId, icon) {
   input.type = isPassword ? 'text' : 'password';
   icon.classList.toggle('fa-eye-slash', isPassword);
  }
-//----------------------------------------------------------------------------------------------------------------
-
-//functions to generate the pages with the movies' details
-function closeMovieDetails() {
-  const movieDetailsBox = document.getElementById('movie-modal');
-  movieDetailsBox.style.display = 'none';
-}
-
-function showMovieDetails(movieTitle) {
-  const movie = movies.find(m => m.name === movieTitle);
-  if (!movie) {
-    document.getElementById("modal-content").innerHTML = "<p>Movie not found 😢</p>";
-    return;
-  }
-  document.getElementById("movie-name").innerText = movie.name;
-  document.getElementById("movie-img").src = movie.img;
-  document.getElementById("movie-genres").innerText = movie.genre.join(", ");
-  document.getElementById("movie-year").innerText = movie.year;
-  document.getElementById("movie-rating").innerText = movie.ageRating;
-  document.getElementById("movie-description").innerText = movie.description;
-  document.getElementById("movie-modal").style.display = "block";
-}
 
 let prevScrollPos = window.scrollY;
 window.addEventListener("scroll", function () {
@@ -840,18 +525,6 @@ window.addEventListener("scroll", function () {
   }
   prevScrollPos = currentScrollPos;
 });
-
-/*let prevScrollPos = window.scrollY;
-window.addEventListener("scroll", function () {
-  let currentScrollPos = this.window.scrollY;
-  const navbar = document.querySelector(".navbar-container");
-  if (prevScrollPos > currentScrollPos) {
-    navbar.style.top = "0";
-  } else {
-    navbar.style.top = "-50px";
-  }
-  prevScrollPos = currentScrollPos;
-});*/
 
 function showAdminMovieForm(formType) {
   const forms = ['add', 'remove', 'update'];
