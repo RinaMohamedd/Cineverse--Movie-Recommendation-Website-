@@ -47,3 +47,4 @@ fetch('/api/users/check-session')
           if (adminLink) adminLink.style.display = 'inline-block';
       }
   });
+  

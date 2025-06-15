@@ -2000,3 +2000,41 @@ body:not(.dark-theme) #search-label {
     padding: 0 50px;
     padding-bottom: 10px;
 }
+body.footer-body.terms-body,
+body.footer-body.privacy-body,
+body.footer-body.contact-body,
+body.footer-body.about-body,
+body.footer-body.help-center-body {
+    background: #feb0d4 !important;
+    color: black;
+}
+body.footer-body.terms-body.dark-theme,
+body.footer-body.privacy-body.dark-theme,
+body.footer-body.contact-body.dark-theme,
+body.footer-body.about-body.dark-theme,
+body.footer-body.help-center-body.dark-theme {
+    background: #23232b !important;
+    color: white;
+}
+.terms-of-service, .privacy-policy, .about-us-container, .contact, .help-center {
+    color: inherit;
+}
+
+body.footer-body.terms-body *,
+body.footer-body.privacy-body *,
+body.footer-body.contact-body *,
+body.footer-body.about-body *,
+body.footer-body.help-center-body * {
+    color: inherit !important;
+}
+
+body.footer-body.help-center-body hr {
+    border: none;
+    border-top: 2px solid #111; 
+    background: none;
+    height: 0;
+    margin: 1.5em 0;
+}
+body.footer-body.help-center-body.dark-theme hr {
+    border-top: 2px solid #fff; 
+}

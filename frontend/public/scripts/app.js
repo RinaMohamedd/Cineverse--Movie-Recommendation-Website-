@@ -42,7 +42,7 @@ arrows.forEach((arrow, i) => {
   
 const ball = document.querySelector(".toggle-ball");
 const items = document.querySelectorAll(
-  ".container,.movie-list-title,.navbar-container,.sidebar,.left-menu-icon,.toggle,.section1,.footer,.recommendations-body,.search-body,.login-body,.watchlist-body,.featured-content,.start_now-body,.footer-body,#profile"
+  ".container,.movie-list-title,.navbar-container,.sidebar,.left-menu-icon,.toggle,.section1,.footer,.recommendations-body,.search-body,.login-body,.watchlist-body,.featured-content,.start_now-body,.footer-body,.about-body,.contact-body,.privacy-body,.terms-body"
 );
 
 const recommendationsBody = document.querySelector('.recommendations-body');
