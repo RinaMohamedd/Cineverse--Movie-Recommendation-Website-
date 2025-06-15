@@ -17,7 +17,7 @@ const recommendationRoutes = require('./routes/recommendationRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const profileRoutes = require("./routes/profile");
 const uri = process.env.MONGODB_URI;
-
+const adminMiddleware = require('./middleware/admin');
 // Middleware setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -79,6 +79,12 @@ app.use("/signup", signupRoutes);
 app.use('/admin', adminRoutes);
 app.use('/recommendations', recomRoutes);
 app.use("/watchlist", watchlistRoutes);
+
+app.get('/admin', adminMiddleware, (req, res) => {
+    res.render('admin'); 
+});
+
+
 //app.use('/api/recommendation', recomRoutes);
 
 

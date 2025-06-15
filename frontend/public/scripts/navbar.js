@@ -38,3 +38,12 @@ window.addEventListener("DOMContentLoaded", async () => {
         alert("Something went wrong. Please try again later.");
     }
 });
+
+fetch('/api/users/check-session')
+  .then(res => res.json())
+  .then(data => {
+      if (data.loggedIn && data.isAdmin) {
+          const adminLink = document.getElementById('admin-link');
+          if (adminLink) adminLink.style.display = 'inline-block';
+      }
+  });

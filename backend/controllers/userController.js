@@ -142,7 +142,7 @@ const getWatchlist = async (req, res) => {
 const checkSession = async (req, res) => {
     if (req.session && req.session.user && req.session.user.id) {
         try {
-            const user = await User.findById(req.session.user.id).select("username");
+            const user = await User.findById(req.session.user.id).select("username isAdmin");
             if (!user) {
                 return res.json({loggedIn: false});
             }
@@ -150,6 +150,7 @@ const checkSession = async (req, res) => {
             res.json({
                 loggedIn: true,
                 username: user.username,
+                isAdmin: user.isAdmin
             });
         } catch (err) {
             console.error("Error fetching user in checkSession:", err);
