@@ -6,6 +6,9 @@ const app = express();
 const cors = require('cors'); //cross-origin resource sharing
 const path = require('path');
 const session = require('express-session');
+const User = require('./models/user'); //needed for profile pic lookup
+
+//routes imports
 const homeRoutes = require("./routes/home");
 const loginRoutes = require("./routes/login");
 const movieRoutes = require("./routes/movieRoutes");
@@ -16,8 +19,10 @@ const watchlistRoutes = require("./routes/watchlist");
 const recommendationRoutes = require('./routes/recommendationRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const profileRoutes = require("./routes/profile");
-const uri = process.env.MONGODB_URI;
 const adminMiddleware = require('./middleware/admin');
+
+const uri = process.env.MONGODB_URI;
+
 // Middleware setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,12 +46,29 @@ app.use(session({
     }
 }));
 
-// View engine setup
+// EJS & Static
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../frontend/pages'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
-app.use('/uploads', express.static(path.join(__dirname, '../frontend/public/uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '/public/uploads')));
 
+//global profile pic middleware
+app.use(async (req, res, next) => {
+    if (req.session.user && req.session.user.id) {
+        try {
+            const user = await User.findById(req.session.user.id).lean();
+            res.locals.profilePic = user?.profilePic || '/images/profile1.jpg';
+        } catch (err) {
+            console.error('Error loading user profile pic:', err);
+            res.locals.profilePic = '/images/profile1/jpg';
+        }
+    } else {
+        res.locals.profilePic = '/images/profile1.jpg';
+    }
+    next();
+});
+
+//add req.user to locals if needed
 app.use((req, res, next) => {
     res.locals.user = req.user;
     next();
@@ -70,31 +92,22 @@ app.use('/api/movies', movieRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/recommendation', recommendationRoutes);
 
+//page routes
 app.use("/", homeRoutes);
 app.use('/', profileRoutes);
 app.use('/', movieRoutes);
-
 app.use("/login", loginRoutes);
 app.use("/signup", signupRoutes);
 app.use('/admin', adminRoutes);
 app.use('/recommendations', recomRoutes);
 app.use("/watchlist", watchlistRoutes);
 
+//admin page render
 app.get('/admin', adminMiddleware, (req, res) => {
     res.render('admin'); 
 });
 
-
 //app.use('/api/recommendation', recomRoutes);
-
-
-/*
-my routes now are:
-http://localhost:5000/api/users/signup
-http://localhost:5000/api/users/login
-http://localhost:5000/api/recommendation/recommendations
-http://localhost:5000/api/movies/
-*/
 
 /*app.listen(process.env.PORT, () => {
     console.log(`Server is on http://localhost:${process.env.PORT}`);
