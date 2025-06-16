@@ -1,3 +1,7 @@
+/*const { isDataView } = require("util/types");
+
+console.log('admin js loaded');
+
 // Global variables for pagination
 let currentPage = 1;
 const activitiesPerPage = 10;
@@ -18,15 +22,15 @@ function showSection(id) {
     if (activeItem) {
         activeItem.classList.add('active');
     }
-    
+
     // Show the selected section
     document.getElementById(id).style.display = 'block';
     
     // Load users if the user management section is shown
     if (id === 'users') {
         loadUsers();
-    }
-    
+    } 
+
     // Load activities if the dashboard is shown
     if (id === 'dashboard') {
         loadRecentActivities();
@@ -36,6 +40,9 @@ function showSection(id) {
 function logout() {
     window.location.href = '/';
 }
+
+//window.showSection = showSection;
+//window.logout = logout;
 
 //frontend and backend connection function for the add movie feature
 document.getElementById('add-form').addEventListener('submit', async (e) => {
@@ -397,4 +404,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Refresh activities every 30 seconds
-setInterval(() => loadRecentActivities(false), 30000);
+setInterval(() => loadRecentActivities(false), 30000);*/

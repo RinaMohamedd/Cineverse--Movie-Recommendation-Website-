@@ -1,21 +1,21 @@
 const Movie = require('../models/movie');
 
 // Validation functions
-const validateYear = (year) => {
+/*const validateYear = (year) => {
     const currentYear = new Date().getFullYear();
     return year >= 1888 && year <= currentYear + 5; // First movie was made in 1888
-};
+};*/
 
-const validateURL = (url) => {
+/*const validateURL = (url) => {
     try {
         new URL(url);
         return true;
     } catch {
         return false;
     }
-};
+};*/
 
-const validateGenres = (genres) => {
+/*const validateGenres = (genres) => {
     if (!Array.isArray(genres) || genres.length === 0) return false;
     const validGenres = [
         'Action',
@@ -34,9 +34,9 @@ const validateGenres = (genres) => {
         'Adventure'
     ];
     return genres.every(genre => validGenres.includes(genre));
-};
+};*/
 
-const createMovie = async (req, res) => {
+/*const createMovie = async (req, res) => {
     const {name, genres, releaseYear, ageRating, image, trailer, description} = req.body;
     //if(!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only'});//only allows admins
 
@@ -88,6 +88,30 @@ const createMovie = async (req, res) => {
     } catch (err) {
         res.status(500).json({message: 'Server error', error: err.message});
     }
+};*/
+const createMovie = async (req, res) => {
+    const {name, genres, releaseYear, ageRating, image, trailer, description} = req.body;
+    //if(!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only'});//only allows admins
+
+    try {
+        const existingMovie = await Movie.findOne({name});
+        if (existingMovie) return res.status(400).json({message: 'Movie already exists'});
+
+        const newMovie = new Movie ({
+            name,
+            genres,
+            releaseYear,
+            ageRating,
+            image,
+            trailer, 
+            description
+        });
+        await newMovie.save();
+
+        res.status(201).json({message: 'Movie added successfully'});
+    } catch (err) {
+        res.status(500).json({message: 'Server error', error: err.message});
+    }
 };
 
 const getMovies = async (req, res) => {
@@ -109,7 +133,7 @@ const getMovieById = async (req, res) => {//gets a single movie by its ID
     }
 };
 
-const updateMovie = async (req, res) => {
+/*const updateMovie = async (req, res) => {
     const {name, genres, releaseYear, ageRating, image, trailer, description} = req.body;
     const {id} = req.params;
     //if (!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only.' });//allows only admins to do the operation
@@ -142,6 +166,24 @@ const updateMovie = async (req, res) => {
     if (typeof description !== 'string' || description.length < 10 || description.length > 1000) {
         return res.status(400).json({message: 'Description must be between 10 and 1000 characters'});
     }
+
+    try {
+        const movie = await Movie.findByIdAndUpdate(
+            id,
+            {name, genres, releaseYear, ageRating, image, trailer, description},
+            {new: true, runValidators: true}
+        );
+        if (!movie) return res.status(400).json({message: 'Movie not found'});
+        res.status(201).json({message: 'Movie updated successfully'});
+    } catch (err) {
+        res.status(500).json({message: 'Server error', error: err.message});
+    }
+};*/
+
+const updateMovie = async (req, res) => {
+    const {name, genres, releaseYear, ageRating, image, trailer, description} = req.body;
+    const {id} = req.params;
+    //if (!req.user.isAdmin) return res.status(403).json({ message: 'Access denied: Admins only.' });//allows only admins to do the operation
 
     try {
         const movie = await Movie.findByIdAndUpdate(
