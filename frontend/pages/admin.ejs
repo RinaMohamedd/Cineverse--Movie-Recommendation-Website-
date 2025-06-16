@@ -40,6 +40,9 @@
     </div>
     <div class="recent-activity">
     <h2>Recent Activity</h2>
+    <div class="activity-controls">
+      <button id="load-more-activities" class="admin-buttons">Load More</button>
+    </div>
     <table>
       <thead>
         <tr>
@@ -50,13 +53,13 @@
           <th>Time</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="activities-table-body">
         <% if (typeof recentActivities !== 'undefined' && recentActivities.length > 0) { %>
           <% recentActivities.forEach(activity => { %>
             <tr>
               <td><%= activity.user ? activity.user.fullname : 'Unknown User' %></td>
               <td><%= activity.user ? activity.user.email : 'N/A' %></td>
-              <td><%= activity.action ? activity.action.replace('_', ' ') : 'Unknown Action' %></td>
+              <td><span class="activity-action"><%= activity.action ? activity.action.replace('_', ' ') : 'Unknown Action' %></span></td>
               <td><%= activity.details || 'No details' %></td>
               <td><%= activity.timestamp ? new Date(activity.timestamp).toLocaleString() : 'N/A' %></td>
             </tr>

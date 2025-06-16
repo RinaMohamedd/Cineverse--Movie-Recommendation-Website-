@@ -3,6 +3,7 @@ const router = express.Router();
 const authMiddleware = require('../middleware/auth');
 const User = require('../models/user');
 const upload = require('../middleware/upload');
+const UserActivity = require('../models/userActivity');
 
 router.get('/profile', authMiddleware, async (req, res) => {
   console.log('Profile page loaded');
@@ -39,6 +40,13 @@ router.post('/upload-profile-pic', authMiddleware, upload.single('profilePic'), 
         const filePath = `/uploads/${req.file.filename}`;
         await User.findByIdAndUpdate(req.session.user.id, {profilePic: filePath});
 
+        // Create profile picture update activity
+        await new UserActivity({
+            user: req.session.user.id,
+            action: 'UPDATE_PROFILE',
+            details: 'Updated profile picture'
+        }).save();
+
         res.redirect('/profile');
     } catch (err) {
         console.log('Error uploading profile picture:', err);
@@ -52,6 +60,14 @@ router.post('/remove-profile-pic', authMiddleware, async (req, res) => {
 
     try {
         await User.findByIdAndUpdate(sessionUser.id, {profilePic: '/images/profile1.jpg'});
+
+        // Create profile picture removal activity
+        await new UserActivity({
+            user: sessionUser.id,
+            action: 'UPDATE_PROFILE',
+            details: 'Removed profile picture'
+        }).save();
+
         res.redirect('/profile');
     } catch (err) {
         console.error('Error removing profile pic:', err);

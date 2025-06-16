@@ -425,6 +425,17 @@ h2 {
     margin-bottom: 20px;
 }
 
+.activity-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.activity-controls .admin-buttons {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
 .recent-activity table {
     width: 100%;
     border-collapse: separate;
@@ -449,8 +460,24 @@ h2 {
     font-size: 14px;
 }
 
+.recent-activity tbody tr {
+    transition: all 0.3s ease;
+}
+
 .recent-activity tbody tr:hover {
     background-color: rgba(204, 103, 211, 0.05);
+    transform: scale(1.01);
+}
+
+.activity-action {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #281147, #cc67d3);
+    color: white;
 }
 
 /* Checkbox Styles */

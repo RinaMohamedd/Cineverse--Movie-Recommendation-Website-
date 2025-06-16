@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router()
+const { contact } = require('../controllers/emailController');
 
 
 router.get('/', (req, res) => {
@@ -45,5 +46,8 @@ router.get('/terms_of_service', (req, res) => {
   console.log("Footer route hit (terms of service");
   res.render('terms_of_service'); 
 });
+
+// Contact form submission
+router.post('/api/contact', contact);
 
 module.exports = router;

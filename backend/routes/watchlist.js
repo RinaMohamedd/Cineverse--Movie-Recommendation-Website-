@@ -3,24 +3,19 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const authenticate = require('../middleware/auth');
 const User = require('../models/user');
-const Movie = require('../models/movie'); 
+const Movie = require('../models/movie');
+const UserActivity = require('../models/userActivity');
 
+// API Routes
 router.post('/add', authenticate, async (req, res) => {
     console.log('WATCHLIST ADD ROUTE HIT!');
-    const userId = req.user.userId;
-    const { movieName } = req.body;
+    const userId = req.user.id;
+    const { movieId } = req.body;
      
     try {
-        if (!movieName) {
-            console.error('Missing movieName');
-            return res.status(400).json({ success: false, message: "Missing movie name." });
-        }
-
-        // Find the movie by name
-        const movie = await Movie.findOne({ name: movieName });
-        if (!movie) {
-            console.error('Movie not found:', movieName);
-            return res.status(404).json({ success: false, message: "Movie not found." });
+        if (!movieId) {
+            console.error('Missing movieId');
+            return res.status(400).json({ success: false, message: "Missing movie ID." });
         }
 
         const user = await User.findById(userId);
@@ -30,10 +25,17 @@ router.post('/add', authenticate, async (req, res) => {
         }
 
         // Check if movie is already in watchlist using ObjectId comparison
-        if (!user.watchlist.some(id => id.equals(movie._id))) {
-            user.watchlist.push(movie._id);
+        if (!user.watchlist.some(id => id.equals(movieId))) {
+            user.watchlist.push(movieId);
             await user.save();
             console.log('Movie added to watchlist.');
+
+            // Create watchlist addition activity
+            await new UserActivity({
+                user: userId,
+                action: 'ADD_TO_WATCHLIST',
+                details: `Added movie ${movieId} to watchlist`
+            }).save();
         } else {
             console.log('Movie already in watchlist.');
         }
@@ -46,19 +48,59 @@ router.post('/add', authenticate, async (req, res) => {
 
 router.get('/list', authenticate, async (req, res) => {
     try {
-        const user = await User.findById(req.user.userId).populate('watchlist');
-        if (!user) return res.status(404).json({ message: "User not found." });
+        const user = await User.findById(req.user.id).populate('watchlist');
+        if (!user) {
+            return res.status(401).json({ success: false, message: 'Unauthorized' });
+        }
 
-        res.json({ watchlist: user.watchlist });
+        res.json({ success: true, watchlist: user.watchlist });
     } catch (err) {
-        res.status(500).json({ message: "Error fetching watchlist" });
+        console.error('Error fetching watchlist:', err);
+        res.status(500).json({ success: false, message: "Error fetching watchlist" });
+       
+        
     }
 });
 
+router.post('/remove', authenticate, async (req, res) => {
+    console.log('WATCHLIST REMOVE ROUTE HIT!');
+    const userId = req.user.id;
+    const { movieId } = req.body;
 
+    try {
+        if (!movieId) {
+            console.error('Missing movieId');
+            return res.status(400).json({ success: false, message: "Missing movie ID." });
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            console.error('User not found:', userId);
+            return res.status(404).json({ success: false, message: "User not found." });
+        }
+
+        // Remove movie from watchlist
+        user.watchlist = user.watchlist.filter(id => !id.equals(movieId));
+        await user.save();
+
+        // Create watchlist removal activity
+        await new UserActivity({
+            user: userId,
+            action: 'REMOVE_FROM_WATCHLIST',
+            details: `Removed movie ${movieId} from watchlist`
+        }).save();
+
+        res.json({ success: true, message: "Movie removed from watchlist." });
+    } catch (err) {
+        console.error('Error removing from watchlist:', err);
+        res.status(500).json({ success: false, message: "Error removing from watchlist." });
+    }
+});
+
+// Page Routes
 router.get('/', (req, res) => {
-  console.log("Watchlist route hit");
-  res.render('watchlist'); 
+    console.log("Watchlist page route hit");
+    res.render('watchlist'); 
 });
 
 module.exports = router;

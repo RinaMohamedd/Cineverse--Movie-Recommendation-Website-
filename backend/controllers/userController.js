@@ -2,6 +2,7 @@ const User = require('../models/user'); //import user model
 const bcrypt = require('bcrypt'); //for hashing passwords
 //const jwt = require('jsonwebtoken'); //for making tokens for users that logged in before
 const nodemailer = require('nodemailer');
+const UserActivity = require('../models/userActivity');
 
 // Validation functions
 const validateEmail = (email) => {
@@ -111,6 +112,13 @@ const loginUser = async (req, res) => {
             username: user.username
         };
 
+        // Create login activity
+        await new UserActivity({
+            user: user._id,
+            action: 'LOGIN',
+            details: 'User logged in'
+        }).save();
+
         //this returns the token plus basic user info to the frontend
         res.status(200).json({message: 'Login successful', userId: user._id, isAdmin: user.isAdmin});
     } catch (err) {
@@ -119,11 +127,25 @@ const loginUser = async (req, res) => {
 };
 
 const logoutUser = async (req, res) => {
-    req.session.destroy((err) => {
-        if (err) return res.status(500).json({message: 'Logout failed'});
-        res.clearCookie('connect.sid');
-        res.json({message: 'Logged out'});
-    });
+    try {
+        if (req.session.user && req.session.user.id) {
+            // Create logout activity
+            await new UserActivity({
+                user: req.session.user.id,
+                action: 'LOGOUT',
+                details: 'User logged out'
+            }).save();
+        }
+
+        req.session.destroy((err) => {
+            if (err) return res.status(500).json({message: 'Logout failed'});
+            res.clearCookie('connect.sid');
+            res.json({message: 'Logged out'});
+        });
+    } catch (err) {
+        console.error('Error in logoutUser:', err);
+        res.status(500).json({message: 'Logout failed', error: err.message});
+    }
 };
 
 
@@ -151,6 +173,13 @@ const addToWatchlist = async (req, res) => {
         if (!user.watchlist.includes(movieId)) {//adds the movie to the list if it isnt already there in order to pervent duplicatess
             user.watchlist.push(movieId);
             await user.save();
+
+            // Create watchlist activity
+            await new UserActivity({
+                user: req.user.user.id,
+                action: 'ADD_TO_WATCHLIST',
+                details: `Added movie ${movieId} to watchlist`
+            }).save();
         }
         res.json({ message: 'Added to watchlist' });
     } catch (err) {
@@ -216,6 +245,13 @@ const changePassword = async (req, res) => {
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         user.password = hashedPassword;
         await user.save();
+
+        // Create password change activity
+        await new UserActivity({
+            user: userId,
+            action: 'UPDATE_PROFILE',
+            details: 'Changed password'
+        }).save();
         
         res.status(200).json({message: 'Password updated successfully'});
     } catch (err) {
