@@ -199,7 +199,7 @@ const searchMovies = async (req, res) => {
 
     const totalMovies = await Movie.countDocuments(filter);
     const movies = await Movie.find(filter).skip(skip).limit(limit);
-
+     
     res.json({
       movies,
       currentPage: page,

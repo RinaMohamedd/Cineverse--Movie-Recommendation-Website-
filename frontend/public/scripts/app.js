@@ -401,6 +401,9 @@ const searchInput = document.getElementById("search");
 const movieCardsContainer = document.querySelector(".movie-cards");
 const movieTemplate = document.querySelector("[data-user-template]");
 
+
+let currentSearch = '';
+
 // Ensure script runs after DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
     if (movieCardsContainer) {
