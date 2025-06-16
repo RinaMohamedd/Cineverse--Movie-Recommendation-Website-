@@ -402,6 +402,7 @@ const movieCardsContainer = document.querySelector(".movie-cards");
 const movieTemplate = document.querySelector("[data-user-template]");
 
 
+
 let currentSearch = '';
 
 // Ensure script runs after DOM is loaded
@@ -494,7 +495,7 @@ function displayMovies(movies) {
 
 // Event listener for search input
 if (searchInput) {
-    searchInput.addEventListener("input", async (e) => {
+  /*searchInput.addEventListener("input", async (e) => {
         const searchValue = e.target.value.toLowerCase();
         try {
             const res = await fetch(`/api/movies/search?q=${encodeURIComponent(searchValue)}`);
@@ -506,7 +507,12 @@ if (searchInput) {
                 movieCardsContainer.innerHTML = "<p>Failed to fetch search results.</p>";
             }
         }
-    });
+    });*/
+    searchInput.addEventListener("input", async (e) => {
+      currentSearch = e.target.value.toLowerCase();
+      currentPage = 1;
+      await fetchMovies(currentPage, currentSearch);
+  });
 }
 
 //functions to generate the pages with the movies' details
@@ -569,44 +575,33 @@ async function showMovieDetails(movieTitle) {
 
 let currentPage = 1;
 
-async function fetchMovies(page = 1) {
-    try {
-        const res = await fetch(`/api/movies/search?page=${page}`);
-        const data = await res.json();
-
-        if (data.movies) {
-            displayMovies(data.movies);
-            updatePaginationButtons(data.currentPage, data.totalPages);
-        } else {
-            displayMovies(data);
-        }
-    } catch (err) {
-        console.error("Error fetching paginated movies:", err);
-        if (movieCardsContainer) {
-            movieCardsContainer.innerHTML = "<p>Error loading movies. Please try again later.</p>";
-        }
-    }
+async function fetchMovies(page = 1, search= '') {
+  try {
+    let url = `/api/movies/search?page=${page}`;
+    if (search && search.trim() !== '') url += `&q=${encodeURIComponent(search.trim())}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayMovies(data.movies);
+    //displayMovies(data);
+    updatePaginationButtons(data.currentPage, data.totalPages);
+  } catch (err) {
+    console.error("Error fetching paginated movies:", err);
+    movieCardsContainer.innerHTML = "<p>Failed to fetch movies.</p>";
+  }
 }
 
 // Add pagination event listeners
-const nextBtn = document.getElementById("next-btn");
-const prevBtn = document.getElementById("prev-btn");
+document.getElementById("next-btn").addEventListener("click", () => {
+  currentPage++;
+  fetchMovies(currentPage),currentSearch;
+});
 
-if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-        currentPage++;
-        fetchMovies(currentPage);
-    });
-}
-
-if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-        if (currentPage > 1) {
-            currentPage--;
-            fetchMovies(currentPage);
-        }
-    });
-}
+document.getElementById("prev-btn").addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    fetchMovies(currentPage,currentSearch);
+  }
+});
 
 function updatePaginationButtons(currentPage, total) {
     const prevBtn = document.getElementById("prev-btn");
