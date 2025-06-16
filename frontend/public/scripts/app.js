@@ -453,8 +453,8 @@ function displayMovies(movies) {
             }
             
             // Add movie name as identifier
-            movieCard.dataset.movieName = movie.name;
-
+            //movieCard.dataset.movieName = movie.name;
+            movieCard.dataset.movieId = movie._id || movie.id;
             // Add click event listener to the watchlist button
             const watchlistBtn = movieCard.querySelector(".add-to-watchlist-btn");
             if (watchlistBtn) {
@@ -467,7 +467,7 @@ function displayMovies(movies) {
                                 "Content-Type": "application/json",
                             },
                             credentials: "include",
-                            body: JSON.stringify({ movieName: movie.name })
+                            body: JSON.stringify({movieId: movie._id || movie.id  })
                         });
                         const result = await response.json();
                         if (result.success) {

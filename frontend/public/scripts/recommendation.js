@@ -84,7 +84,7 @@ document.querySelector(".close-btn").addEventListener("click", () => {
     document.getElementById("add-to-watchlist-btn-overlay").style.display = "none";
 });
 
-document.getElementById("add-to-watchlist-btn-overlay").addEventListener("click", async () => {
+/*document.getElementById("add-to-watchlist-btn-overlay").addEventListener("click", async () => {
     if (!currentRecommendedMovie) return;
     try {
         const response = await fetch('/api/watchlist/add', {
@@ -104,7 +104,7 @@ document.getElementById("add-to-watchlist-btn-overlay").addEventListener("click"
     } catch (err) {
         alert("Error adding movie to watchlist.");
     }
-});
+});*/
 
 window.addEventListener("DOMContentLoaded", async () => {
     try {
