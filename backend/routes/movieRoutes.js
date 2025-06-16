@@ -10,7 +10,7 @@ router.delete('/admin/movies/:id', deleteMovie);
 //router.post('/admin/movies/update/:id', updateMovie);
 router.put('/admin/movies/:id', updateMovie);
 router.get('/image/:id', getMovieImage);
-router.get("/search", getPaginatedMovies);
+//router.get("/search", getPaginatedMovies);
 
 module.exports = router;
 

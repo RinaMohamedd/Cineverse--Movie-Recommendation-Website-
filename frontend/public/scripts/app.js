@@ -377,9 +377,12 @@ const searchInput = document.getElementById("search");
 const movieCardsContainer = document.querySelector(".movie-cards"); // FIXED: Use class selector
 const movieTemplate = document.querySelector("[data-user-template]");
 
+
+let currentSearch = '';
+
 // Ensure script runs after DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-    fetchMovies(1);
+    fetchMovies(1, '');
 });
 
 // Function to create movie cards
@@ -431,18 +434,24 @@ function displayMovies(movies) {
 }
 
 // Event listener for search input
-searchInput.addEventListener("input", async (e) => {
+/*searchInput.addEventListener("input", async (e) => {
     const searchValue = e.target.value.toLowerCase();
     try {
-        const res = await fetch(`/api/movies/search?q=${encodeURIComponent(searchValue)}`);
+        currentPage =1;
+        const res = await fetch(`/api/movies/search?q=${encodeURIComponent(searchValue)}&page=1`);
         const data = await res.json();
-        displayMovies(data);
+        displayMovies(data.movies);
+        updatePaginationButtons(data.currentPage, data.totalPages);
     } catch (err) {
         console.error("Search error:", err);
         movieCardsContainer.innerHTML = "<p>Failed to fetch search results.</p>";
     }
+});*/
+    searchInput.addEventListener("input", async (e) => {
+    currentSearch = e.target.value.toLowerCase();
+    currentPage = 1;
+    await fetchMovies(currentPage, currentSearch);
 });
-    
 //functions to generate the pages with the movies' details
 function closeMovieDetails() {
   const movieDetailsBox = document.getElementById('movie-modal');
@@ -475,28 +484,30 @@ async function showMovieDetails(movieTitle) {
 
 let currentPage = 1;
 
-async function fetchMovies(page = 1) {
+async function fetchMovies(page = 1, search= '') {
   try {
-    const res = await fetch(`/api/movies/search?page=${page}`);
+    let url = `/api/movies/search?page=${page}`;
+    if (search && search.trim() !== '') url += `&q=${encodeURIComponent(search.trim())}`;
+    const res = await fetch(url);
     const data = await res.json();
-
     displayMovies(data.movies);
     //displayMovies(data);
     updatePaginationButtons(data.currentPage, data.totalPages);
   } catch (err) {
     console.error("Error fetching paginated movies:", err);
+    movieCardsContainer.innerHTML = "<p>Failed to fetch movies.</p>";
   }
 }
 
 document.getElementById("next-btn").addEventListener("click", () => {
   currentPage++;
-  fetchMovies(currentPage);
+  fetchMovies(currentPage),currentSearch;
 });
 
 document.getElementById("prev-btn").addEventListener("click", () => {
   if (currentPage > 1) {
     currentPage--;
-    fetchMovies(currentPage);
+    fetchMovies(currentPage,currentSearch);
   }
 });
 
