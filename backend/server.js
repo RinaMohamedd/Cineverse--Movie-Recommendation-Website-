@@ -19,6 +19,7 @@ const watchlistRoutes = require("./routes/watchlist");
 const recommendationRoutes = require('./routes/recommendationRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const profileRoutes = require("./routes/profile");
+const reviewRoutes = require('./routes/reviewRoutes');
 const adminMiddleware = require('./middleware/admin');
 
 const uri = process.env.MONGODB_URI;
@@ -76,42 +77,45 @@ app.use((req, res, next) => {
 
 // Request logging middleware
 app.use((req, res, next) => {
-    console.log(req.path, req.method);
+    console.log(`${req.method} ${req.path}`);
     next();
 });
 
-// API Routes - Put these before the page routes
-/*app.use('/api/users', userRoutes);
-app.use('/api/movies', movieRoutes);
+// API Routes - Must be before page routes
 app.use('/api/watchlist', watchlistRoutes);
-app.use('/api/recommendation', recommendationRoutes);
-app.use("/watchlist", watchlistRoutes);*/
-//this gets all the different routes we created so they could be used on the app
-app.use("/api/watchlist", watchlistRoutes);
 app.use('/api/movies', movieRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/recommendation', recommendationRoutes);
+app.use('/api/reviews', reviewRoutes);
 
-//page routes
-app.use("/", homeRoutes);
+// Page routes
+app.use('/', homeRoutes);
 app.use('/', profileRoutes);
 app.use('/', movieRoutes);
-app.use("/login", loginRoutes);
-app.use("/signup", signupRoutes);
+app.use('/login', loginRoutes);
+app.use('/signup', signupRoutes);
 app.use('/admin', adminRoutes);
 app.use('/recommendations', recomRoutes);
-app.use("/watchlist", watchlistRoutes);
+app.use('/watchlist', watchlistRoutes);
 
-//admin page render
-// app.get('/admin', adminMiddleware, (req, res) => {
-//     res.render('admin'); 
-// });
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    if (req.path.startsWith('/api/')) {
+        res.status(500).json({ success: false, message: 'Something broke!', error: err.message });
+    } else {
+        res.status(500).send('Something broke!');
+    }
+});
 
-//app.use('/api/recommendation', recomRoutes);
-
-/*app.listen(process.env.PORT, () => {
-    console.log(`Server is on http://localhost:${process.env.PORT}`);
-});*/
+// 404 handler - Must be after all routes
+app.use((req, res) => {
+    if (req.path.startsWith('/api/')) {
+        res.status(404).json({ success: false, message: 'Not Found' });
+    } else {
+        res.status(404).send('Page not found');
+    }
+});
 
 // MongoDB connection and server start
 mongoose.connect(uri)
@@ -122,13 +126,3 @@ mongoose.connect(uri)
     });
 })
 .catch((err) => console.error('MongoDB Connection Error: ', err));
-//app.use(express.static('public')); 
-
-/*app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');*/
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({message: 'Something broke!', error: err.message});
-});

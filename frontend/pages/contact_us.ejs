@@ -19,15 +19,15 @@
             <div class="contact-wrapper">
                 <div class="contact-form">
                     <h3>Send us a message</h3>
-                    <form>
+                    <form id="contact-form">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name">
+                            <input type="text" name="name" id="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email">
+                            <input type="email" name="email" id="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                           <textarea name="message" placeholder="Your Message"></textarea>
+                           <textarea name="message" id="message" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit">Send Message</button>
                     </form>
@@ -47,5 +47,36 @@
 
     <script src="/scripts/navbar.js"></script>
     <script src="/scripts/app.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, message })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Message sent successfully!');
+                    document.getElementById('contact-form').reset();
+                } else {
+                    alert(data.message || 'Failed to send message');
+                }
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Failed to send message. Please try again later.');
+            }
+        });
+    </script>
 </body>
 </html>

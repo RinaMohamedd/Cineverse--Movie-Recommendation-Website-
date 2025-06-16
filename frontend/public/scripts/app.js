@@ -3,17 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastScrollTop = 0;
   const navbar = document.getElementById('navbar');
 
-  window.addEventListener('scroll', () => {
-    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      let scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-    if (scrollTop > lastScrollTop) {
-      navbar.style.top = "-100px"; // hide
-    } else {
-      navbar.style.top = "0"; // show
-    }
+      if (scrollTop > lastScrollTop) {
+        navbar.style.top = "-100px"; // hide
+      } else {
+        navbar.style.top = "0"; // show
+      }
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-  });
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  }
 });
 
 
@@ -23,22 +25,26 @@ document.addEventListener('DOMContentLoaded', () => {
 const arrows = document.querySelectorAll(".arrow");
 const movieLists = document.querySelectorAll(".movie-list");
 
-arrows.forEach((arrow, i) => {
+if (arrows.length > 0 && movieLists.length > 0) {
+  arrows.forEach((arrow, i) => {
     const movieList = movieLists[i];
-    const itemNumber = movieList.querySelectorAll("img").length;
-    let clickCounter = 0;
-    arrow.addEventListener("click", () => {
-      const ratio = Math.floor(window.innerWidth / 270); 
-      const maxClicks = itemNumber - ratio; 
-      if (clickCounter < maxClicks+1) {
-        clickCounter++;
-        movieList.style.transform = `translateX(${-(clickCounter * 300)}px)`;
-      } else {
-        movieList.style.transform = "translateX(0)";
-        clickCounter = 0;
-      }
-    });
+    if (movieList) {
+      const itemNumber = movieList.querySelectorAll("img").length;
+      let clickCounter = 0;
+      arrow.addEventListener("click", () => {
+        const ratio = Math.floor(window.innerWidth / 270); 
+        const maxClicks = itemNumber - ratio; 
+        if (clickCounter < maxClicks+1) {
+          clickCounter++;
+          movieList.style.transform = `translateX(${-(clickCounter * 300)}px)`;
+        } else {
+          movieList.style.transform = "translateX(0)";
+          clickCounter = 0;
+        }
+      });
+    }
   });
+}
   
 const ball = document.querySelector(".toggle-ball");
 const items = document.querySelectorAll(
@@ -47,37 +53,55 @@ const items = document.querySelectorAll(
 
 const recommendationsBody = document.querySelector('.recommendations-body');
 
-window.addEventListener("load", () => {
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-theme");
-    ball.classList.add("active");
-    items.forEach((item) => item.classList.add("active"));
-    document.querySelector('.home-body, .recommendations-body, .search-body,.login-body,.watchlist-body,.start_now-body,.footer-body').style.backgroundImage = "url(../images/background8.jpg)";
-    if (recommendationsBody) recommendationsBody.classList.remove("active");
-  } else {
-    document.body.classList.remove("dark-theme");
-    ball.classList.remove("active");
-    items.forEach((item) => item.classList.remove("active"));
-    document.querySelector('.home-body, .recommendations-body, .search-body,.login-body,.watchlist-body,.start_now-body,.footer-body').style.backgroundImage = "url(../images/background9.jpg)";
-    if (recommendationsBody) recommendationsBody.classList.add("active");
-  }
-});
+if (ball && items.length > 0) {
+  window.addEventListener("load", () => {
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark-theme");
+      ball.classList.add("active");
+      items.forEach((item) => item.classList.add("active"));
+      const homeBody = document.querySelector('.home-body, .recommendations-body, .search-body,.login-body,.watchlist-body,.start_now-body,.footer-body');
+      if (homeBody) {
+        homeBody.style.backgroundImage = "url(../images/background8.jpg)";
+      }
+      if (recommendationsBody) {
+        recommendationsBody.classList.remove("active");
+      }
+    } else {
+      document.body.classList.remove("dark-theme");
+      ball.classList.remove("active");
+      items.forEach((item) => item.classList.remove("active"));
+      const homeBody = document.querySelector('.home-body, .recommendations-body, .search-body,.login-body,.watchlist-body,.start_now-body,.footer-body');
+      if (homeBody) {
+        homeBody.style.backgroundImage = "url(../images/background9.jpg)";
+      }
+      if (recommendationsBody) {
+        recommendationsBody.classList.add("active");
+      }
+    }
+  });
 
-ball.addEventListener("click", () => {
-  document.body.classList.toggle("dark-theme");
-  ball.classList.toggle("active");
-  items.forEach((item) => item.classList.toggle("active"));
-  const homeBody = document.querySelector('.home-body, .recommendations-body, .search-body,.login-body,.watchlist-body,.start_now-body,.footer-body');
-  if (document.body.classList.contains("dark-theme")) {
-    localStorage.setItem("theme", "dark");
-    homeBody.style.backgroundImage = "url(../images/background8.jpg)";
-    if (recommendationsBody) recommendationsBody.classList.remove("active");
-  } else {
-    localStorage.setItem("theme", "light");
-    homeBody.style.backgroundImage = "url(../images/background9.jpg)";
-    if (recommendationsBody) recommendationsBody.classList.add("active");
-  }
-});
+  ball.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+    ball.classList.toggle("active");
+    items.forEach((item) => item.classList.toggle("active"));
+    const homeBody = document.querySelector('.home-body, .recommendations-body, .search-body,.login-body,.watchlist-body,.start_now-body,.footer-body');
+    if (homeBody) {
+      if (document.body.classList.contains("dark-theme")) {
+        localStorage.setItem("theme", "dark");
+        homeBody.style.backgroundImage = "url(../images/background8.jpg)";
+        if (recommendationsBody) {
+          recommendationsBody.classList.remove("active");
+        }
+      } else {
+        localStorage.setItem("theme", "light");
+        homeBody.style.backgroundImage = "url(../images/background9.jpg)";
+        if (recommendationsBody) {
+          recommendationsBody.classList.add("active");
+        }
+      }
+    }
+  });
+}
 
 // Movie data (manually added)----------------------------------------------
 const movies = [
@@ -374,135 +398,223 @@ const movies = [
 
 // Search Functions-----------------------------------------------------------------------
 const searchInput = document.getElementById("search");
-const movieCardsContainer = document.querySelector(".movie-cards"); // FIXED: Use class selector
+const movieCardsContainer = document.querySelector(".movie-cards");
 const movieTemplate = document.querySelector("[data-user-template]");
 
 // Ensure script runs after DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-    fetchMovies(1);
+    if (movieCardsContainer) {
+        fetchMovies(1);
+    }
 });
 
 // Function to create movie cards
 function displayMovies(movies) {
-  movieCardsContainer.innerHTML = ""; // Clear previous content
+    if (!movieCardsContainer) {
+        console.error('Movie cards container not found');
+        return;
+    }
 
-  movies.forEach(movie => {
-      const movieCard = movieTemplate.content.cloneNode(true).firstElementChild; // FIXED: Get first child
-      movieCard.querySelector("[data-header]").textContent = movie.name;
-      movieCard.querySelector("[data-year]").textContent = movie.year;
-      movieCard.querySelector("[data-genre]").textContent = movie.genre;
-      movieCard.querySelector("[data-img]").src = movie.image;
-      movieCard.querySelector("[data-img]").alt = movie.name;
-      
-      // Add movie name as identifier
-      movieCard.dataset.movieName = movie.name;
+    if (!movieTemplate) {
+        console.error('Movie template not found');
+        return;
+    }
 
-      // Add click event listener to the watchlist button
-      const watchlistBtn = movieCard.querySelector(".add-to-watchlist-btn");
-      watchlistBtn.addEventListener("click", async (e) => {
-          e.stopPropagation(); // Prevent card click event
-          try {
-              const response = await fetch('/api/watchlist/add', {
-                  method: 'POST',
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  credentials: "include",
-                  body: JSON.stringify({ movieName: movie.name })
-              });
-              const result = await response.json();
-              if (result.success) {
-                  alert("Movie added to your watchlist!");
-              } else {
-                  if (result.message === "User not found.") {
-                      window.location.href = "/login";
-                  } else {
-                      alert(result.message || "Failed to add movie.");
-                  }
-              }
-          } catch (err) {
-              console.error("Error adding to watchlist:", err);
-              alert("Error adding movie to watchlist.");
-          }
-      });
+    movieCardsContainer.innerHTML = ""; // Clear previous content
 
-      movieCardsContainer.appendChild(movieCard);
-  });
+    if (!Array.isArray(movies) || movies.length === 0) {
+        movieCardsContainer.innerHTML = "<p>No movies found</p>";
+        return;
+    }
+
+    movies.forEach(movie => {
+        try {
+            const movieCard = movieTemplate.content.cloneNode(true).firstElementChild;
+            if (!movieCard) {
+                console.error('Failed to clone movie template');
+                return;
+            }
+
+            const header = movieCard.querySelector("[data-header]");
+            const year = movieCard.querySelector("[data-year]");
+            const genre = movieCard.querySelector("[data-genre]");
+            const img = movieCard.querySelector("[data-img]");
+
+            if (header) header.textContent = movie.name;
+            if (year) year.textContent = movie.year;
+            if (genre) genre.textContent = movie.genre;
+            if (img) {
+                img.src = movie.image;
+                img.alt = movie.name;
+            }
+            
+            // Add movie name as identifier
+            movieCard.dataset.movieName = movie.name;
+
+            // Add click event listener to the watchlist button
+            const watchlistBtn = movieCard.querySelector(".add-to-watchlist-btn");
+            if (watchlistBtn) {
+                watchlistBtn.addEventListener("click", async (e) => {
+                    e.stopPropagation(); // Prevent card click event
+                    try {
+                        const response = await fetch('/api/watchlist/add', {
+                            method: 'POST',
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            credentials: "include",
+                            body: JSON.stringify({ movieName: movie.name })
+                        });
+                        const result = await response.json();
+                        if (result.success) {
+                            alert("Movie added to your watchlist!");
+                        } else {
+                            if (result.message === "User not found.") {
+                                window.location.href = "/login";
+                            } else {
+                                alert(result.message || "Failed to add movie.");
+                            }
+                        }
+                    } catch (err) {
+                        console.error("Error adding to watchlist:", err);
+                        alert("Error adding movie to watchlist.");
+                    }
+                });
+            }
+
+            movieCardsContainer.appendChild(movieCard);
+        } catch (err) {
+            console.error('Error creating movie card:', err);
+        }
+    });
 }
 
 // Event listener for search input
-searchInput.addEventListener("input", async (e) => {
-    const searchValue = e.target.value.toLowerCase();
-    try {
-        const res = await fetch(`/api/movies/search?q=${encodeURIComponent(searchValue)}`);
-        const data = await res.json();
-        displayMovies(data);
-    } catch (err) {
-        console.error("Search error:", err);
-        movieCardsContainer.innerHTML = "<p>Failed to fetch search results.</p>";
-    }
-});
-    
+if (searchInput) {
+    searchInput.addEventListener("input", async (e) => {
+        const searchValue = e.target.value.toLowerCase();
+        try {
+            const res = await fetch(`/api/movies/search?q=${encodeURIComponent(searchValue)}`);
+            const data = await res.json();
+            displayMovies(data);
+        } catch (err) {
+            console.error("Search error:", err);
+            if (movieCardsContainer) {
+                movieCardsContainer.innerHTML = "<p>Failed to fetch search results.</p>";
+            }
+        }
+    });
+}
+
 //functions to generate the pages with the movies' details
 function closeMovieDetails() {
-  const movieDetailsBox = document.getElementById('movie-modal');
-  movieDetailsBox.style.display = 'none';
+    const movieDetailsBox = document.getElementById('movie-modal');
+    if (movieDetailsBox) {
+        movieDetailsBox.style.display = 'none';
+    }
 }
 
 async function showMovieDetails(movieTitle) {
-  try {
-    const res = await fetch("/api/movies/search");
-    const data = await res.json();
-    const movie = data.find(m => m.name === movieTitle); // find the movie you want
+    try {
+        const res = await fetch("/api/movies/search");
+        const data = await res.json();
+        const movie = data.find(m => m.name === movieTitle);
 
-    if (!movie) {
-      document.getElementById("modal-content").innerHTML = "<p>Movie not found 😢</p>";
-      return;
+        const modalContent = document.getElementById("modal-content");
+        if (!modalContent) {
+            console.error('Modal content element not found');
+            return;
+        }
+
+        if (!movie) {
+            modalContent.innerHTML = "<p>Movie not found 😢</p>";
+            return;
+        }
+
+        const elements = {
+            "movie-name": movie.name,
+            "movie-img": `/uploads/${movie.image}`,
+            "movie-genres": movie.genre.join(", "),
+            "movie-year": movie.year,
+            "movie-rating": movie.ageRating,
+            "movie-description": movie.description
+        };
+
+        for (const [id, value] of Object.entries(elements)) {
+            const element = document.getElementById(id);
+            if (element) {
+                if (id === "movie-img") {
+                    element.src = value;
+                } else {
+                    element.innerText = value;
+                }
+            }
+        }
+
+        const movieModal = document.getElementById("movie-modal");
+        if (movieModal) {
+            movieModal.style.display = "block";
+        }
+    } catch (err) {
+        console.error("Error fetching movie details:", err);
+        const modalContent = document.getElementById("modal-content");
+        if (modalContent) {
+            modalContent.innerHTML = "<p>Something went wrong 😵</p>";
+        }
     }
-
-    document.getElementById("movie-name").innerText = movie.name;
-    document.getElementById("movie-img").src = `/uploads/${movie.image}`;
-    document.getElementById("movie-genres").innerText = movie.genre.join(", ");
-    document.getElementById("movie-year").innerText = movie.year;
-    document.getElementById("movie-rating").innerText = movie.ageRating;
-    document.getElementById("movie-description").innerText = movie.description;
-    document.getElementById("movie-modal").style.display = "block";
-  } catch (err) {
-    console.error("Error fetching movie details:", err);
-    document.getElementById("modal-content").innerHTML = "<p>Something went wrong 😵</p>";
-  }
 }
 
 let currentPage = 1;
 
 async function fetchMovies(page = 1) {
-  try {
-    const res = await fetch(`/api/movies/search?page=${page}`);
-    const data = await res.json();
+    try {
+        const res = await fetch(`/api/movies/search?page=${page}`);
+        const data = await res.json();
 
-    displayMovies(data.movies);
-    //displayMovies(data);
-    updatePaginationButtons(data.currentPage, data.totalPages);
-  } catch (err) {
-    console.error("Error fetching paginated movies:", err);
-  }
+        if (data.movies) {
+            displayMovies(data.movies);
+            updatePaginationButtons(data.currentPage, data.totalPages);
+        } else {
+            displayMovies(data);
+        }
+    } catch (err) {
+        console.error("Error fetching paginated movies:", err);
+        if (movieCardsContainer) {
+            movieCardsContainer.innerHTML = "<p>Error loading movies. Please try again later.</p>";
+        }
+    }
 }
 
-document.getElementById("next-btn").addEventListener("click", () => {
-  currentPage++;
-  fetchMovies(currentPage);
-});
+// Add pagination event listeners
+const nextBtn = document.getElementById("next-btn");
+const prevBtn = document.getElementById("prev-btn");
 
-document.getElementById("prev-btn").addEventListener("click", () => {
-  if (currentPage > 1) {
-    currentPage--;
-    fetchMovies(currentPage);
-  }
-});
+if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+        currentPage++;
+        fetchMovies(currentPage);
+    });
+}
+
+if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            fetchMovies(currentPage);
+        }
+    });
+}
 
 function updatePaginationButtons(currentPage, total) {
-  document.getElementById("prev-btn").disabled = currentPage === 1;
-  document.getElementById("next-btn").disabled = currentPage === total;
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    if (prevBtn) {
+        prevBtn.disabled = currentPage === 1;
+    }
+    if (nextBtn) {
+        nextBtn.disabled = currentPage === total;
+    }
 }
 //----------------------------------------------------------------------------------------------------------------
 

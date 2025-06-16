@@ -1,3 +1,7 @@
+// Global variables for pagination
+let currentPage = 1;
+const activitiesPerPage = 10;
+
 function showSection(id) {
     // Hide all sections
     document.querySelectorAll('.section').forEach(section => {
@@ -320,9 +324,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Function to load recent activities
-async function loadRecentActivities() {
+let currentActivityPage = 1;
+
+async function loadRecentActivities(loadMore = false) {
     try {
-        const response = await fetch('/admin/activities', {
+        if (!loadMore) {
+            currentPage = 1;
+        }
+
+        const response = await fetch(`/admin/activities?page=${currentPage}&limit=${activitiesPerPage}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -335,26 +345,56 @@ async function loadRecentActivities() {
         }
 
         const activities = await response.json();
-        const tbody = document.querySelector('.recent-activity table tbody');
-        
-        if (activities.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No recent activities</td></tr>';
-            return;
-        }
+        displayActivities(activities, loadMore);
 
-        tbody.innerHTML = activities.map(activity => `
-            <tr>
-                <td>${activity.user.fullname}</td>
-                <td>${activity.user.email}</td>
-                <td>${activity.action.replace('_', ' ')}</td>
-                <td>${activity.details}</td>
-                <td>${new Date(activity.timestamp).toLocaleString()}</td>
-            </tr>
-        `).join('');
+        // Update load more button visibility
+        const loadMoreBtn = document.getElementById('load-more-activities');
+        if (loadMoreBtn) {
+            loadMoreBtn.style.display = activities.length === activitiesPerPage ? 'block' : 'none';
+        }
     } catch (error) {
-        console.error('Error loading recent activities:', error);
+        console.error('Error loading activities:', error);
+        const tbody = document.getElementById('activities-table-body');
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: red;">Error loading activities: ${error.message}</td></tr>`;
     }
 }
 
+function displayActivities(activities, append = false) {
+    const tbody = document.getElementById('activities-table-body');
+    
+    if (!append) {
+        tbody.innerHTML = '';
+    }
+
+    if (activities.length === 0 && !append) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No recent activities</td></tr>';
+        return;
+    }
+
+    activities.forEach(activity => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${activity.user ? activity.user.fullname : 'Unknown User'}</td>
+            <td>${activity.user ? activity.user.email : 'N/A'}</td>
+            <td><span class="activity-action">${activity.action ? activity.action.replace(/_/g, ' ') : 'Unknown Action'}</span></td>
+            <td>${activity.details || 'No details'}</td>
+            <td>${activity.timestamp ? new Date(activity.timestamp).toLocaleString() : 'N/A'}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    if (append) {
+        currentPage++;
+    }
+}
+
+// Add event listener for load more button
+document.addEventListener('DOMContentLoaded', function() {
+    const loadMoreBtn = document.getElementById('load-more-activities');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => loadRecentActivities(true));
+    }
+});
+
 // Refresh activities every 30 seconds
-setInterval(loadRecentActivities, 30000);
+setInterval(() => loadRecentActivities(false), 30000);

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAdmin, getAllUsers, getUserById, updateUser, deleteUser } = require('../controllers/adminController');
+const { getAdmin, getAllUsers, getUserById, updateUser, deleteUser, getRecentActivities } = require('../controllers/adminController');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 
@@ -16,6 +16,9 @@ router.get('/users', getAllUsers);
 router.get('/users/:id', getUserById);
 router.put('/users/:id', updateUser);
 router.delete('/users/:id', deleteUser);
+
+// Activities route
+router.get('/activities', getRecentActivities);
 
 // Debug route to test if admin routes are working
 router.get('/test', (req, res) => {

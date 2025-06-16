@@ -1,15 +1,21 @@
 //const jwt = require('jsonwebtoken');//imports the jsonwwentoken library so we can verify the JWT tokens
 
 module.exports = (req, res, next) => {
-    if (!req.session.user || !req.session.user.id) {
-        return res.status(401).json({ message: 'Unauthorized. Please log in.' });
+    console.log('Auth middleware - Session:', req.session);
+    console.log('Auth middleware - User:', req.session.user);
+    
+    if (!req.session || !req.session.user || !req.session.user.id) {
+        console.log('Auth middleware - Unauthorized: No user session');
+        return res.status(401).json({ success: false, message: 'Unauthorized. Please log in.' });
     }
 
+    // Set user info in req.user for consistency
     req.user = {
-        userId: req.session.user.id,
+        id: req.session.user.id,
         username: req.session.user.username
     };
-
+    
+    console.log('Auth middleware - Authorized user:', req.user);
     next();
 };
 

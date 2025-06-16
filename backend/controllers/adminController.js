@@ -13,7 +13,7 @@ const getAdmin = async (req, res) => {
             UserActivity.find()
                 .populate('user', 'fullname email')
                 .sort({ timestamp: -1 })
-                .limit(5)
+                .limit(10)
         ]);
 
         //render the admin page with the counts and recent activities
@@ -116,10 +116,16 @@ const deleteUser = async (req, res) => {
 // Get recent activities
 const getRecentActivities = async (req, res) => {
     try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = (page - 1) * limit;
+
         const activities = await UserActivity.find()
             .populate('user', 'fullname email')
             .sort({ timestamp: -1 })
-            .limit(10);
+            .skip(skip)
+            .limit(limit);
+
         res.status(200).json(activities);
     } catch (err) {
         console.error('Error in getRecentActivities:', err);
